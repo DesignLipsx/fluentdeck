@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Add Circle",
+    "filename": "ic_fluent_add_circle_24_color"
+  },
+  {
+    "name": "Agents",
+    "filename": "ic_fluent_agents_24_color"
+  },
+  {
+    "name": "Alert",
+    "filename": "ic_fluent_alert_24_color"
+  },
+  {
+    "name": "Apps",
+    "filename": "ic_fluent_apps_24_color"
+  },
+  {
+    "name": "Apps List",
+    "filename": "ic_fluent_apps_list_24_color"
+  },
+  {
+    "name": "Arrow Sync",
+    "filename": "ic_fluent_arrow_sync_24_color"
+  },
+  {
+    "name": "Beach",
+    "filename": "ic_fluent_beach_24_color"
+  },
+  {
+    "name": "Board",
+    "filename": "ic_fluent_board_24_color"
+  },
+  {
+    "name": "Book",
+    "filename": "ic_fluent_book_24_color"
+  },
+  {
+    "name": "Book Open",
+    "filename": "ic_fluent_book_open_24_color"
+  },
+  {
+    "name": "Book Star",
+    "filename": "ic_fluent_book_star_24_color"
+  },
+  {
+    "name": "Bookmark",
+    "filename": "ic_fluent_bookmark_24_color"
+  },
+  {
+    "name": "Bot",
+    "filename": "ic_fluent_bot_24_color"
+  },
+  {
+    "name": "Briefcase",
+    "filename": "ic_fluent_briefcase_24_color"
+  },
+  {
+    "name": "Building",
+    "filename": "ic_fluent_building_24_color"
+  },
+  {
+    "name": "Calendar",
+    "filename": "ic_fluent_calendar_24_color"
+  },
+  {
+    "name": "Camera",
+    "filename": "ic_fluent_camera_24_color"
+  },
+  {
+    "name": "Chat",
+    "filename": "ic_fluent_chat_24_color"
+  },
+  {
+    "name": "Chat Add",
+    "filename": "ic_fluent_chat_add_24_color"
+  },
+  {
+    "name": "Chat More",
+    "filename": "ic_fluent_chat_more_24_color"
+  },
+  {
+    "name": "Checkbox",
+    "filename": "ic_fluent_checkbox_24_color"
+  },
+  {
+    "name": "Clipboard",
+    "filename": "ic_fluent_clipboard_24_color"
+  },
+  {
+    "name": "Clock",
+    "filename": "ic_fluent_clock_24_color"
+  },
+  {
+    "name": "Clock Alarm",
+    "filename": "ic_fluent_clock_alarm_24_color"
+  },
+  {
+    "name": "Cloud",
+    "filename": "ic_fluent_cloud_24_color"
+  },
+  {
+    "name": "Code",
+    "filename": "ic_fluent_code_24_color"
+  },
+  {
+    "name": "Code Block",
+    "filename": "ic_fluent_code_block_24_color"
+  },
+  {
+    "name": "Comment",
+    "filename": "ic_fluent_comment_24_color"
+  },
+  {
+    "name": "Data Area",
+    "filename": "ic_fluent_data_area_24_color"
+  },
+  {
+    "name": "Data Line",
+    "filename": "ic_fluent_data_line_24_color"
+  },
+  {
+    "name": "Data Pie",
+    "filename": "ic_fluent_data_pie_24_color"
+  },
+  {
+    "name": "Database",
+    "filename": "ic_fluent_database_24_color"
+  },
+  {
+    "name": "Diversity",
+    "filename": "ic_fluent_diversity_24_color"
+  },
+  {
+    "name": "Document",
+    "filename": "ic_fluent_document_24_color"
+  },
+  {
+    "name": "Drafts",
+    "filename": "ic_fluent_drafts_24_color"
+  },
+  {
+    "name": "Edit",
+    "filename": "ic_fluent_edit_24_color"
+  },
+  {
+    "name": "Flag",
+    "filename": "ic_fluent_flag_24_color"
+  },
+  {
+    "name": "Food",
+    "filename": "ic_fluent_food_24_color"
+  },
+  {
+    "name": "Form",
+    "filename": "ic_fluent_form_24_color"
+  },
+  {
+    "name": "Gauge",
+    "filename": "ic_fluent_gauge_24_color"
+  },
+  {
+    "name": "Gift",
+    "filename": "ic_fluent_gift_24_color"
+  },
+  {
+    "name": "Gift Card",
+    "filename": "ic_fluent_gift_card_24_color"
+  },
+  {
+    "name": "Globe",
+    "filename": "ic_fluent_globe_24_color"
+  },
+  {
+    "name": "Guest",
+    "filename": "ic_fluent_guest_24_color"
+  },
+  {
+    "name": "Headphones",
+    "filename": "ic_fluent_headphones_24_color"
+  },
+  {
+    "name": "Headset",
+    "filename": "ic_fluent_headset_24_color"
+  },
+  {
+    "name": "Heart",
+    "filename": "ic_fluent_heart_24_color"
+  },
+  {
+    "name": "History",
+    "filename": "ic_fluent_history_24_color"
+  },
+  {
+    "name": "Home",
+    "filename": "ic_fluent_home_24_color"
+  },
+  {
+    "name": "Image",
+    "filename": "ic_fluent_image_24_color"
+  },
+  {
+    "name": "Image Off",
+    "filename": "ic_fluent_image_off_24_color"
+  },
+  {
+    "name": "Laptop",
+    "filename": "ic_fluent_laptop_24_color"
+  },
+  {
+    "name": "Library",
+    "filename": "ic_fluent_library_24_color"
+  },
+  {
+    "name": "Lightbulb",
+    "filename": "ic_fluent_lightbulb_24_color"
+  },
+  {
+    "name": "Link",
+    "filename": "ic_fluent_link_24_color"
+  },
+  {
+    "name": "List Bar",
+    "filename": "ic_fluent_list_bar_24_color"
+  },
+  {
+    "name": "Mail",
+    "filename": "ic_fluent_mail_24_color"
+  },
+  {
+    "name": "Mail Alert",
+    "filename": "ic_fluent_mail_alert_24_color"
+  },
+  {
+    "name": "Mail Clock",
+    "filename": "ic_fluent_mail_clock_24_color"
+  },
+  {
+    "name": "Mic",
+    "filename": "ic_fluent_mic_24_color"
+  },
+  {
+    "name": "Molecule",
+    "filename": "ic_fluent_molecule_24_color"
+  },
+  {
+    "name": "News",
+    "filename": "ic_fluent_news_24_color"
+  },
+  {
+    "name": "Notebook",
+    "filename": "ic_fluent_notebook_24_color"
+  },
+  {
+    "name": "Options",
+    "filename": "ic_fluent_options_24_color"
+  },
+  {
+    "name": "Org",
+    "filename": "ic_fluent_org_24_color"
+  },
+  {
+    "name": "Paint Brush",
+    "filename": "ic_fluent_paint_brush_24_color"
+  },
+  {
+    "name": "Patient",
+    "filename": "ic_fluent_patient_24_color"
+  },
+  {
+    "name": "Paw",
+    "filename": "ic_fluent_paw_24_color"
+  },
+  {
+    "name": "People",
+    "filename": "ic_fluent_people_24_color"
+  },
+  {
+    "name": "People Add",
+    "filename": "ic_fluent_people_add_24_color"
+  },
+  {
+    "name": "People Team",
+    "filename": "ic_fluent_people_team_24_color"
+  },
+  {
+    "name": "Person",
+    "filename": "ic_fluent_person_24_color"
+  },
+  {
+    "name": "Person Add",
+    "filename": "ic_fluent_person_add_24_color"
+  },
+  {
+    "name": "Person Key",
+    "filename": "ic_fluent_person_key_24_color"
+  },
+  {
+    "name": "Phone",
+    "filename": "ic_fluent_phone_24_color"
+  },
+  {
+    "name": "Pin",
+    "filename": "ic_fluent_pin_24_color"
+  },
+  {
+    "name": "Planet",
+    "filename": "ic_fluent_planet_24_color"
+  },
+  {
+    "name": "Poll",
+    "filename": "ic_fluent_poll_24_color"
+  },
+  {
+    "name": "Premium",
+    "filename": "ic_fluent_premium_24_color"
+  },
+  {
+    "name": "Receipt",
+    "filename": "ic_fluent_receipt_24_color"
+  },
+  {
+    "name": "Reward",
+    "filename": "ic_fluent_reward_24_color"
+  },
+  {
+    "name": "Ribbon",
+    "filename": "ic_fluent_ribbon_24_color"
+  },
+  {
+    "name": "Savings",
+    "filename": "ic_fluent_savings_24_color"
+  },
+  {
+    "name": "Scan Type",
+    "filename": "ic_fluent_scan_type_24_color"
+  },
+  {
+    "name": "Send",
+    "filename": "ic_fluent_send_24_color"
+  },
+  {
+    "name": "Send Clock",
+    "filename": "ic_fluent_send_clock_24_color"
+  },
+  {
+    "name": "Settings",
+    "filename": "ic_fluent_settings_24_color"
+  },
+  {
+    "name": "Share iOS",
+    "filename": "ic_fluent_share_ios_24_color"
+  },
+  {
+    "name": "Shield",
+    "filename": "ic_fluent_shield_24_color"
+  },
+  {
+    "name": "Shifts",
+    "filename": "ic_fluent_shifts_24_color"
+  },
+  {
+    "name": "Sport",
+    "filename": "ic_fluent_sport_24_color"
+  },
+  {
+    "name": "Star",
+    "filename": "ic_fluent_star_24_color"
+  },
+  {
+    "name": "Table",
+    "filename": "ic_fluent_table_24_color"
+  },
+  {
+    "name": "Toolbox",
+    "filename": "ic_fluent_toolbox_24_color"
+  },
+  {
+    "name": "Trophy",
+    "filename": "ic_fluent_trophy_24_color"
+  },
+  {
+    "name": "Vault",
+    "filename": "ic_fluent_vault_24_color"
+  },
+  {
+    "name": "Video",
+    "filename": "ic_fluent_video_24_color"
+  },
+  {
+    "name": "Warning",
+    "filename": "ic_fluent_warning_24_color"
+  },
+  {
+    "name": "WiFi",
+    "filename": "ic_fluent_wifi_24_color"
+  },
+  {
+    "name": "Wrench",
+    "filename": "ic_fluent_wrench_24_color"
+  }
+]

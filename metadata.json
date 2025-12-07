@@ -1,0 +1,5 @@
+{
+  "name": "Fluent Deck",
+  "description": "A modern, responsive web interface to browse a curated list of WinUI 3 applications, dynamically loaded from a public README file.",
+  "requestFramePermissions": []
+}

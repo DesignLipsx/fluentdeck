@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fluent Deck - A Showcase of WinUI 3 Apps, Icons, and Emojis</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="A curated showcase of beautiful WinUI 3 apps, Fluent System Icons, and Fluent Emojis. Explore the best of Microsoft's modern design language." />
+    <meta name="keywords" content="Fluent Deck, Fluent Design, WinUI 3, Windows Apps, Fluent Icons, Fluent Emoji, UI Showcase, Microsoft Design, App Gallery, Icon Library" />
+    <meta name="author" content="Fluent Deck" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://fluentdeck.vercel.app/" />
+    <meta name="google-site-verification" content="311SWwIopQWqvC6MoLEogK17SRSTu6CfTyLHvDLHs1o" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fluentdeck.vercel.app/" />
+    <meta property="og:title" content="Fluent Deck - A Showcase of WinUI 3 Apps, Icons, and Emojis" />
+    <meta property="og:description" content="A curated showcase of beautiful WinUI 3 apps, Fluent System Icons, and Fluent Emojis. Explore the best of Microsoft's modern design language." />
+    <meta property="og:image" content="https://i.postimg.cc/zvnT3wwh/cover.png" />
+    <meta property="og:site_name" content="Fluent Deck" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://fluentdeck.vercel.app/" />
+    <meta name="twitter:title" content="Fluent Deck - A Showcase of WinUI 3 Apps, Icons, and Emojis" />
+    <meta name="twitter:description" content="A curated showcase of beautiful WinUI 3 apps, Fluent System Icons, and Fluent Emojis. Explore the best of Microsoft's modern design language." />
+    <meta name="twitter:image" content="https://i.postimg.cc/zvnT3wwh/cover.png" />
+
+    <link rel="icon" href="https://ovquzgethkugtnxcoeiq.supabase.co/storage/v1/object/public/fluent_deck_assets/logo.png" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Fluent Deck",
+      "url": "https://fluentdeck.vercel.app/",
+      "description": "A curated showcase of beautiful WinUI 3 apps, Fluent System Icons, and Fluent Emojis.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://fluentdeck.vercel.app/apps?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "mainEntity": {
+        "@type": "CollectionPage",
+        "name": "Fluent Deck Showcase",
+        "description": "Explore collections of WinUI 3 apps, Fluent System Icons, and Fluent Emojis, all following Microsoft's modern design principles.",
+        "hasPart": [
+          {
+            "@type": "Collection",
+            "name": "WinUI 3 Apps",
+            "url": "https://fluentdeck.vercel.app/apps"
+          },
+          {
+            "@type": "Collection",
+            "name": "Fluent System Icons",
+            "url": "https://fluentdeck.vercel.app/icons"
+          },
+          {
+            "@type": "Collection",
+            "name": "Fluent Emojis",
+            "url": "https://fluentdeck.vercel.app/emoji"
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('theme') || 'dark';
+          const root = document.documentElement;
+          if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            root.classList.add('dark');
+          } else {
+            root.classList.remove('dark');
+          }
+        } catch (e) {
+          console.error('Failed to set initial theme', e);
+        }
+      })();
+      
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              bg: {
+                primary: 'var(--bg-primary)',
+                secondary: 'var(--bg-secondary)',
+                tertiary: 'var(--bg-tertiary)',
+                inset: 'var(--bg-inset)',
+                hover: 'var(--bg-hover)',
+                active: 'var(--bg-active)',
+                backdrop: 'var(--bg-backdrop)',
+              },
+              text: {
+                primary: 'var(--text-primary)',
+                secondary: 'var(--text-secondary)',
+                tertiary: 'var(--text-tertiary)',
+                inverted: 'var(--text-inverted)',
+                placeholder: 'var(--text-placeholder)',
+              },
+              border: {
+                primary: 'var(--border-primary)',
+                secondary: 'var(--border-secondary)',
+              },
+              accent: {
+                primary: 'var(--accent-primary)',
+                'primary-text': 'var(--accent-primary-text)',
+                'primary-hover': 'var(--accent-primary-hover)',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bg-primary: #f9fafb; /* gray-50 */
+        --bg-secondary: #ffffff; /* white */
+        --bg-tertiary: #f3f4f6; /* gray-100 */
+        --bg-inset: #e5e7eb; /* gray-200 */
+        --bg-hover: #e5e7eb; /* gray-200 */
+        --bg-active: #e5e7eb; /* gray-200 */
+        --bg-backdrop: rgba(255, 255, 255, 0.8);
+
+        --text-primary: #111827; /* gray-900 */
+        --text-secondary: #374151; /* gray-700 */
+        --text-tertiary: #6b7280; /* gray-500 */
+        --text-placeholder: #9ca3af; /* gray-400 */
+        --text-inverted: #ffffff; /* white */
+        
+        --border-primary: #e5e7eb; /* gray-200 */
+        --border-secondary: #d1d5db; /* gray-300 */
+        
+        --accent-primary: #111827; /* gray-900 */
+        --accent-primary-text: #ffffff;
+        --accent-primary-hover: #374151; /* gray-700 */
+      }
+
+      html.dark {
+        --bg-primary: #101011;
+        --bg-secondary: #18181B;
+        --bg-tertiary: #1E1F22;
+        --bg-inset: #2a2b2c;
+        --bg-hover: #222225;
+        --bg-active: #3F3F46;
+        --bg-backdrop: rgba(16, 16, 17, 0.8);
+
+        --text-primary: #f9fafb; /* gray-50 */
+        --text-secondary: #d1d5db; /* gray-300 */
+        --text-tertiary: #9ca3af; /* gray-400 */
+        --text-placeholder: #6b7280; /* gray-500 */
+        --text-inverted: #111827; /* gray-900 */
+
+        --border-primary: #333538;
+        --border-secondary: #3f3f46;
+        
+        --accent-primary: #f9fafb; /* gray-50 */
+        --accent-primary-text: #111827;
+        --accent-primary-hover: #e5e7eb; /* gray-200 */
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+      }
+      
+      html {
+        scrollbar-gutter: stable;
+        /* Firefox scrollbar */
+        scrollbar-width: auto;
+        scrollbar-color: var(--border-secondary) var(--bg-primary);
+      }
+
+      /* Custom Scrollbar for Webkit browsers */
+      ::-webkit-scrollbar {
+        width: 14px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--bg-primary);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--border-secondary);
+        border-radius: 10px;
+        border: 3px solid var(--bg-primary);
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--text-tertiary);
+      }
+
+      .render-fast-card {
+        content-visibility: auto;
+        contain-intrinsic-height: 204px;
+      }
+      .render-fast-square {
+        content-visibility: auto;
+        contain-intrinsic-height: 150px;
+      }
+      .render-fast-row {
+        content-visibility: auto;
+        contain-intrinsic-height: 88px;
+      }
+      
+      @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fade-in-fast { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+      @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+      @keyframes background-pan { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      @keyframes zoom-in-95 { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+      @keyframes draw-line { to { stroke-dashoffset: 0; } }
+      
+      .animate-in { animation-name: fade-in-fast; animation-duration: 150ms; }
+      .fade-in-0 { animation-name: fade-in-fast; }
+      .zoom-in-95 { animation-name: zoom-in-95; }
+
+      .animate-fade-in { animation: fade-in 0.5s ease-out both; }
+      .animate-fade-in-fast { animation: fade-in-fast 0.2s ease-out forwards; }
+      .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      html.dark .animate-background-pan {
+        background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(129, 140, 248, 0.08) 0%, transparent 25%),
+                          radial-gradient(circle at 20% 20%, rgba(30, 41, 59, 0.2) 0%, transparent 40%),
+                          radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%);
+      }
+      html:not(.dark) .animate-background-pan {
+        background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.06) 0%, transparent 25%);
+      }
+      .animate-background-pan {
+        background-size: 200% 200%;
+        animation: background-pan 20s ease-in-out infinite;
+        transition: background 0.2s ease-out;
+      }
+      .emoji-float { animation-name: float; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+      .parallax-item { transition: transform 0.1s linear; }
+
+      .has-noise-bg {
+          position: relative;
+          overflow: hidden;
+      }
+      .has-noise-bg::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFQTFRFGRkZGhoaHBwcHR0dHh4eHh4eISEhIiIiJSUlJiYm13wI3AAAABF0Uk5TAAESAAMFCRQYGRsfICEiI0IyrgAAADxJREFUeNpi/P//P8NAAiaGAQajQgM2gPgYaqACZkE0YAKYEU0cIM0I5gAY0dABxGZ2BSMQAwQYABM1A2r9QWfXAAAAAElFTkSuQmCC);
+          opacity: 0.12;
+          pointer-events: none;
+          z-index: 0;
+      }
+      .hero-section-fade::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(to top, var(--bg-primary), transparent);
+        pointer-events: none;
+        z-index: 5;
+    }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"
+  }
+}
+</script>
+</head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
