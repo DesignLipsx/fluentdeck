@@ -79,23 +79,23 @@ function NetworkVisualization({ onNavigate }: NetworkVisualizationProps) {
     };
   }, [containerSize]);
 
-  // ✅ FIXED: Simplified and corrected container sizing logic
+  // ✅ FIXED: Better responsive container sizing
   useEffect(() => {
     const updateSize = () => {
       const width = window.innerWidth;
       const isMobile = width < 768;
-      
-      // Use viewport width with safe margins
-      const maxWidth = Math.min(width - (isMobile ? 48 : 64), 600);
+    
+      // Use 90% of viewport width with maximum constraints
+      const maxWidth = Math.min(width * 0.9, 600);
       const size = Math.max(isMobile ? 280 : 320, maxWidth);
-      
+    
       setContainerSize({ width: size, height: size });
     };
 
     updateSize();
     window.addEventListener('resize', updateSize);
     return () => window.removeEventListener('resize', updateSize);
-  }, []);
+  }, []); 
 
   const outerRingAvatars = avatars.filter((a) => a.ring === 'outer');
   const innerRingAvatars = avatars.filter((a) => a.ring === 'inner');
@@ -152,7 +152,7 @@ function NetworkVisualization({ onNavigate }: NetworkVisualizationProps) {
 
   return (
     // ✅ FIXED: Removed problematic classes and simplified container
-    <div className="flex items-center justify-center w-full overflow-hidden">
+    <div className="flex items-center justify-center w-full overflow-hidden network-container">
       <style>{`
         @keyframes draw-line {
           to {

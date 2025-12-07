@@ -180,8 +180,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
   }, []);
 
   return (
-    <div className="overflow-x-hidden relative">
-        <div ref={containerRef} className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 animate-background-pan relative hero-section-fade">
+    <div className="overflow-x-hidden relative w-full max-w-[100vw]">
+        <div ref={containerRef} className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 animate-background-pan relative hero-section-fade w-full max-w-[100vw]">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                 <div className="text-center lg:text-left animate-fade-in relative z-10">
                 <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-tight">
@@ -217,7 +217,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                 </div>
                 </div>
                 
-                <div className="hidden lg:block animate-fade-in" style={{ animationDelay: '200ms' }}>
+                <div className="hidden lg:block animate-fade-in overflow-hidden" style={{ animationDelay: '200ms', maxWidth: '100%' }}>
                   <div className="relative h-[450px] w-full max-w-full flex items-center justify-center perspective-[1000px] overflow-x-visible">
                     <div className="absolute inset-0 grid grid-cols-4 gap-6 opacity-10 filter blur-[1px] parallax-item" data-depth="3">
                       {showcaseIcons.map((icon, i) => (
@@ -342,10 +342,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                     </p>
                 </div>
             </div>
-            <div className={`flex justify-center transition-all duration-700 ease-out delay-200 lg:scale-100 ${isCommunityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`flex justify-center transition-all duration-700 ease-out delay-200 lg:scale-100 ${isCommunityVisible ? 'opacity-100 translate-y-10' : 'opacity-0 translate-y-10'}`}>
                 <NetworkVisualization onNavigate={handleContributorClick} />
             </div>
-            <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-10' : 'opacity-0 translate-y-10'}`}>
+            <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-20' : 'opacity-0 translate-y-20'}`}>
                 <button
                     onClick={() => handleNavigate('Contribute')}
                     className="inline-flex items-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"

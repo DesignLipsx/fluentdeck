@@ -10,15 +10,25 @@ interface TooltipProps {
 
 const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const triggerRef = useRef<HTMLElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
 
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    };
+    setIsTouchDevice(checkTouchDevice());
+  }, []);
+
   const handleMouseEnter = () => {
+    if (isTouchDevice) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = window.setTimeout(() => setIsVisible(true), delay);
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = null;
     setIsVisible(false);
@@ -26,8 +36,7 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
   
   const setTriggerRef = (node: HTMLElement | null) => {
     triggerRef.current = node;
-    // FIX: The 'ref' property is not part of the public ReactElement type.
-    // We use a type assertion to access the child's ref for merging.
+
     const { ref } = children as { ref?: React.Ref<any> };
     if (typeof ref === 'function') {
       ref(node);
@@ -80,34 +89,41 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
   };
 
   const child = React.Children.only(children);
+  
+  const triggerProps = isTouchDevice 
+    ? {} 
+    : {
+        onMouseEnter: (e: React.MouseEvent) => {
+          handleMouseEnter();
+          child.props.onMouseEnter?.(e);
+        },
+        onMouseLeave: (e: React.MouseEvent) => {
+          handleMouseLeave();
+          child.props.onMouseLeave?.(e);
+        },
+        onFocus: (e: React.FocusEvent) => {
+          handleMouseEnter();
+          child.props.onFocus?.(e);
+        },
+        onBlur: (e: React.FocusEvent) => {
+          handleMouseLeave();
+          child.props.onBlur?.(e);
+        },
+        'aria-describedby': isVisible ? 'fd-tooltip' : undefined,
+        title: ''
+      };
+
   // FIX: Cast props to `any` to allow adding a `ref`, which is not a standard prop.
   // This is a common workaround for cloneElement with generic children in TypeScript.
   const trigger = React.cloneElement(child, {
     ref: setTriggerRef,
-    onMouseEnter: (e: React.MouseEvent) => {
-      handleMouseEnter();
-      child.props.onMouseEnter?.(e);
-    },
-    onMouseLeave: (e: React.MouseEvent) => {
-      handleMouseLeave();
-      child.props.onMouseLeave?.(e);
-    },
-    onFocus: (e: React.FocusEvent) => {
-      handleMouseEnter();
-      child.props.onFocus?.(e);
-    },
-    onBlur: (e: React.FocusEvent) => {
-      handleMouseLeave();
-      child.props.onBlur?.(e);
-    },
-    'aria-describedby': isVisible ? 'fd-tooltip' : undefined,
-    title: ''
+    ...triggerProps
   } as any);
 
   return (
     <>
       {trigger}
-      {isVisible && content && <TooltipContentPortal />}
+      {!isTouchDevice && isVisible && content && <TooltipContentPortal />}
     </>
   );
 };
