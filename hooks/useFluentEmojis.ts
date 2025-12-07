@@ -1,22 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Emoji } from '../types';
 
-/**
- * Converts the original GitHub PNG URL into the local WebP path for previewing.
- * Example: '.../assets/Grinning face/animated/grinning_face_animated.png'
- * -> '/animated_emoji/grinning_face_animated.webp'
- */
-const getWebpPathFromPngUrl = (pngUrl: string): string => {
-  if (!pngUrl) return '';
-  // Find the last path segment (e.g., 'grinning_face_animated.png')
-  const lastSegment = pngUrl.substring(pngUrl.lastIndexOf('/') + 1);
-  // Replace .png with .webp
-  const filenameWithWebp = lastSegment.replace(/\.png$/, '.webp');
-  // Prepend the local directory path where you uploaded the WebP files
-  return `/animated_emoji/${filenameWithWebp}`;
-};
-
-
 interface FluentEmojiStyleData {
   '3D'?: string;
   Color?: string;
@@ -41,18 +25,34 @@ interface FluentEmojiMetadataEntry {
 
 type FluentEmojiMetadata = Record<string, FluentEmojiMetadataEntry>;
 
-// Placeholder for groupMap (assuming it's loaded/defined elsewhere in your setup)
-// In a real application, this would map group names to categories.
-const groupMap: Record<string, string> = {
-  'smileys & emotion': 'Smileys & Emotion',
-  'people & body': 'People & Body',
-  'animals & nature': 'Animals & Nature',
-  'food & drink': 'Food & Drink',
-  activities: 'Activities',
-  'travel & places': 'Travel & Places',
-  objects: 'Objects',
-  symbols: 'Symbols',
-  flags: 'Flags',
+/**
+ * Extracts the filename from the original GitHub Animated URL and constructs the local WebP path.
+ * * E.g., 
+ * Input: "https://media.githubusercontent.com/.../Grinning face/animated/grinning_face_animated.png"
+ * Output: "/animated_emoji/grinning_face_animated.webp"
+ * * Input: "https://media.githubusercontent.com/.../Person/animated/person_animated_default.png"
+ * Output: "/animated_emoji/person_animated_default.webp" (if your local file is 'person_animated_default.webp')
+ * * If your local files drop the '_default' suffix, we need a slight modification.
+ * Assuming your local file is ALWAYS simplified to the non-default version (e.g., 'person_animated.webp' for 'person_animated_default.png'):
+ */
+const extractWebpPathFromUrl = (originalUrl: string): string => {
+    try {
+        const url = new URL(originalUrl);
+        // Get the last part of the path, which is the filename (e.g., 'person_animated_default.png')
+        let filename = url.pathname.split('/').pop() || '';
+
+        // 1. Remove the file extension (.png)
+        filename = filename.replace(/\.(png|webp|svg)$/i, '');
+        
+
+        // 3. Re-append the new suffix and extension
+        // Since the original file is usually already in snake_case, we just append .webp
+        return `/animated_emoji/${filename}.webp`;
+
+    } catch (e) {
+        // Fallback or error handling
+        return '';
+    }
 };
 
 export const useFluentEmojis = () => {
@@ -61,28 +61,43 @@ export const useFluentEmojis = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // ✅ Use the fetch pattern inside an async function, which works in your environment
     const loadEmojis = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // Fetch the JSON file (assuming this path works in your environment)
+        // ✅ Fetch the JSON file using the working relative path pattern
         const emojiRes = await fetch(new URL('./emoji.json', import.meta.url).href);
 
         if (!emojiRes.ok) {
           throw new Error(`HTTP error! status: ${emojiRes.status}`);
         }
 
-        const rawEmojiData: FluentEmojiMetadata = await emojiRes.json();
+        const rawEmojiData = await emojiRes.json();
         
-        const fluentEmojisMetadata = rawEmojiData;
+        // ✅ Load local emoji metadata and assert the type
+        const fluentEmojisMetadata: FluentEmojiMetadata = rawEmojiData as FluentEmojiMetadata;
 
-        const emojisFromMetadata = Object.entries(fluentEmojisMetadata)
-          .flatMap(([name, data]) => {
-            // Determine the style source, handling skintone-based emojis (using Default)
+        const groupMap: Record<string, string> = {
+          'smileys & emotion': 'Smileys & Emotion',
+          'people & body': 'People & Body',
+          'animals & nature': 'Animals & Nature',
+          'food & drink': 'Food & Drink',
+          'activities': 'Activities',
+          'travel & places': 'Travel & Places',
+          'objects': 'Objects',
+          'symbols': 'Symbols',
+          'flags': 'Flags',
+        };
+
+        const emojisFromMetadata: (Emoji & { sortOrder: number })[] = Object.entries(fluentEmojisMetadata)
+          .map(([name, data]): (Emoji & { sortOrder: number }) | null => {
+            if (!data || typeof data !== 'object' || !data.group || !groupMap[data.group.toLowerCase()]) {
+              return null;
+            }
+
             const styleSource = data.isSkintoneBased ? data.skintones?.Default : data.styles;
-            
-            // We only process entries that have at least some style data
             if (!styleSource) return null;
 
             const unicode = data.unicode;
@@ -90,19 +105,17 @@ export const useFluentEmojis = () => {
               ? String.fromCodePoint(...unicode.split(' ').map((u) => parseInt(u, 16)))
               : undefined;
 
-            // Check specifically for the Animated style
-            const animPngUrl = styleSource.Animated;
-            
-            // If there's no animated asset, we skip it or proceed without Anim styles
-            if (!animPngUrl) {
-                return null;
-            }
+            // --- MODIFIED LOGIC FOR ANIMATED EMOJI ---
+            let localAnimWebpUrl: string | undefined;
 
-            // 1. Store the original PNG URL for the download button (new property)
-            const animDownloadUrl = animPngUrl;
-            
-            // 2. Calculate the local WebP path for the preview (used in styles.Anim)
-            const animWebpPath = getWebpPathFromPngUrl(animPngUrl);
+            if (styleSource.Animated) {
+                // Use the new helper to reliably parse the URL and format the local path.
+                localAnimWebpUrl = extractWebpPathFromUrl(styleSource.Animated);
+                // The filename structure is often: {name}_animated.webp
+                // If the name is "Money-mouth face", the original URL already converts to 'money-mouth_face_animated.png'.
+                // If it's a skintone base like "Person", it's 'person_animated_default.png', and we simplify to 'person_animated.webp'.
+            }
+            // --- END: MODIFIED LOGIC FOR ANIMATED EMOJI ---
 
             return {
               name,
@@ -114,24 +127,18 @@ export const useFluentEmojis = () => {
                 Modern: styleSource.Color,
                 Flat: styleSource.Flat,
                 Mono: styleSource.HighContrast || styleSource['High contrast'],
-                // Use the local WebP path for previewing the animated emoji
-                Anim: animWebpPath,
+                // Use the locally constructed WebP URL for the Animated style
+                Anim: localAnimWebpUrl, 
               },
               unicode,
               symbol,
-              // Add the original PNG URL for the actual download
-              animDownloadUrl: animDownloadUrl,
             };
           })
-          .filter((emoji): emoji is Emoji & { sortOrder: number, animDownloadUrl: string } => emoji !== null);
+          .filter((emoji): emoji is Emoji & { sortOrder: number } => emoji !== null);
 
         emojisFromMetadata.sort((a, b) => a.sortOrder - b.sortOrder);
 
-        // Map back to the public Emoji interface, omitting temporary properties
-        const finalEmojis: Emoji[] = emojisFromMetadata.map(({ sortOrder, animDownloadUrl, ...rest }) => ({
-            ...rest,
-            animDownloadUrl, // Include the new download URL property in the final Emoji type
-        }));
+        const finalEmojis: Emoji[] = emojisFromMetadata.map(({ sortOrder, ...rest }) => rest);
 
         setEmojis(finalEmojis);
       } catch (e: unknown) {
@@ -145,8 +152,8 @@ export const useFluentEmojis = () => {
       }
     };
     
-    loadEmojis();
-  }, []);
+    loadEmojis(); // ✅ Call the async function
+  }, []); // Run once on mount
 
   return { emojis, loading, error };
 };
