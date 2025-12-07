@@ -16,24 +16,12 @@ export const EmojiIcon: React.FC = () => (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 );
 
-export const CategoryIcon: React.FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-);
-
-export const InfoIcon: React.FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-);
-
 export const ContributeIcon: React.FC = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 );
 
 export const CloseIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-);
-
-export const LinkIcon: React.FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
 );
 
 export const SearchIcon: React.FC = () => (
@@ -62,10 +50,6 @@ export const DownloadIcon: React.FC<{className?: string}> = ({className}) => (
 
 export const AdminIcon: React.FC = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-);
-
-export const EditIcon: React.FC<{className?: string}> = ({className}) => (
-  <svg className={`w-5 h-5 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z" /></svg>
 );
 
 export const EyeIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -114,31 +98,6 @@ export const LaptopIcon: React.FC<{ className?: string }> = ({ className = 'w-5 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55A1 1 0 0 1 20.7 20H3.3a1 1 0 0 1-.58-1.45L4 16" /></svg>
 );
 
-export const UserIcon: React.FC<{className?: string}> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
-
-export const SettingsIcon: React.FC<{className?: string}> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M15.3,6.8c1.2,1.2,1.1,3.2-0.1,4.4s-3.2,1.3-4.4,0.1c-1.2-1.2-1.1-3.2,0.1-4.4S14.1,5.6,15.3,6.8z" />
-        <path d="M12,2.3c0.4,0,0.8,0.2,1,0.5l1.3,1.3c0.3,0.3,0.8,0.5,1.2,0.5h1.9c0.4,0,0.8,0.2,1,0.5l0.5,1 c0.2,0.4,0.2,0.9,0,1.3l-0.5,1.6c-0.1,0.4-0.1,0.9,0.1,1.3l1,1.3c0.3,0.3,0.5,0.8,0.5,1.2v1.9c0,0.4-0.2,0.8-0.5,1l-1.3,1.3 c-0.3,0.3-0.5,0.8-0.5,1.2v1.9c0,0.4-0.2,0.8-0.5,1l-1,0.5c-0.4,0.2-0.9,0.2-1.3,0l-1.6-0.5c-0.4-0.1-0.9-0.1-1.3,0.1l-1.3,1 c-0.3,0.3-0.8,0.5-1.2,0.5h-1.9c-0.4,0-0.8-0.2-1-0.5l-1.3-1.3c-0.3-0.3-0.8-0.5-1.2-0.5h-1.9c-0.4,0-0.8-0.2-1-0.5l-0.5-1 c-0.2-0.4-0.2-0.9,0-1.3l0.5-1.6c0.1-0.4,0.1-0.9-0.1-1.3l-1-1.3c-0.3-0.3-0.5-0.8-0.5-1.2v-1.9c0-0.4,0.2-0.8,0.5-1l1.3-1.3 c0.3-0.3,0.5-0.8,0.5-1.2v-1.9c0-0.4,0.2-0.8,0.5-1l1-0.5c0.4-0.2,0.9-0.2,1.3,0l1.6,0.5c0.4,0.1,0.9,0.1,1.3-0.1l1.3-1 C11.2,2.5,11.6,2.3,12,2.3z"/>
-      </svg>
-);
-
-export const CreditCardIcon: React.FC<{className?: string}> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <rect width="20" height="14" x="2" y="5" rx="2" />
-    <line x1="2" x2="22" y1="10" y2="10" />
-  </svg>
-);
-
-export const HelpCircleIcon: React.FC<{className?: string}> = ({ className = 'w-4 h-4' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
-);
-
 export const ProfileMenuIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
     <svg className={className} viewBox="0 0 45.532 45.532" fill="currentColor">
         <path d="M22.766,0.001C10.194,0.001,0,10.193,0,22.766s10.193,22.765,22.766,22.765c12.574,0,22.766-10.192,22.766-22.765 S35.34,0.001,22.766,0.001z M22.766,6.808c4.16,0,7.531,3.372,7.531,7.53c0,4.159-3.371,7.53-7.531,7.53 c-4.158,0-7.529-3.371-7.529-7.53C15.237,10.18,18.608,6.808,22.766,6.808z M22.761,39.579c-4.149,0-7.949-1.511-10.88-4.012 c-0.714-0.609-1.126-1.502-1.126-2.439c0-4.217,3.413-7.592,7.631-7.592h8.762c4.219,0,7.619,3.375,7.619,7.592 c0,0.938-0.41,1.829-1.125,2.438C30.712,38.068,26.911,39.579,22.761,39.579z"/>
@@ -158,20 +117,8 @@ export const LinkedinIcon: React.FC<{ className?: string }> = ({ className = 'w-
 );
 
 export const BehanceIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
-    <svg className={className} fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Behance">
-        <g>
-            <path d="M10.5,10H6v5h4h0.5c1.4,0,2.5-1.1,2.5-2.5S11.9,10,10.5,10z"/>
-            <path d="M23,0H9C4,0,0,4,0,9v14c0,5,4,9,9,9h14c5,0,9-4,9-9V9C32,4,28,0,23,0z M19,10h6c0.6,0,1,0.4,1,1s-0.4,1-1,1h-6 c-0.6,0-1-0.4,1-1S18.4,10,19,10z M15,20c0,2.8-2.2,5-5,5H5c-0.6,0-1-0.4-1-1v-8V9c0-0.6,0.4-1,1-1h5.5C13,8,15,10,15,12.5 c0,1.5-0.7,2.8-1.9,3.6C14.3,17.1,15,18.4,15,20z M27,20h-8.9c0.4,1.7,2,3,3.9,3c0.9,0,1.8-0.3,2.5-0.9c0.4-0.3,0.7-0.7,0.9-1.1 c0.3-0.5,0.9-0.6,1.4-0.4c0.5,0.3,0.6,0.9,0.4,1.4c-0.4,0.6-0.8,1.2-1.4,1.6C24.7,24.5,23.4,25,22,25c-3.3,0-6,2.7-6,6s2.7-6,6-6 s6,2.7,6,6C28,19.6,27.6,20,27,20z"/>
-            <path d="M22,15c-1.9,0-3.4,1.3-3.9,3h7.7C25.4,16.3,23.9,15,22,15z"/>
-            <path d="M10,17H6v6h4c1.7,0,3-1.3,3-3S11.7,17,10,17z"/>
-        </g>
-    </svg>
-);
-
-export const WebIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Website">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.25 9.75h17.5M3.25 14.25h17.5M12 3.25a15.3 15.3 0 010 17.5 15.3 15.3 0 010-17.5z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" d="M10.0631951,11.5724638 C11.2238614,12.2726251 12,13.5456741 12,15 C12,17.209139 10.209139,19 8,19 L2,19 L2,11 L2,5 L7,5 C9.209139,5 11,6.790861 11,9 C11,9.9796381 10.6478342,10.8770235 10.0631951,11.5724638 Z M4,13 L4,17 L8,17 C9.1045695,17 10,16.1045695 10,15 C10,13.8954305 9.1045695,13 8,13 L7,13 L4,13 Z M17.6378174,17 C18.6782995,17 19.3176926,16.7872212 19.6590408,16.4669813 C19.8388519,16.2982894 19.9138794,16.1105966 19.9138794,16 L21.9138794,16 C21.9138794,17.6272028 20.4505955,19 17.6378174,19 C14.854599,19 13,17.1958448 13,14 C13,11.0338939 14.5805115,9 17.5,9 C20.4194885,9 22,11.0338939 22,14 L22,15 L15.088601,15 C15.3601187,16.3771121 16.2475191,17 17.6378174,17 Z M19.91463,13 C19.66628,11.690232 18.8733357,11 17.5,11 C16.1266643,11 15.33372,11.690232 15.08537,13 L19.91463,13 Z M14,8 L14,6 L21,6 L21,8 L14,8 Z M4,7 L4,11 L7,11 C8.1045695,11 9,10.1045695 9,9 C9,7.8954305 8.1045695,7 7,7 L4,7 Z"/>
     </svg>
 );
 
@@ -181,12 +128,14 @@ export const GumroadIcon: React.FC<{ className?: string }> = ({ className = 'w-5
     </svg>
 );
 
-export const CoffeeIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-        <line x1="6" y1="1" x2="6" y2="4"></line>
-        <line x1="10" y1="1" x2="10" y2="4"></line>
-        <line x1="14" y1="1" x2="14" y2="4"></line>
-    </svg>
+export const CoffeeIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    role="img"
+    className={className}
+    fill="currentColor"
+  >
+    <path d="m20.216 6.415-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 0 0-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 0 0-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 0 1-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 0 1 3.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 0 1-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 0 1-4.743.295 37.059 37.059 0 0 1-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0 0 11.343.376.483.483 0 0 1 .535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 0 1 .39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 0 1-.169.364zm-6.159 3.9c-.862.37-1.84.788-3.109.788a5.884 5.884 0 0 1-1.569-.217l.877 9.004c.065.78.717 1.38 1.5 1.38 0 0 1.243.065 1.658.065.447 0 1.786-.065 1.786-.065.783 0 1.434-.6 1.499-1.38l.94-9.95a3.996 3.996 0 0 0-1.322-.238c-.826 0-1.491.284-2.26.613z" />
+  </svg>
 );

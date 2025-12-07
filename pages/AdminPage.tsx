@@ -1,4 +1,3 @@
-
 import React, { useState, FormEvent, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -50,7 +49,7 @@ const AdminPage: React.FC = () => {
             <div className="w-full max-w-md p-8 space-y-8 bg-[#18181B] border border-[#333538] rounded-2xl shadow-lg animate-scale-in">
                 <div className="flex flex-col items-center space-y-4">
                     <div className="flex items-center space-x-3">
-                        <img src="https://i.postimg.cc/Vvs6wjNs/logo.png" alt="Fluent Deck Logo" className="h-10 w-10" />
+                        <img src="/assets/logo.png" alt="Fluent Deck Logo" className="h-10 w-10" />
                         <h1 className="text-3xl font-bold text-white">Fluent Deck</h1>
                     </div>
                     <p className="text-center text-sm text-gray-400">
@@ -109,9 +108,15 @@ const AdminPage: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#18181B] focus:ring-blue-500 disabled:bg-blue-800/50 disabled:cursor-not-allowed transition-colors"
+                            className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#18181B] focus:ring-blue-500 disabled:bg-blue-800/50 disabled:cursor-not-allowed transition-colors"
                         >
-                            {loading ? <div className="h-5 w-5"><LoadingSpinner /></div> : 'Sign In'}
+                            {loading ? (
+                                <div className="h-5 w-5 flex items-center justify-center">
+                                    <LoadingSpinner />
+                                </div>
+                            ) : (
+                                'Sign In'
+                            )}
                         </button>
                     </div>
                 </form>

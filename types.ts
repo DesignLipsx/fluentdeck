@@ -1,4 +1,4 @@
-export interface App {
+﻿export interface App {
   name: string;
   link: string;
   description: string;
@@ -32,6 +32,7 @@ export interface Emoji {
   };
   unicode?: string;
   symbol?: string;
+  isSkintoneBased?: boolean;
 }
 
 export type NavItem = 'Home' | 'Apps' | 'Icons' | 'Emoji' | 'Contribute';
@@ -39,6 +40,11 @@ export type NavItem = 'Home' | 'Apps' | 'Icons' | 'Emoji' | 'Contribute';
 export type EmojiStyle = '3D' | 'Modern' | 'Flat' | 'Mono' | 'Anim';
 
 export type IconStyle = 'filled' | 'outlined' | 'color';
+
+export interface IconData {
+  name: string;
+  svgFileName: string;
+}
 
 export type SelectedItem = 
   | { type: 'app'; data: App } 

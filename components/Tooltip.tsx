@@ -46,7 +46,7 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
         
         const viewportWidth = document.documentElement.clientWidth;
-        const offset = 8;
+        const offset = 20;
 
         let top = triggerRect.top - tooltipRect.height - offset;
         let left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
@@ -69,7 +69,7 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
       <div
         id="fd-tooltip"
         ref={tooltipRef}
-        className="fixed z-[999] px-3 py-1.5 text-sm font-medium text-white bg-black rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95"
+        className="fixed z-[999] px-3 py-1.5 text-sm font-medium text-black bg-gray-200 rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95"
         style={position ? { top: `${position.top}px`, left: `${position.left}px` } : { opacity: 0 }}
         role="tooltip"
       >

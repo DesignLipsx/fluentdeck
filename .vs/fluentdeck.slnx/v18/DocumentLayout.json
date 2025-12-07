@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\hooks\\useFluentEmojis.ts||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:hooks\\useFluentEmojis.ts||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\HomePage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\HomePage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\ContributePage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\ContributePage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Header.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\Header.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\NetworkVisualization.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\NetworkVisualization.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\IconsPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\IconsPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\EmojiPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\EmojiPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tabs.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\Tabs.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\AppsPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\AppsPage.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tooltip.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\Tooltip.tsx||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,28 +46,131 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "useFluentEmojis.ts",
-              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\hooks\\useFluentEmojis.ts",
-              "RelativeDocumentMoniker": "hooks\\useFluentEmojis.ts",
-              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\hooks\\useFluentEmojis.ts",
-              "RelativeToolTip": "hooks\\useFluentEmojis.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ContributePage.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\ContributePage.tsx",
+              "RelativeDocumentMoniker": "pages\\ContributePage.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\ContributePage.tsx",
+              "RelativeToolTip": "pages\\ContributePage.tsx",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-10-07T13:57:56.887Z",
+              "WhenOpened": "2025-10-10T14:37:25.411Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Header.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Header.tsx",
+              "RelativeDocumentMoniker": "components\\Header.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Header.tsx",
+              "RelativeToolTip": "components\\Header.tsx",
+              "ViewState": "AgIAAB8AAAAAAAAAAADwv1sAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T14:31:57.64Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomePage.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\HomePage.tsx",
+              "RelativeDocumentMoniker": "pages\\HomePage.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\HomePage.tsx",
+              "RelativeToolTip": "pages\\HomePage.tsx",
+              "ViewState": "AgIAADoBAAAAAAAAAADwv0sBAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T14:25:27.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NetworkVisualization.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\NetworkVisualization.tsx",
+              "RelativeDocumentMoniker": "components\\NetworkVisualization.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\NetworkVisualization.tsx",
+              "RelativeToolTip": "components\\NetworkVisualization.tsx",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAAAEsBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T14:14:17.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IconsPage.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\IconsPage.tsx",
+              "RelativeDocumentMoniker": "pages\\IconsPage.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\IconsPage.tsx",
+              "RelativeToolTip": "pages\\IconsPage.tsx",
+              "ViewState": "AgIAABcBAAAAAAAAAADwvyoBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T14:10:05.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmojiPage.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\EmojiPage.tsx",
+              "RelativeDocumentMoniker": "pages\\EmojiPage.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\EmojiPage.tsx",
+              "RelativeToolTip": "pages\\EmojiPage.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T11:17:37.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Tooltip.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tooltip.tsx",
+              "RelativeDocumentMoniker": "components\\Tooltip.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tooltip.tsx",
+              "RelativeToolTip": "components\\Tooltip.tsx",
+              "ViewState": "AgIAADcAAAAAAAAAAAAmwHMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T11:11:48.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Tabs.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tabs.tsx",
+              "RelativeDocumentMoniker": "components\\Tabs.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\components\\Tabs.tsx",
+              "RelativeToolTip": "components\\Tabs.tsx",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAJsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T10:40:48.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppsPage.tsx",
+              "DocumentMoniker": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\AppsPage.tsx",
+              "RelativeDocumentMoniker": "pages\\AppsPage.tsx",
+              "ToolTip": "C:\\Users\\jishn\\source\\repos\\DesignLipsx\\fluentdeck\\pages\\AppsPage.tsx",
+              "RelativeToolTip": "pages\\AppsPage.tsx",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-10T10:26:15.884Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\hooks"
+    "\\components",
+    "\\hooks",
+    "\\pages"
   ],
+  "SelectedNode": "\\pages\\ContributePage.tsx",
   "PreviewInSolutionExplorer": false
 }

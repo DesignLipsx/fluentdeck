@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback, FC } from 'react';
+﻿import React, { useState, useMemo, useEffect, useCallback, FC } from 'react';
 import { useFluentIcons } from '../hooks/useFluentIcons';
 import SkeletonCard from '../components/SkeletonCard';
 import IconCard from '../components/IconCard';
@@ -8,12 +8,24 @@ import Tabs from '../components/Tabs';
 import { IconStyle } from '../types';
 
 
-const ICONS_PER_PAGE = 72;
+const ICONS_PER_PAGE = 160;
 
-const iconStyles: {value: IconStyle, label: string}[] = [
-    { value: 'filled', label: 'Filled' },
-    { value: 'outlined', label: 'Outlined' },
-    { value: 'color', label: 'Color' },
+const iconStyles: {value: IconStyle, label: string, tooltip?: string}[] = [
+    { 
+        value: 'filled', 
+        label: 'Filled', 
+        tooltip: 'Solid filled icons' 
+    },
+    { 
+        value: 'outlined', 
+        label: 'Outlined', 
+        tooltip: 'Outline style icons' 
+    },
+    { 
+        value: 'color', 
+        label: 'Color', 
+        tooltip: 'Multi-colored icons' 
+    },
 ];
 
 const downloadFile = (content: string | Blob, fileName: string, mimeType?: string) => {
@@ -28,18 +40,31 @@ const downloadFile = (content: string | Blob, fileName: string, mimeType?: strin
   URL.revokeObjectURL(url);
 };
 
-
-const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) => {
-    const { name, style } = data;
+const IconDetail: FC<{ data: { name: string, style: IconStyle, svgFileName?: string } }> = ({ data }) => {
+    const { name, style, svgFileName } = data;
     const [copyFormat, setCopyFormat] = useState('svg');
     const [downloadFormat, setDownloadFormat] = useState('svg');
     const [copyButtonText, setCopyButtonText] = useState('Copy');
 
-    const snakeCaseName = name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
-    const styleSuffix = style === 'outlined' ? 'regular' : style;
-    const fileName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}.svg`;
-    const encodedIconDir = encodeURIComponent(name);
-    const iconUrl = `https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/${encodedIconDir}/SVG/${fileName}`;
+    // Use the provided svgFileName if available, otherwise construct it
+    let fileName: string;
+    let snakeCaseName: string;
+    
+    if (svgFileName) {
+      // Replace the style suffix in the filename to match the current style
+      const styleSuffix = style === 'outlined' ? 'regular' : style;
+      fileName = svgFileName.replace(/_24_(filled|regular|color)\.svg$/, `_24_${styleSuffix}.svg`);
+      // Extract the snake_case name from the filename
+      snakeCaseName = svgFileName.replace('ic_fluent_', '').replace(/_24_(filled|regular|color)\.svg$/, '');
+    } else {
+      snakeCaseName = name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
+      const styleSuffix = style === 'outlined' ? 'regular' : style;
+      fileName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}.svg`;
+    }
+    
+    // Use local icon folders
+    const folderName = style === 'outlined' ? 'icon_regular' : style === 'filled' ? 'icon_filled' : 'icon_color';
+    const iconUrl = `/${folderName}/${fileName}`;
 
     const handleCopy = useCallback(async () => {
         setCopyButtonText('Copy');
@@ -48,14 +73,18 @@ const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) 
             if (!res.ok) throw new Error(`HTTP error ${res.status}`);
             const svgText = await res.text();
             let contentToCopy = '';
+        
             if (copyFormat === 'html') {
                 contentToCopy = `<img src="${iconUrl}" alt="${name} icon" width="24" height="24">`;
             } else if (copyFormat === 'react') {
-                const componentName = name.replace(/[^a-zA-Z0-9]/g, '') + 'Icon';
-                contentToCopy = `import React from 'react';\n\nconst ${componentName} = (props) => (\n  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>\n    ${svgText.match(/<svg.*?>(.*)<\/svg>/s)?.[1] || ''}\n  </svg>\n);\n\nexport default ${componentName};`;
-            } else { // svg
+                const styleSuffix = style === 'outlined' ? 'regular' : style;
+                const exportName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}`;
+            
+                contentToCopy = `export function ${exportName}(props) {\n  return (\n    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>\n      ${svgText.match(/<svg.*?>(.*)<\/svg>/s)?.[1] || ''}\n    </svg>\n  )\n}\n`;
+            } else {
                 contentToCopy = svgText;
             }
+        
             await navigator.clipboard.writeText(contentToCopy);
             setCopyButtonText('Copied!');
             setTimeout(() => setCopyButtonText('Copy'), 2000);
@@ -64,7 +93,7 @@ const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) 
             setCopyButtonText('Error!');
             setTimeout(() => setCopyButtonText('Copy'), 2000);
         }
-    }, [copyFormat, iconUrl, name]);
+    }, [copyFormat, iconUrl, name, style, snakeCaseName]); 
     
     const handleDownload = useCallback(async () => {
         try {
@@ -81,7 +110,7 @@ const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) 
                 const image = new Image();
                 image.onload = () => {
                     const canvas = document.createElement('canvas');
-                    const scale = 4; // for 96x96 png
+                    const scale = 4;
                     canvas.width = 24 * scale;
                     canvas.height = 24 * scale;
                     const ctx = canvas.getContext('2d');
@@ -105,11 +134,12 @@ const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) 
             let mime = 'text/plain';
 
             if (downloadFormat === 'react') {
-                const componentName = name.replace(/[^a-zA-Z0-9]/g, '') + 'Icon';
-                content = `import React from 'react';\n\nconst ${componentName} = (props) => (\n  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>\n    ${svgText.match(/<svg.*?>(.*)<\/svg>/s)?.[1] || ''}\n  </svg>\n);\n\nexport default ${componentName};`;
-                filename = `${componentName}.tsx`;
+                const styleSuffix = style === 'outlined' ? 'regular' : style;
+                const exportName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}`;
+                content = `export function ${exportName}(props) {\n  return (\n    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"${' {...props}'}>\n      ${svgText.match(/<svg.*?>(.*)<\/svg>/s)?.[1] || ''}\n    </svg>\n  )\n}\n`;
+                filename = `${fileName.replace('.svg', '.tsx')}`;
                 mime = 'application/typescript';
-            } else { // svg
+            } else {
                 content = svgText;
                 filename = `${snakeCaseName}_${style}.svg`;
                 mime = 'image/svg+xml';
@@ -118,30 +148,54 @@ const IconDetail: FC<{ data: { name: string, style: IconStyle } }> = ({ data }) 
         } catch (error) {
             console.error('Failed to download icon:', error);
         }
-    }, [downloadFormat, iconUrl, name, snakeCaseName, style]);
+    }, [downloadFormat, iconUrl, name, snakeCaseName, style, fileName]);
 
     return (
         <>
-            <div className="p-6 flex items-center justify-center bg-bg-inset" style={{minHeight: '200px'}}>
+            <div className="p-6 flex bg-[#1e1f22] items-center justify-center bg-bg-inset" style={{minHeight: '200px'}}>
                 <img src={iconUrl} alt={name} className={`w-32 h-32 ${style !== 'color' ? 'dark:filter dark:invert' : ''}`} />
             </div>
-            <div className="p-6 space-y-4">
-                 <div className="grid grid-cols-3 gap-2 items-center">
-                    <div className="col-span-2">
-                         <Tabs options={[{value: 'svg', label: 'SVG'}, {value: 'html', label: 'HTML'}, {value: 'react', label: 'React Component'}]} value={copyFormat} onChange={setCopyFormat} />
+            <div className="p-6">
+                <div className="grid grid-cols-3 gap-2 items-center h-12 mb-3">
+                    <div className="col-span-2 h-full flex items-center">
+                        <div className="w-full flex">
+                            <Tabs
+                                options={[{ value: 'svg', label: 'SVG' }, { value: 'html', label: 'HTML' }, { value: 'react', label: 'React Component' }]}
+                                value={copyFormat}
+                                onChange={setCopyFormat}
+                                className="w-full"
+                                tabButtonClassName="flex-1" 
+                            />
+                        </div>
                     </div>
-                    <button onClick={handleCopy} className="flex items-center justify-center w-full h-full px-4 py-2 bg-bg-tertiary hover:bg-bg-hover rounded-lg text-text-primary">
-                        <CopyIcon className="mr-2" />{copyButtonText}
+                    <button
+                        onClick={handleCopy}
+                        className="flex items-center justify-center w-full h-full px-4 py-2 bg-bg-tertiary hover:bg-bg-hover rounded-lg text-text-primary"
+                    >
+                        <CopyIcon className="mr-2" />
+                        {copyButtonText}
                     </button>
-                 </div>
-                 <div className="grid grid-cols-3 gap-2 items-center">
-                    <div className="col-span-2">
-                         <Tabs options={[{value: 'svg', label: 'SVG'}, {value: 'png', label: 'PNG'}, {value: 'react', label: 'React Component'}]} value={downloadFormat} onChange={setDownloadFormat} />
+                </div>
+                <div className="grid grid-cols-3 gap-2 items-center justify-center h-12">
+                    <div className="col-span-2 h-full flex items-center">
+                        <div className="w-full flex">
+                            <Tabs
+                                options={[{ value: 'svg', label: 'SVG' }, { value: 'png', label: 'PNG' }, { value: 'react', label: 'React Component' }]}
+                                value={downloadFormat}
+                                onChange={setDownloadFormat}
+                                className="w-full"
+                                tabButtonClassName="flex-1" 
+                            />
+                        </div>
                     </div>
-                    <button onClick={handleDownload} className="flex items-center justify-center w-full h-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white">
-                        <DownloadIcon className="mr-2"/> Download
+                    <button
+                        onClick={handleDownload}
+                        className="flex items-center justify-center w-full h-full px-4 py-2  text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                    >
+                        <DownloadIcon className="mr-2" />
+                        Download
                     </button>
-                 </div>
+                </div>
             </div>
         </>
     );
@@ -153,24 +207,23 @@ const IconsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [iconStyle, setIconStyle] = useState<IconStyle>(() => (sessionStorage.getItem('iconStyle') as IconStyle) || 'filled');
   const [visibleCount, setVisibleCount] = useState(ICONS_PER_PAGE);
-  const [modalItem, setModalItem] = useState<{name: string, style: IconStyle} | null>(null);
+  const [modalItem, setModalItem] = useState<{name: string, style: IconStyle, svgFileName?: string} | null>(null);
 
-  const handleIconClick = (icon: { name: string, style: IconStyle }) => {
+  const handleIconClick = (icon: { name: string, style: IconStyle, svgFileName?: string }) => {
     setModalItem(icon);
   };
   const handleCloseModal = () => setModalItem(null);
-
 
   useEffect(() => {
     sessionStorage.setItem('iconStyle', iconStyle);
   }, [iconStyle]);
 
-  const filteredIconNames = useMemo(() => {
+  const filteredIcons = useMemo(() => {
     const sourceList = iconStyle === 'color' ? colorIcons : icons;
     if (!searchTerm) return sourceList;
 
-    return sourceList.filter(name =>
-      name.toLowerCase().includes(searchTerm.toLowerCase())
+    return sourceList.filter(icon =>
+      icon.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [icons, colorIcons, searchTerm, iconStyle]);
 
@@ -179,8 +232,8 @@ const IconsPage: React.FC = () => {
   }, [searchTerm, iconStyle]);
 
   const iconsToShow = useMemo(() => {
-    return filteredIconNames.slice(0, visibleCount);
-  }, [filteredIconNames, visibleCount]);
+    return filteredIcons.slice(0, visibleCount);
+  }, [filteredIcons, visibleCount]);
 
   const handleLoadMore = () => {
     setVisibleCount(prev => prev + ICONS_PER_PAGE);
@@ -199,20 +252,22 @@ const IconsPage: React.FC = () => {
     if (error) {
       return <div className="text-center py-16 text-red-400">{error}</div>;
     }
-    if (filteredIconNames.length > 0) {
+    if (filteredIcons.length > 0) {
       return (
         <>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-              {iconsToShow.map((name, index) => (
+              {iconsToShow.map((icon, index) => (
                 <IconCard 
-                    key={`${name}-${iconStyle}`} 
-                    iconName={name} style={iconStyle} 
+                    key={`${icon.name}-${iconStyle}`} 
+                    iconName={icon.name}
+                    svgFileName={icon.svgFileName}
+                    style={iconStyle} 
                     index={index} 
-                    onClick={() => handleIconClick({ name, style: iconStyle })}
+                    onClick={() => handleIconClick({ name: icon.name, style: iconStyle, svgFileName: icon.svgFileName })}
                 />
               ))}
             </div>
-            {filteredIconNames.length > visibleCount && (
+            {filteredIcons.length > visibleCount && (
               <div className="mt-8 text-center">
                 <button
                     onClick={handleLoadMore}
@@ -247,7 +302,7 @@ const IconsPage: React.FC = () => {
                       placeholder={loading ? 'Loading icons...' : `Search icons...`}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full py-2 pl-10 pr-10 bg-bg-tertiary border border-border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full py-2 pl-10 pr-10 bg-bg-tertiary border border-border-secondary rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500/10"
                       disabled={loading}
                   />
                   {searchTerm && (

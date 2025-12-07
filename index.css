@@ -1,0 +1,177 @@
+/*
+ * Custom CSS for Fluent Deck, including color variables (light/dark themes),
+ * custom scrollbar styles, and keyframes for animations.
+ */
+
+/* --- Color Variables (Light Theme Defaults) --- */
+:root {
+  --bg-primary: #f9fafb; /* gray-50 */
+  --bg-secondary: #ffffff; /* white */
+  --bg-tertiary: #f3f4f6; /* gray-100 */
+  --bg-inset: #e5e7eb; /* gray-200 */
+  --bg-hover: #e5e7eb; /* gray-200 */
+  --bg-active: #e5e7eb; /* gray-200 */
+  --bg-backdrop: rgba(255, 255, 255, 0.8);
+
+  --text-primary: #111827; /* gray-900 */
+  --text-secondary: #374151; /* gray-700 */
+  --text-tertiary: #6b7280; /* gray-500 */
+  --text-placeholder: #9ca3af; /* gray-400 */
+  --text-inverted: #ffffff; /* white */
+  
+  --border-primary: #e5e7eb; /* gray-200 */
+  --border-secondary: #d1d5db; /* gray-300 */
+  
+  --accent-primary: #111827; /* gray-900 */
+  --accent-primary-text: #ffffff;
+  --accent-primary-hover: #374151; /* gray-700 */
+}
+
+/* --- Color Variables (Dark Theme Overrides) --- */
+html.dark {
+  --bg-primary: #101011;
+  --bg-secondary: #18181B;
+  --bg-tertiary: #1E1F22;
+  --bg-inset: #2a2b2c;
+  --bg-hover: #222225;
+  --bg-active: #3F3F46;
+  --bg-backdrop: rgba(16, 16, 17, 0.8);
+
+  --text-primary: #f9fafb; /* gray-50 */
+  --text-secondary: #d1d5db; /* gray-300 */
+  --text-tertiary: #9ca3af; /* gray-400 */
+  --text-placeholder: #6b7280; /* gray-500 */
+  --text-inverted: #111827; /* gray-900 */
+
+  --border-primary: #333538;
+  --border-secondary: #3f3f46;
+  
+  --accent-primary: #f9fafb; /* gray-50 */
+  --accent-primary-text: #111827;
+  --accent-primary-hover: #e5e7eb; /* gray-200 */
+}
+
+/* --- Base Body and HTML Styles --- */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+html {
+  /* Prevent content shifting when scrollbar appears */
+  scrollbar-gutter: stable; 
+  /* Firefox scrollbar properties: Set track color to tertiary for contrast */
+  scrollbar-width: auto;
+  scrollbar-color: var(--border-secondary) var(--bg-tertiary); /* Thumb color, Track color */
+}
+
+/* --- Custom Scrollbar for Webkit browsers (Chrome, Safari, Edge) --- */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  /* Fix: Changed from --bg-primary to --bg-tertiary for better contrast */
+  background: var(--bg-tertiary); 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-secondary);
+  border-radius: 10px;
+  /* Use tertiary background for the border to match the track */
+  border: 3px solid var(--bg-tertiary); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-tertiary);
+}
+
+/* --- Content Visibility Optimizations --- */
+.render-fast-card {
+  content-visibility: auto;
+  contain-intrinsic-height: 204px;
+}
+.render-fast-square {
+  content-visibility: auto;
+  contain-intrinsic-height: 150px;
+}
+.render-fast-row {
+  content-visibility: auto;
+  contain-intrinsic-height: 88px;
+}
+
+/* --- Transition and Animation Definitions --- */
+.parallax-item {
+  transform: translateX(0px) translateY(0px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in-fast { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+@keyframes background-pan { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes zoom-in-95 { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+
+/* --- Utility Classes for Animations --- */
+.animate-in { animation-name: fade-in-fast; animation-duration: 150ms; }
+.fade-in-0 { animation-name: fade-in-fast; }
+.zoom-in-95 { animation-name: zoom-in-95; }
+
+.animate-fade-in { animation: fade-in 0.5s ease-out both; }
+.animate-fade-in-fast { animation: fade-in-fast 0.2s ease-out forwards; }
+.animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
+
+/* --- Utility Class for Scrollbar Removal --- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- Background Pan Effect --- */
+html.dark .animate-background-pan {
+  background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(129, 140, 248, 0.08) 0%, transparent 25%),
+                    radial-gradient(circle at 20% 20%, rgba(30, 41, 59, 0.2) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%);
+}
+html:not(.dark) .animate-background-pan {
+  background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.06) 0%, transparent 25%);
+}
+.animate-background-pan {
+  background-size: 200% 200%;
+  animation: background-pan 20s ease-in-out infinite;
+  transition: background 0.2s ease-out;
+}
+.emoji-float { animation-name: float; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+.parallax-item { transition: transform 0.1s linear; }
+
+/* --- Noise Background Effect --- */
+.has-noise-bg {
+    position: relative;
+    overflow: hidden;
+}
+.has-noise-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Base64 encoded noise texture */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFQTFRFGRkZGhoaHBwcHR0dHh4eHh4eISEhIiIiJSUlJiYm13wI3AAAABF0Uk5TAAESAAMFCRQYGRsfICEiI0IyrgAAADxJREFUeNpi/P//P8NAAiaGAQajQgM2gPgYaqACZkE0YAKYEU0cIM0I5gAY0dABhGZ2BSMQAwQYABM1A2r9QWfXAAAAAElFTkSuQmCC);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- Hero Section Fade Effect --- */
+.hero-section-fade::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, var(--bg-primary), transparent);
+  pointer-events: none;
+  z-index: 5;
+}

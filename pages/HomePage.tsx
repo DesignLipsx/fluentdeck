@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo, FC, useState, RefObject } from 'react';
+﻿import React, { useRef, useEffect, useMemo, FC, useState, RefObject } from 'react';
 import { NavItem, App, Emoji, Category } from '../types';
 import { AppsIcon, EmojiIcon, FluentIconsIcon, GithubIcon } from '../components/Icons';
 import AppCard from '../components/AppCard';
@@ -51,9 +51,9 @@ const useIntersectionObserver = (
 };
 
 const showcaseApps: App[] = [
-  { name: 'Quick Pad', link: '#', description: '', tags: [], category: '', pricing: 'Paid', logo_url: 'https://store-images.s-microsoft.com/image/apps.15480.14151964118482152.1099fd14-ee83-4b92-9250-80114f6946c9.eef9c3e4-683e-4c5e-9aac-920d498d693e?h=115' },
-  { name: 'Files', link: '#', description: '', tags: [], category: '', pricing: 'FOSS', logo_url: 'https://store-images.s-microsoft.com/image/apps.5536.13649428968955623.bcfc493a-7fd6-4231-9ddd-1c511b1330ad.11150fa3-6915-4039-b262-6be82a9c440a?h=210' },
-  { name: 'Rodel Player', link: '#', description: '', tags: [], category: '', pricing: 'Free', logo_url: 'https://store-images.s-microsoft.com/image/apps.512.13527064089703327.46cf99a8-a763-4f87-9b3c-d85c248443e2.b0ecdd8b-69ef-412c-be73-a73709b7bcdb?h=210' },
+  { name: 'Fluent Flyouts', link: 'https://apps.microsoft.com/detail/9ppcm05rw87x', description: '', tags: ["WDA"], category: '', pricing: 'Free', logo_url: 'https://store-images.s-microsoft.com/image/apps.19875.14331478230436449.53e27400-8d7d-4075-ac87-3924b0f6bc90.e7a67f05-999b-4b76-a2bb-edac42939e08?h=115' },
+  { name: 'Files', link: 'https://github.com/files-community/files', description: '', tags: ["WDA"], category: '', pricing: 'FOSS', logo_url: 'https://store-images.s-microsoft.com/image/apps.5536.13649428968955623.bcfc493a-7fd6-4231-9ddd-1c511b1330ad.11150fa3-6915-4039-b262-6be82a9c440a?h=210' },
+  { name: 'Calendar Flyout', link: 'https://apps.microsoft.com/detail/9p2b3pljxh3v', description: '', tags: ["WDA"], category: '', pricing: 'Paid', logo_url: 'https://store-images.s-microsoft.com/image/apps.39692.14565777777550263.7df61f39-036f-43aa-b940-c9bfee302b20.8a6daf5c-dc21-451b-a97e-3a16f5572a23?h=210' },
 ];
 
 const showcaseIcons: string[] = [
@@ -98,11 +98,17 @@ const FeatureCard: FC<{icon: React.ReactNode; title: string; count: number; coun
     </div>
 );
 
-
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const emojiMap = useMemo(() => new Map(emojis.map(e => [e.name, e])), [emojis]);
-  const totalApps = useMemo(() => categories.reduce((sum, category) => sum + category.apps.length, 0), [categories]);
+  
+  // Calculate totalApps, excluding the 'Newly Added Apps!' category.
+  const totalApps = useMemo(() => {
+    const countedCategories = categories.filter(
+        category => category.name.trim() !== 'Newly Added Apps!'
+    );
+    return countedCategories.reduce((sum, category) => sum + category.apps.length, 0);
+  }, [categories]);
 
   const featuresRef = useRef<HTMLDivElement>(null);
   const personalInfoRef = useRef<HTMLDivElement>(null);
@@ -110,6 +116,26 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
   const isFeaturesVisible = useIntersectionObserver(featuresRef, { threshold: 0.2, triggerOnce: true });
   const isPersonalInfoVisible = useIntersectionObserver(personalInfoRef, { threshold: 0.1, triggerOnce: true });
   const isCommunityVisible = useIntersectionObserver(communityRef, { threshold: 0.2, triggerOnce: true });
+
+  // ✅ FIXED: Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // ✅ FIXED: Navigation handlers with scroll reset
+  const handleNavigate = (page: NavItem, callback?: () => void) => {
+    scrollToTop();
+    onNavigate(page, callback);
+  };
+
+  const handleContributorClick = () => {
+    handleNavigate('Contribute', () => {
+      // Small delay to ensure page has rendered before scrolling
+      setTimeout(() => {
+        document.getElementById('contributors-section')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    });
+  };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -120,14 +146,11 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       
-      const { left, top } = container.getBoundingClientRect();
-      container.style.setProperty('--mouse-x', `${clientX - left}px`);
-      container.style.setProperty('--mouse-y', `${clientY - top}px`);
-
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const moveX = (clientX - centerX) / centerX;
-      const moveY = (clientY - centerY) / centerY;
+      const centerX = container.offsetLeft + container.offsetWidth / 2;
+      const centerY = container.offsetTop + container.offsetHeight / 2;
+      
+      const moveX = (clientX - centerX) / container.offsetWidth;
+      const moveY = (clientY - centerY) / container.offsetHeight;
 
       parallaxItems.forEach(item => {
         const el = item as HTMLElement;
@@ -138,20 +161,26 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
       });
     };
 
+    // Initialize with center position
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    handleMouseMove({ clientX: centerX, clientY: centerY } as MouseEvent);
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  const handleContributorClick = () => {
-    onNavigate('Contribute', () => {
-      document.getElementById('contributors-section')?.scrollIntoView({ behavior: 'smooth' });
-    });
-};
+  const showcaseEmojiPositions = useMemo(() => {
+    return showcaseEmojis.map(() => ({
+      top: `${10 + Math.random() * 80}%`,
+      left: `${10 + Math.random() * 80}%`
+    }));
+  }, []);
 
   return (
-    <div>
+    <div className="overflow-x-hidden relative">
         <div ref={containerRef} className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 animate-background-pan relative hero-section-fade">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                 <div className="text-center lg:text-left animate-fade-in relative z-10">
@@ -161,24 +190,26 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                 <p className="mt-4 text-lg md:text-xl text-text-tertiary max-w-xl mx-auto lg:mx-0">
                     A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Fluent System Icons, and a vibrant collection of Fluent Emojis.
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                {/* Hero Button Container: flex-col with items-stretch for full-width buttons on mobile, sm:flex-row for desktop. */}
+                <div className="mt-8 flex w-full flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4">
+                    {/* Buttons: w-full on mobile, w-auto on tablet/desktop. */}
                     <button
-                    onClick={() => onNavigate('Apps')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20 transform hover:scale-105"
+                    onClick={() => handleNavigate('Apps')}
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"
                     >
                     <AppsIcon />
                     <span className="ml-2">Explore Apps</span>
                     </button>
                     <button
-                    onClick={() => onNavigate('Icons')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active transform hover:scale-105"
+                    onClick={() => handleNavigate('Icons')}
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
                     >
                     <FluentIconsIcon />
                     <span className="ml-2">Browse Icons</span>
                     </button>
                     <button
-                    onClick={() => onNavigate('Emoji')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active transform hover:scale-105"
+                    onClick={() => handleNavigate('Emoji')}
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
                     >
                     <EmojiIcon />
                     <span className="ml-2">Discover Emojis</span>
@@ -187,63 +218,69 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                 </div>
                 
                 <div className="hidden lg:block animate-fade-in" style={{ animationDelay: '200ms' }}>
-                    <div className="relative h-[450px] w-full flex items-center justify-center perspective-[1000px]">
-                        <div className="absolute inset-0 grid grid-cols-4 gap-6 opacity-10 filter blur-[1px] parallax-item" data-depth="5">
-                            {showcaseIcons.map((icon, i) => (
-                                <img key={i} src={getIconUrl(icon)} alt={icon} className="w-12 h-12 filter dark:invert opacity-50" style={{ animation: `fade-in 0.5s ease-out ${0.3 + i * 0.05}s forwards`, opacity: 0 }}/>
-                            ))}
-                        </div>
-                        
-                        <div className="absolute inset-0">
-                            {showcaseEmojis.map((emojiInfo, i) => {
-                                const emoji = emojiMap.get(emojiInfo.name);
-                                const imageUrl = emoji?.styles['3D'];
-                                if (!imageUrl) return null;
-                                
-                                return (
-                                    <div
-                                    key={i}
-                                    className="absolute parallax-item"
-                                    data-depth={emojiInfo.depth}
-                                    style={{
-                                        top: `${10 + Math.random() * 80}%`,
-                                        left: `${10 + Math.random() * 80}%`,
-                                    }}
-                                    >
-                                    <img 
-                                        src={imageUrl} 
-                                        alt={emojiInfo.name} 
-                                        className="w-16 h-16 emoji-float"
-                                        style={{
-                                            animationDuration: `${10 + Math.random() * 10}s`,
-                                            animationDelay: `${Math.random() * 5}s`,
-                                        }}
-                                    />
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                        <div className="relative w-full h-full">
-                            <div className="absolute w-48 parallax-item" data-depth="15" style={{ top: '20%', left: '5%'}}>
-                                <div style={{ transform: 'rotate(-10deg) translateZ(0)' }}>
-                                    <AppCard app={showcaseApps[0]} index={0} onClick={() => onNavigate('Apps')} />
-                                </div>
-                            </div>
-                            <div className="absolute w-48 z-10" style={{ top: '35%', left: '50%', transform: 'translateX(-50%)' }}>
-                                <div className="parallax-item" data-depth="-5">
-                                    <div style={{ transform: 'scale(1.1) translateZ(0)' }}>
-                                        <AppCard app={showcaseApps[1]} index={1} onClick={() => onNavigate('Apps')} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="absolute w-48 parallax-item" data-depth="15" style={{ top: '20%', right: '5%'}}>
-                                <div style={{ transform: 'rotate(10deg) translateZ(0)' }}>
-                                    <AppCard app={showcaseApps[2]} index={2} onClick={() => onNavigate('Apps')} />
-                                </div>
-                            </div>
-                        </div>
+                  <div className="relative h-[450px] w-full max-w-full flex items-center justify-center perspective-[1000px] overflow-x-visible">
+                    <div className="absolute inset-0 grid grid-cols-4 gap-6 opacity-10 filter blur-[1px] parallax-item" data-depth="3">
+                      {showcaseIcons.map((icon, i) => (
+                          <img
+                            key={i}
+                            src={getIconUrl(icon)}
+                            alt={icon}
+                            className="w-12 h-12 filter dark:invert opacity-50"
+                            style={{ animation: `fade-in 0.5s ease-out ${0.3 + i * 0.05}s forwards`, opacity: 0 }}
+                          />
+                      ))}
                     </div>
+    
+                    <div className="absolute inset-0">
+                      {showcaseEmojis.map((emojiInfo, i) => {
+                        const emoji = emojiMap.get(emojiInfo.name);
+                        const imageUrl = emoji?.styles['3D'];
+                        if (!imageUrl) return null;
+    
+                        return (
+                          <div
+                            key={i}
+                            className="absolute parallax-item"
+                            data-depth={emojiInfo.depth}
+                            style={{
+                              ...showcaseEmojiPositions[i],
+                              width: '64px',
+                              maxWidth: '16vw',
+                              minWidth: '48px',
+                            }}
+                          >
+                            <img
+                              src={imageUrl}
+                              alt={emojiInfo.name}
+                              className="w-full h-auto emoji-float"
+                              style={{
+                                animationDuration: `${10 + Math.random() * 10}s`,
+                                animationDelay: `${Math.random() * 5}s`,
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+    
+                    <div className="relative w-full h-full">
+                      <div className="absolute parallax-item" data-depth="30" style={{ top: '20%', left: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                        <div style={{ transform: 'rotate(-10deg) translateZ(0)' }}>
+                          <AppCard app={showcaseApps[0]} index={0} onClick={() => handleNavigate('Apps')} />
+                        </div>
+                      </div>
+                      <div className="absolute z-10 parallax-item" data-depth="45" style={{ top: '35%', left: '50%', marginLeft: 'calc(-5vw)', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                        <div style={{ transform: 'scale(1.1) translateZ(0)' }}>
+                          <AppCard app={showcaseApps[1]} index={1} onClick={() => handleNavigate('Apps')} />
+                        </div>
+                      </div>
+                      <div className="absolute parallax-item" data-depth="35" style={{ top: '20%', right: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                        <div style={{ transform: 'rotate(10deg) translateZ(0)' }}>
+                          <AppCard app={showcaseApps[2]} index={2} onClick={() => handleNavigate('Apps')} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -255,7 +292,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                     Dive into a curated world of Fluent Design, from applications to the smallest emoji.
                 </p>
             </div>
-            <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            {/* Feature Cards: grid-cols-1 for mobile, sm:grid-cols-2 for tablets, md:grid-cols-3 for desktop. */}
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <div className={`transition-all duration-500 ease-out ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <FeatureCard 
                         icon={<AppsIcon />} 
@@ -263,7 +301,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                         count={isFeaturesVisible ? totalApps : 0} 
                         countSuffix="+" 
                         description="A curated list of beautiful and functional WinUI 3 applications."
-                        onClick={() => onNavigate('Apps')}
+                        onClick={() => handleNavigate('Apps')}
                     />
                 </div>
                 <div className={`transition-all duration-500 ease-out delay-150 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -273,7 +311,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                         count={isFeaturesVisible ? 4000 : 0} 
                         countSuffix="+" 
                         description="Explore thousands of Fluent System Icons in three unique styles."
-                        onClick={() => onNavigate('Icons')}
+                        onClick={() => handleNavigate('Icons')}
                     />
                 </div>
                 <div className={`transition-all duration-500 ease-out delay-300 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -283,7 +321,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                         count={isFeaturesVisible ? emojis.length : 0}
                         countSuffix="" 
                         description="Discover a vibrant collection of animated and static Fluent Emojis."
-                        onClick={() => onNavigate('Emoji')}
+                        onClick={() => handleNavigate('Emoji')}
                     />
                 </div>
             </div>
@@ -304,13 +342,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
                     </p>
                 </div>
             </div>
-            <div className={`mt-12 flex justify-center transition-all duration-700 ease-out delay-200 ${isCommunityVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'}`}>
+            <div className={`flex justify-center transition-all duration-700 ease-out delay-200 lg:scale-100 ${isCommunityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <NetworkVisualization onNavigate={handleContributorClick} />
             </div>
-             <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-10' : 'opacity-0 translate-y-10'}`}>
                 <button
-                    onClick={() => onNavigate('Contribute')}
-                    className="inline-flex items-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20 transform hover:scale-105"
+                    onClick={() => handleNavigate('Contribute')}
+                    className="inline-flex items-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"
                 >
                     <GithubIcon className="w-5 h-5" />
                     <span className="ml-2">Become a Contributor</span>

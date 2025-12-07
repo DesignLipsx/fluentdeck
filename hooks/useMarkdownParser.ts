@@ -1,22 +1,7 @@
-
-
 import { useState, useEffect } from 'react';
 import { Category, App, OtherSection } from '../types';
 import { README_URL } from '../constants';
 import { supabase } from '../lib/supabase';
-
-const sampleApps: App[] = [
-    { name: 'Files', link: '#', description: 'A modern file explorer.', tags: ['WD', 'WDM', 'WDA'], category: 'Tools', pricing: 'FOSS' },
-    { name: 'Fluent Store', link: '#', description: 'A modern front-end for the Microsoft Store.', tags: ['WD', 'WDM', 'WDA'], category: 'Tools', pricing: 'Paid' },
-    { name: 'Dev Home', link: '#', description: 'A control center providing the ability to track all your workflows.', tags: ['WD', 'WDM', 'WDA'], category: 'Developer', pricing: 'Free' },
-    { name: 'NanaZip', link: '#', description: 'A modern open source file archiver.', tags: ['WD', 'WDA'], category: 'Tools', pricing: 'FOSS' },
-    { name: 'Dynamic Start Menu', link: '#', description: 'A UWP-based start menu that supports folders.', tags: ['WD'], category: 'Tools', pricing: 'Free' },
-];
-
-const sampleCategories: Category[] = [
-    { name: 'Tools', apps: sampleApps.filter(a => a.category === 'Tools') },
-    { name: 'Developer', apps: sampleApps.filter(a => a.category === 'Developer') },
-];
 
 const parseTags = (str: string): string[] => {
     if (!str) return [];
@@ -52,7 +37,7 @@ const extractTitleParts = (rawTitle: string): { emoji?: string, text: string } =
 };
 
 export const useMarkdownParser = () => {
-  const [categories, setCategories] = useState<Category[]>(sampleCategories);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [otherSections, setOtherSections] = useState<OtherSection[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,12 +64,13 @@ export const useMarkdownParser = () => {
         const subgroupRegex = /^\s*-\s*\*\*(.*)\*\*.*$/;
 
         for (const line of lines) {
-            if (line.startsWith('## 📑 Apps List')) {
+            // More flexible check for Apps List section - checks if line contains "Apps List"
+            if (line.startsWith('## ') && line.toLowerCase().includes('apps list')) {
                 inAppsList = true;
                 continue;
             }
 
-            if (line.startsWith('## ') && !line.startsWith('## 📑 Apps List')) {
+            if (line.startsWith('## ') && !line.toLowerCase().includes('apps list')) {
                 inAppsList = false;
                 mainCategoryContext = null;
                 listParentCategory = null;
@@ -193,10 +179,13 @@ export const useMarkdownParser = () => {
                 }));
             }
            setCategories(finalCategories);
+           setOtherSections(parsedSections);
         } else {
+            // Log some debug info to help diagnose the issue
+            console.error('Parsing failed. First 10 lines of README:', lines.slice(0, 10));
+            console.error('Lines containing "##":', lines.filter(l => l.startsWith('##')).slice(0, 20));
             throw new Error("Failed to parse any app categories from the README.");
         }
-        setOtherSections(parsedSections);
 
       } catch (e: unknown) {
         if (e instanceof Error) {

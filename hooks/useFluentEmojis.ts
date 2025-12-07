@@ -25,32 +25,14 @@ interface FluentEmojiMetadataEntry {
 
 type FluentEmojiMetadata = Record<string, FluentEmojiMetadataEntry>;
 
-/**
- * Extracts the filename from the original GitHub Animated URL and constructs the local WebP path.
- * * E.g., 
- * Input: "https://media.githubusercontent.com/.../Grinning face/animated/grinning_face_animated.png"
- * Output: "/animated_emoji/grinning_face_animated.webp"
- * * Input: "https://media.githubusercontent.com/.../Person/animated/person_animated_default.png"
- * Output: "/animated_emoji/person_animated_default.webp" (if your local file is 'person_animated_default.webp')
- * * If your local files drop the '_default' suffix, we need a slight modification.
- * Assuming your local file is ALWAYS simplified to the non-default version (e.g., 'person_animated.webp' for 'person_animated_default.png'):
- */
-const extractWebpPathFromUrl = (originalUrl: string): string => {
+const extractWebpPathFromUrl = (originalUrl: string, category: string): string => {
     try {
         const url = new URL(originalUrl);
-        // Get the last part of the path, which is the filename (e.g., 'person_animated_default.png')
         let filename = url.pathname.split('/').pop() || '';
-
-        // 1. Remove the file extension (.png)
         filename = filename.replace(/\.(png|webp|svg)$/i, '');
-        
-
-        // 3. Re-append the new suffix and extension
-        // Since the original file is usually already in snake_case, we just append .webp
-        return `/animated_emoji/${filename}.webp`;
-
+        // Use the category folder for the webp version
+        return `/${category}/${filename}.webp`;
     } catch (e) {
-        // Fallback or error handling
         return '';
     }
 };
@@ -61,13 +43,11 @@ export const useFluentEmojis = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // ✅ Use the fetch pattern inside an async function, which works in your environment
     const loadEmojis = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // ✅ Fetch the JSON file using the working relative path pattern
         const emojiRes = await fetch(new URL('./emoji.json', import.meta.url).href);
 
         if (!emojiRes.ok) {
@@ -75,8 +55,6 @@ export const useFluentEmojis = () => {
         }
 
         const rawEmojiData = await emojiRes.json();
-        
-        // ✅ Load local emoji metadata and assert the type
         const fluentEmojisMetadata: FluentEmojiMetadata = rawEmojiData as FluentEmojiMetadata;
 
         const groupMap: Record<string, string> = {
@@ -105,17 +83,22 @@ export const useFluentEmojis = () => {
               ? String.fromCodePoint(...unicode.split(' ').map((u) => parseInt(u, 16)))
               : undefined;
 
-            // --- MODIFIED LOGIC FOR ANIMATED EMOJI ---
-            let localAnimWebpUrl: string | undefined;
-
-            if (styleSource.Animated) {
-                // Use the new helper to reliably parse the URL and format the local path.
-                localAnimWebpUrl = extractWebpPathFromUrl(styleSource.Animated);
-                // The filename structure is often: {name}_animated.webp
-                // If the name is "Money-mouth face", the original URL already converts to 'money-mouth_face_animated.png'.
-                // If it's a skintone base like "Person", it's 'person_animated_default.png', and we simplify to 'person_animated.webp'.
-            }
-            // --- END: MODIFIED LOGIC FOR ANIMATED EMOJI ---
+            // --- MODIFIED LOGIC FOR ALL WEBP STYLES ---
+            const localAnimWebpUrl = styleSource.Animated
+                ? extractWebpPathFromUrl(styleSource.Animated, 'animated_emoji')
+                : undefined;
+            const local3DWebpUrl = styleSource['3D']
+                ? extractWebpPathFromUrl(styleSource['3D'], '3D')
+                : undefined;
+            const localModernWebpUrl = styleSource.Color
+                ? extractWebpPathFromUrl(styleSource.Color, 'modern')
+                : undefined;
+            const localFlatWebpUrl = styleSource.Flat
+                ? extractWebpPathFromUrl(styleSource.Flat, 'flat')
+                : undefined;
+            const localMonoWebpUrl = (styleSource.HighContrast || styleSource['High contrast'])
+                ? extractWebpPathFromUrl(styleSource.HighContrast || styleSource['High contrast'], 'high_contrast')
+                : undefined;
 
             return {
               name,
@@ -123,15 +106,15 @@ export const useFluentEmojis = () => {
               category: groupMap[data.group.toLowerCase()],
               sortOrder: data.sortOrder,
               styles: {
-                '3D': styleSource['3D'],
-                Modern: styleSource.Color,
-                Flat: styleSource.Flat,
-                Mono: styleSource.HighContrast || styleSource['High contrast'],
-                // Use the locally constructed WebP URL for the Animated style
-                Anim: localAnimWebpUrl, 
+                '3D': local3DWebpUrl,
+                Modern: localModernWebpUrl,
+                Flat: localFlatWebpUrl,
+                Mono: localMonoWebpUrl,
+                Anim: localAnimWebpUrl,
               },
               unicode,
               symbol,
+              isSkintoneBased: data.isSkintoneBased || false,
             };
           })
           .filter((emoji): emoji is Emoji & { sortOrder: number } => emoji !== null);
@@ -152,8 +135,8 @@ export const useFluentEmojis = () => {
       }
     };
     
-    loadEmojis(); // ✅ Call the async function
-  }, []); // Run once on mount
+    loadEmojis();
+  }, []);
 
   return { emojis, loading, error };
 };

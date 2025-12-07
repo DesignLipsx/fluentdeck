@@ -106,16 +106,24 @@ const AdminDashboard: React.FC = () => {
         const baseClasses = "w-28 flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md";
         switch (status) {
             case 'saving':
-                return <button disabled className={`${baseClasses} bg-gray-500 dark:bg-gray-600 text-white`}><LoadingSpinner /></button>;
+                return (
+                    <button disabled className={`${baseClasses} bg-gray-500 dark:bg-gray-600 text-white`}>
+                        <div className="h-5 w-5 flex items-center justify-center">
+                            <LoadingSpinner />
+                        </div>
+                    </button>
+                );
             case 'saved':
                 return <button disabled className={`${baseClasses} bg-green-600 text-white`}>Saved!</button>;
             case 'error':
                 return <button onClick={onClick} className={`${baseClasses} bg-red-600 hover:bg-red-700 text-white`}>Retry</button>;
             default:
-                return <button onClick={onClick} className={`${baseClasses} bg-blue-600 hover:bg-blue-700 text-white`}>
-                    <SaveIcon className="w-4 h-4 mr-2" />
-                    Save
-                </button>;
+                return (
+                    <button onClick={onClick} className={`${baseClasses} bg-blue-600 hover:bg-blue-700 text-white`}>
+                        <SaveIcon className="w-4 h-4 mr-2" />
+                        Save
+                    </button>
+                );
         }
     };
 

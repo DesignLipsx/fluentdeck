@@ -3,27 +3,34 @@ import { IconStyle } from '../types';
 
 interface IconCardProps {
   iconName: string;
+  svgFileName?: string;
   style: IconStyle;
   index: number;
   onClick: () => void;
 }
 
-const IconCard: React.FC<IconCardProps> = ({ iconName, style, index, onClick }) => {
+const IconCard: React.FC<IconCardProps> = ({ iconName, svgFileName, style, index, onClick }) => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     setHasError(false);
-  }, [iconName, style]);
+  }, [iconName, style, svgFileName]);
 
-  const snakeCaseName = iconName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
-  
-  const styleSuffix = style === 'outlined' ? 'regular' : style;
+  // Use the provided svgFileName if available, otherwise construct it
+  let fileName: string;
+  if (svgFileName) {
+    // Replace the style suffix in the filename to match the current style
+    const styleSuffix = style === 'outlined' ? 'regular' : style;
+    fileName = svgFileName.replace(/_24_(filled|regular|color)\.svg$/, `_24_${styleSuffix}.svg`);
+  } else {
+    const snakeCaseName = iconName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
+    const styleSuffix = style === 'outlined' ? 'regular' : style;
+    fileName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}.svg`;
+  }
 
-  const fileName = `ic_fluent_${snakeCaseName}_24_${styleSuffix}.svg`;
-
-  const encodedIconDir = encodeURIComponent(iconName);
-
-  const iconUrl = `https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/${encodedIconDir}/SVG/${fileName}`;
+  // Use local icon folders
+  const folderName = style === 'outlined' ? 'icon_regular' : style === 'filled' ? 'icon_filled' : 'icon_color';
+  const iconUrl = `/${folderName}/${fileName}`;
   
   const handleError = () => {
     setHasError(true);

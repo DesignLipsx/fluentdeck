@@ -168,14 +168,16 @@ export default function UserProfileDropdown() {
               </>
             )}
 
-            <div className="p-1">
-              {user && !onAdminPage && (
-                <MenuItem
-                  label="Admin Dashboard"
-                  onClick={() => window.location.href = '/dashboard'}
-                />
-              )}
-            </div>
+            {user && !onAdminPage && (
+              <>
+                <div className="p-1">
+                  <MenuItem
+                    label="Admin Dashboard"
+                    onClick={() => window.location.href = '/dashboard'}
+                  />
+                </div>
+              </>
+            )}
 
             {(user && !onAdminPage) && <DropdownMenuSeparator />}
             

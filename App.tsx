@@ -10,7 +10,6 @@ import EmojiPage from './pages/EmojiPage';
 import ContributePage from './pages/ContributePage';
 import LoadingSpinner from './components/LoadingSpinner';
 import MobileNav from './components/MobileNav';
-import Footer from './components/Footer';
 
 const getPageFromPath = (path: string): NavItem => {
   const page = path.split('/')[1]?.toLowerCase();
@@ -63,27 +62,26 @@ const App: React.FC = () => {
   }, []);
 
   const renderContent = () => {
-    if (loading && categories.length === 0) {
-      return <div className="flex items-center justify-center h-full"><LoadingSpinner text="Loading Apps..." /></div>;
-    }
-    if (error) {
+    if (loading && categories.length === 0 && currentPage !== 'Home') {
+      return <div className="flex items-center justify-center h-full"><LoadingSpinner text="Loading..." /></div>;
+      }
+      if (error) {
       return <div className="flex items-center justify-center h-full text-red-400">{error}</div>;
-    }
-
-    switch (currentPage) {
+      }
+      switch (currentPage) {
       case 'Home':
-        return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
+         return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
       case 'Apps':
-        return <AppsPage categories={categories} onLogoUpdate={handleLogoUpdate} />;
+         return <AppsPage categories={categories} onLogoUpdate={handleLogoUpdate} />;
       case 'Icons':
-        return <IconsPage />;
+         return <IconsPage />;
       case 'Emoji':
-        return <EmojiPage emojis={emojis} loading={emojisLoading} error={emojisError} />;
+         return <EmojiPage emojis={emojis} loading={emojisLoading} error={emojisError} />;
       case 'Contribute':
-        return <ContributePage />;
+         return <ContributePage />;
       default:
-        return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
-    }
+         return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
+      }
   };
 
   return (
@@ -98,7 +96,6 @@ const App: React.FC = () => {
         <main className="flex-1">
           {renderContent()}
         </main>
-        <Footer />
       </div>
     </div>
   );
