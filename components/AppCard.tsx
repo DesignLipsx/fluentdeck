@@ -27,8 +27,17 @@ const AppCard: React.FC<AppCardProps> = ({ app, index, onContextMenu, onClick })
     return generateColor(app.name);
   }, [app.name]);
 
+  const processedLogoUrl = useMemo(() => {
+    if (!app.logo_url) return undefined;
+    if (app.logo_url.endsWith('.ico')) {
+      // Use an image proxy to convert .ico to a browser-friendly format like PNG.
+      return `https://images.weserv.nl/?url=${encodeURIComponent(app.logo_url)}&w=64&h=64&fit=contain&output=png`;
+    }
+    return app.logo_url;
+  }, [app.logo_url]);
 
-  const showLogo = app.logo_url && !logoError;
+
+  const showLogo = processedLogoUrl && !logoError;
   
   const renderPricingTag = () => {
     let colorClass = 'bg-gray-200 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300'; // Free
@@ -53,7 +62,7 @@ const AppCard: React.FC<AppCardProps> = ({ app, index, onContextMenu, onClick })
       <div className="h-32 flex items-center justify-center overflow-hidden rounded-t-xl bg-bg-tertiary">
         {showLogo ? (
           <img
-              src={app.logo_url}
+              src={processedLogoUrl}
               alt={`${app.name} logo`}
               className="w-16 h-16 rounded-lg object-contain"
               onError={() => setLogoError(true)}

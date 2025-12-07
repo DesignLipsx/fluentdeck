@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect, FC, useCallback } from 'react';
 import SkeletonCard from '../components/SkeletonCard';
 import EmojiCard from '../components/EmojiCard';
 import Tabs from '../components/Tabs';
-import { SearchIcon, DownloadIcon, CloseIcon } from '../components/Icons';
+import { SearchIcon, DownloadIcon, CloseIcon, CopyIcon } from '../components/Icons';
 import { Emoji, EmojiStyle } from '../types';
 import AppModal from '../components/AppModal';
 
@@ -41,6 +41,29 @@ const downloadFile = (content: string | Blob, fileName: string, mimeType?: strin
   URL.revokeObjectURL(url);
 };
 
+const CopyableField: FC<{ label: string; value: string }> = ({ label, value }) => {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    if (!value) return;
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="flex items-center justify-between bg-bg-tertiary rounded-lg pl-3 pr-2 py-2 text-sm group">
+        <div className="flex items-center space-x-2 overflow-hidden">
+            <span className="font-medium text-text-secondary w-16 flex-shrink-0">{label}</span>
+            <span className="font-mono text-text-primary truncate" title={value}>{value}</span>
+        </div>
+      <button onClick={handleCopy} className="flex items-center space-x-1.5 font-semibold px-2 py-1 rounded-md text-text-tertiary hover:bg-bg-hover hover:text-text-primary transition-colors">
+        <CopyIcon className="w-4 h-4" />
+        <span>{copied ? 'Copied!' : 'Copy'}</span>
+      </button>
+    </div>
+  );
+};
+
 const EmojiDetail: FC<{ data: { emoji: Emoji, style: EmojiStyle } }> = ({ data }) => {
     const { emoji, style } = data;
     const emojiUrl = emoji.styles[style];
@@ -59,18 +82,24 @@ const EmojiDetail: FC<{ data: { emoji: Emoji, style: EmojiStyle } }> = ({ data }
         }
     }, [emojiUrl, emoji.name]);
     
-    if (!emojiUrl) return null;
+    if (!emoji.styles[style]) return null;
 
     return (
         <>
             <div className="p-6 flex items-center justify-center bg-bg-inset" style={{minHeight: '200px'}}>
                 <img src={emojiUrl} alt={emoji.name} className="w-32 h-32" />
             </div>
-            <div className="p-6">
-                <button onClick={handleDownload} className="w-full flex items-center justify-center px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">
-                    <DownloadIcon />
-                    <span className="ml-2">Download</span>
-                </button>
+            <div className="p-6 space-y-3">
+                {emojiUrl && <CopyableField label="URL" value={emojiUrl} />}
+                {emoji.symbol && <CopyableField label="Symbol" value={emoji.symbol} />}
+                {emoji.unicode && <CopyableField label="Unicode" value={`U+${emoji.unicode.toUpperCase().replace(/ /g, ' U+')}`} />}
+                
+                <div className="pt-3">
+                    <button onClick={handleDownload} className="w-full flex items-center justify-center px-4 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                        <DownloadIcon />
+                        <span className="ml-2">Download</span>
+                    </button>
+                </div>
             </div>
         </>
     );

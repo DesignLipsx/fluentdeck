@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { App } from '../types';
 import { supabase } from '../lib/supabase';
-import LoadingSpinner from './LoadingSpinner';
+import ButtonSpinner from './ButtonSpinner';
 import { CloseIcon } from './Icons';
 
 interface LogoUrlModalProps {
@@ -14,6 +14,15 @@ const LogoUrlModal: React.FC<LogoUrlModalProps> = ({ app, onClose, onSave }) => 
     const [url, setUrl] = useState(app.logo_url || '');
     const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle');
     const [error, setError] = useState<string | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        // Automatically focus and select the input text when the modal opens.
+        if (inputRef.current) {
+            inputRef.current.focus();
+            inputRef.current.select();
+        }
+    }, []);
 
     const handleSave = async () => {
         setStatus('saving');
@@ -64,6 +73,7 @@ const LogoUrlModal: React.FC<LogoUrlModalProps> = ({ app, onClose, onSave }) => 
                     <div>
                         <label htmlFor="logo-url" className="block text-sm font-medium text-text-secondary mb-2">Logo URL</label>
                         <input
+                            ref={inputRef}
                             id="logo-url"
                             type="url"
                             value={url}
@@ -77,7 +87,7 @@ const LogoUrlModal: React.FC<LogoUrlModalProps> = ({ app, onClose, onSave }) => 
                 <footer className="flex justify-end p-4 bg-bg-tertiary/50 border-t border-border-primary space-x-3 rounded-b-xl">
                     <button onClick={onClose} className="px-4 py-2 text-sm font-medium rounded-md bg-bg-inset hover:bg-bg-active text-text-primary">Cancel</button>
                     <button onClick={handleSave} disabled={status === 'saving'} className="flex justify-center items-center px-4 py-2 text-sm font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white disabled:bg-blue-800/50 disabled:cursor-not-allowed w-24">
-                        {status === 'saving' ? <div className="h-5 w-5"><LoadingSpinner /></div> : 'Save'}
+                        {status === 'saving' ? <ButtonSpinner /> : 'Save'}
                     </button>
                 </footer>
             </div>

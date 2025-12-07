@@ -1,66 +1,75 @@
-import React, { useState, useRef, useLayoutEffect, ReactNode, FC } from 'react';
+import React, { useState, useRef, useEffect, ReactNode, FC } from 'react';
 import ReactDOM from 'react-dom';
 
 interface TooltipProps {
-  children: React.ReactElement; // Expect a single React element
+  // FIX: Allow any props on the child to simplify event handler access.
+  children: React.ReactElement<any>;
   content: ReactNode | string;
   delay?: number;
 }
 
 const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [triggerNode, setTriggerNode] = useState<HTMLElement | null>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
   const timeoutRef = useRef<number | null>(null);
 
   const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    timeoutRef.current = window.setTimeout(() => {
-      setIsVisible(true);
-    }, delay);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = window.setTimeout(() => setIsVisible(true), delay);
   };
 
   const handleMouseLeave = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = null;
     setIsVisible(false);
+  };
+  
+  const setTriggerRef = (node: HTMLElement | null) => {
+    triggerRef.current = node;
+    // FIX: The 'ref' property is not part of the public ReactElement type.
+    // We use a type assertion to access the child's ref for merging.
+    const { ref } = children as { ref?: React.Ref<any> };
+    if (typeof ref === 'function') {
+      ref(node);
+    } else if (ref) {
+      (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+    }
   };
 
   const TooltipContentPortal: FC = () => {
     const tooltipRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
 
-    useLayoutEffect(() => {
-      if (tooltipRef.current && triggerNode) {
+    useEffect(() => {
+      if (tooltipRef.current && triggerRef.current) {
+        const triggerRect = triggerRef.current.getBoundingClientRect();
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        const triggerRect = triggerNode.getBoundingClientRect();
+        
+        const viewportWidth = document.documentElement.clientWidth;
+        const offset = 8;
 
-        let top = triggerRect.top - tooltipRect.height - 8; // 8px offset above
-        let left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
+        let top = triggerRect.top - tooltipRect.height - offset;
+        let left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
 
-        if (top < 8) { // if not enough space on top, show below
-          top = triggerRect.bottom + 8;
+        if (top < offset) {
+          top = triggerRect.bottom + offset;
         }
-        if (left < 8) {
-          left = 8;
+
+        if (left < offset) {
+          left = offset;
+        } else if (left + tooltipRect.width > viewportWidth - offset) {
+          left = viewportWidth - tooltipRect.width - offset;
         }
-        if (left + tooltipRect.width > window.innerWidth - 8) {
-          left = window.innerWidth - tooltipRect.width - 8;
-        }
+        
         setPosition({ top, left });
       }
-    }, [triggerNode]);
-
-    if (!triggerNode) return null;
+    }, []);
 
     return ReactDOM.createPortal(
       <div
         id="fd-tooltip"
         ref={tooltipRef}
-        className="fixed z-[999] px-3 py-1.5 text-sm font-medium text-white bg-gray-900 dark:bg-black rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95"
+        className="fixed z-[999] px-3 py-1.5 text-sm font-medium text-white bg-black rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95"
         style={position ? { top: `${position.top}px`, left: `${position.left}px` } : { opacity: 0 }}
         role="tooltip"
       >
@@ -71,9 +80,10 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
   };
 
   const child = React.Children.only(children);
-
+  // FIX: Cast props to `any` to allow adding a `ref`, which is not a standard prop.
+  // This is a common workaround for cloneElement with generic children in TypeScript.
   const trigger = React.cloneElement(child, {
-    ref: setTriggerNode,
+    ref: setTriggerRef,
     onMouseEnter: (e: React.MouseEvent) => {
       handleMouseEnter();
       child.props.onMouseEnter?.(e);
@@ -91,8 +101,8 @@ const Tooltip: FC<TooltipProps> = ({ children, content, delay = 300 }) => {
       child.props.onBlur?.(e);
     },
     'aria-describedby': isVisible ? 'fd-tooltip' : undefined,
-    title: '' // Explicitly remove title to prevent native tooltips
-  });
+    title: ''
+  } as any);
 
   return (
     <>

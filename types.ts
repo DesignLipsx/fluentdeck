@@ -30,6 +30,8 @@ export interface Emoji {
     'Mono'?: string;
     'Anim'?: string;
   };
+  unicode?: string;
+  symbol?: string;
 }
 
 export type NavItem = 'Home' | 'Apps' | 'Icons' | 'Emoji' | 'Contribute';
