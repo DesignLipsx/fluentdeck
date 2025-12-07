@@ -1,4 +1,4 @@
-﻿import React, { useRef, useEffect, useMemo, FC, useState, RefObject } from 'react';
+import React, { useRef, useEffect, useMemo, FC, useState, RefObject } from 'react';
 import { NavItem, App, Emoji, Category } from '../types';
 import { AppsIcon, EmojiIcon, FluentIconsIcon, GithubIcon } from '../components/Icons';
 import AppCard from '../components/AppCard';
@@ -60,7 +60,7 @@ const showcaseIcons: string[] = [
   'Home', 'Settings', 'Heart', 'Camera', 'Apps', 'Cloud', 'Search', 'Link', 'Edit', 'Filter', 'Flag', 'Gift', 'Mail', 'People', 'Pin', 'Share'
 ];
 
-const showcaseEmojis: {name: string, depth: number}[] = [
+const showcaseEmojis: { name: string, depth: number }[] = [
   { name: 'Smiling face with sunglasses', depth: 20 },
   { name: 'Rocket', depth: -15 },
   { name: 'Laptop', depth: 10 },
@@ -72,40 +72,129 @@ const showcaseEmojis: {name: string, depth: number}[] = [
 ];
 
 const getIconUrl = (iconName: string) => {
-    const snakeCaseName = iconName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
-    const fileName = `ic_fluent_${snakeCaseName}_24_regular.svg`;
-    const encodedIconDir = encodeURIComponent(iconName);
-    return `https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/${encodedIconDir}/SVG/${fileName}`;
+  const snakeCaseName = iconName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/_$/, '').replace(/^_/, '');
+  const fileName = `ic_fluent_${snakeCaseName}_24_regular.svg`;
+  const encodedIconDir = encodeURIComponent(iconName);
+  return `https://cdn.jsdelivr.net/gh/microsoft/fluentui-system-icons@main/assets/${encodedIconDir}/SVG/${fileName}`;
 };
 
 interface HomePageProps {
-    onNavigate: (page: NavItem, callback?: () => void) => void;
-    emojis: Emoji[];
-    categories: Category[];
+  onNavigate: (page: NavItem, callback?: () => void) => void;
+  emojis: Emoji[];
+  categories: Category[];
 }
 
-const FeatureCard: FC<{icon: React.ReactNode; title: string; count: number; countSuffix: string; description: string; onClick: () => void}> = ({ icon, title, count, countSuffix, description, onClick }) => (
-    <div className="bg-bg-secondary p-8 rounded-2xl border border-border-primary transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onClick={onClick}>
-        <div className="flex items-center text-blue-500 dark:text-blue-400 space-x-3">
-            {icon}
-            <h3 className="text-xl font-semibold text-text-primary">{title}</h3>
-        </div>
-        <p className="text-5xl font-bold text-text-primary mt-4">
-            <NumberTicker value={count} />
-            {countSuffix}
-        </p>
-        <p className="text-text-tertiary mt-2">{description}</p>
+const FeatureCard: FC<{ icon: React.ReactNode; title: string; count: number; countSuffix: string; description: string; onClick: () => void }> = ({ icon, title, count, countSuffix, description, onClick }) => (
+  <div className="bg-bg-secondary p-8 rounded-2xl border border-border-primary transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onClick={onClick}>
+    <div className="flex items-center text-blue-500 dark:text-blue-400 space-x-3">
+      {icon}
+      <h3 className="text-xl font-semibold text-text-primary">{title}</h3>
     </div>
+    <p className="text-5xl font-bold text-text-primary mt-4">
+      <NumberTicker value={count} />
+      {countSuffix}
+    </p>
+    <p className="text-text-tertiary mt-2">{description}</p>
+  </div>
 );
+
+// SEO Meta Tags Component for Vite/React
+const SEOHead: FC = () => {
+  useEffect(() => {
+    // Update document title
+    document.title = "Fluent Deck - Curated WinUI 3 Apps, Fluent Icons & Emojis";
+
+    // Update meta tags dynamically
+    const updateMetaTag = (name: string, content: string) => {
+      let metaTag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.name = name;
+        document.head.appendChild(metaTag);
+      }
+      metaTag.content = content;
+    };
+
+    const updateOGTag = (property: string, content: string) => {
+      let metaTag = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.content = content;
+    };
+
+    // Primary Meta Tags
+    updateMetaTag('description', 'Discover Fluent Deck: A comprehensive showcase of beautiful WinUI 3 applications, thousands of Fluent System Icons, and vibrant Fluent Emojis. All in one curated platform.');
+    updateMetaTag('keywords', 'WinUI 3, Fluent Design, Windows Apps, Fluent Icons, Fluent Emojis, Microsoft Design, Windows Development, App Showcase');
+    updateMetaTag('author', 'Fluent Deck');
+    updateMetaTag('robots', 'index, follow');
+
+    // Open Graph / Facebook
+    updateOGTag('og:type', 'website');
+    updateOGTag('og:url', window.location.href);
+    updateOGTag('og:title', 'Fluent Deck - Curated WinUI 3 Apps, Fluent Icons & Emojis');
+    updateOGTag('og:description', 'Discover Fluent Deck: A comprehensive showcase of beautiful WinUI 3 applications, thousands of Fluent System Icons, and vibrant Fluent Emojis.');
+    updateOGTag('og:image', 'https://fluentdeck.com/og-image.jpg');
+
+    // Twitter
+    updateOGTag('twitter:card', 'summary_large_image');
+    updateOGTag('twitter:url', window.location.href);
+    updateOGTag('twitter:title', 'Fluent Deck - Curated WinUI 3 Apps, Fluent Icons & Emojis');
+    updateOGTag('twitter:description', 'Discover Fluent Deck: A comprehensive showcase of beautiful WinUI 3 applications, thousands of Fluent System Icons, and vibrant Fluent Emojis.');
+    updateOGTag('twitter:image', 'https://fluentdeck.com/twitter-image.jpg');
+
+    // Add canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = window.location.href;
+
+    // Add structured data
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Fluent Deck",
+      "description": "A curated showcase of beautiful WinUI 3 apps, comprehensive Fluent System Icons library, and vibrant Fluent Emojis collection",
+      "url": window.location.href,
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Windows",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Fluent Deck"
+      }
+    };
+
+    let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(structuredData);
+
+  }, []);
+
+  return null; // This component doesn't render anything
+};
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const emojiMap = useMemo(() => new Map(emojis.map(e => [e.name, e])), [emojis]);
-  
+
   // Calculate totalApps, excluding the 'Newly Added Apps!' category.
   const totalApps = useMemo(() => {
     const countedCategories = categories.filter(
-        category => category.name.trim() !== 'Newly Added Apps!'
+      category => category.name.trim() !== 'Newly Added Apps!'
     );
     return countedCategories.reduce((sum, category) => sum + category.apps.length, 0);
   }, [categories]);
@@ -145,10 +234,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
-      
+
       const centerX = container.offsetLeft + container.offsetWidth / 2;
       const centerY = container.offsetTop + container.offsetHeight / 2;
-      
+
       const moveX = (clientX - centerX) / container.offsetWidth;
       const moveY = (clientY - centerY) / container.offsetHeight;
 
@@ -180,183 +269,203 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, emojis, categories }) =
   }, []);
 
   return (
-    <div className="overflow-x-hidden relative w-full max-w-[100vw]">
-        <div ref={containerRef} className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 animate-background-pan relative hero-section-fade w-full max-w-[100vw]">
-            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-                <div className="text-center lg:text-left animate-fade-in relative z-10">
-                <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-tight">
-                    Fluent Deck
-                </h1>
-                <p className="mt-4 text-lg md:text-xl text-text-tertiary max-w-xl mx-auto lg:mx-0">
-                    A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Fluent System Icons, and a vibrant collection of Fluent Emojis.
-                </p>
-                {/* Hero Button Container: flex-col with items-stretch for full-width buttons on mobile, sm:flex-row for desktop. */}
-                <div className="mt-8 flex w-full flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4">
-                    {/* Buttons: w-full on mobile, w-auto on tablet/desktop. */}
-                    <button
-                    onClick={() => handleNavigate('Apps')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"
-                    >
-                    <AppsIcon />
-                    <span className="ml-2">Explore Apps</span>
-                    </button>
-                    <button
-                    onClick={() => handleNavigate('Icons')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
-                    >
-                    <FluentIconsIcon />
-                    <span className="ml-2">Browse Icons</span>
-                    </button>
-                    <button
-                    onClick={() => handleNavigate('Emoji')}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
-                    >
-                    <EmojiIcon />
-                    <span className="ml-2">Discover Emojis</span>
-                    </button>
-                </div>
-                </div>
-                
-                <div className="hidden lg:block animate-fade-in overflow-hidden" style={{ animationDelay: '200ms', maxWidth: '100%' }}>
-                  <div className="relative h-[450px] w-full max-w-full flex items-center justify-center perspective-[1000px] overflow-x-visible">
-                    <div className="absolute inset-0 grid grid-cols-4 gap-6 opacity-10 filter blur-[1px] parallax-item" data-depth="3">
-                      {showcaseIcons.map((icon, i) => (
+    <>
+      <SEOHead />
+      {/* ✅ FIXED: Added proper top padding for fixed header */}
+      <div className="min-h-screen flex flex-col pt-16"> {/* Added pt-16 for header height */}
+        <div className="overflow-x-hidden relative w-full max-w-[100vw] flex-1">
+          {/* Add semantic HTML structure with main and section elements */}
+          <main role="main">
+            <section aria-labelledby="main-heading">
+              <div ref={containerRef} className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 animate-background-pan relative hero-section-fade w-full max-w-[100vw]">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                  <div className="text-center lg:text-left animate-fade-in relative z-10">
+                    <h1 id="main-heading" className="text-5xl md:text-7xl font-bold text-text-primary leading-tight">
+                      Fluent Deck
+                    </h1>
+                    <p className="mt-4 text-lg md:text-xl text-text-tertiary max-w-xl mx-auto lg:mx-0">
+                      A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Fluent System Icons, and a vibrant collection of Fluent Emojis.
+                    </p>
+                    {/* Hero Button Container: flex-col with items-stretch for full-width buttons on mobile, sm:flex-row for desktop. */}
+                    <div className="mt-8 flex w-full flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4">
+                      {/* Buttons: w-full on mobile, w-auto on tablet/desktop. */}
+                      <button
+                        onClick={() => handleNavigate('Apps')}
+                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"
+                        aria-label="Explore WinUI 3 Applications"
+                      >
+                        <AppsIcon />
+                        <span className="ml-2">Explore Apps</span>
+                      </button>
+                      <button
+                        onClick={() => handleNavigate('Icons')}
+                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
+                        aria-label="Browse Fluent System Icons"
+                      >
+                        <FluentIconsIcon />
+                        <span className="ml-2">Browse Icons</span>
+                      </button>
+                      <button
+                        onClick={() => handleNavigate('Emoji')}
+                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 font-semibold text-text-secondary bg-bg-tertiary rounded-lg hover:bg-bg-active"
+                        aria-label="Discover Fluent Emojis"
+                      >
+                        <EmojiIcon />
+                        <span className="ml-2">Discover Emojis</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="hidden lg:block animate-fade-in overflow-hidden" style={{ animationDelay: '200ms', maxWidth: '100%' }}>
+                    <div className="relative h-[450px] w-full max-w-full flex items-center justify-center perspective-[1000px] overflow-x-visible">
+                      <div className="absolute inset-0 grid grid-cols-4 gap-6 opacity-10 filter blur-[1px] parallax-item" data-depth="3">
+                        {showcaseIcons.map((icon, i) => (
                           <img
                             key={i}
                             src={getIconUrl(icon)}
-                            alt={icon}
+                            alt={`Fluent System Icon - ${icon}`}
                             className="w-12 h-12 filter dark:invert opacity-50"
                             style={{ animation: `fade-in 0.5s ease-out ${0.3 + i * 0.05}s forwards`, opacity: 0 }}
                           />
-                      ))}
-                    </div>
-    
-                    <div className="absolute inset-0">
-                      {showcaseEmojis.map((emojiInfo, i) => {
-                        const emoji = emojiMap.get(emojiInfo.name);
-                        const imageUrl = emoji?.styles['3D'];
-                        if (!imageUrl) return null;
-    
-                        return (
-                          <div
-                            key={i}
-                            className="absolute parallax-item"
-                            data-depth={emojiInfo.depth}
-                            style={{
-                              ...showcaseEmojiPositions[i],
-                              width: '64px',
-                              maxWidth: '16vw',
-                              minWidth: '48px',
-                            }}
-                          >
-                            <img
-                              src={imageUrl}
-                              alt={emojiInfo.name}
-                              className="w-full h-auto emoji-float"
+                        ))}
+                      </div>
+
+                      <div className="absolute inset-0">
+                        {showcaseEmojis.map((emojiInfo, i) => {
+                          const emoji = emojiMap.get(emojiInfo.name);
+                          const imageUrl = emoji?.styles['3D'];
+                          if (!imageUrl) return null;
+
+                          return (
+                            <div
+                              key={i}
+                              className="absolute parallax-item"
+                              data-depth={emojiInfo.depth}
                               style={{
-                                animationDuration: `${10 + Math.random() * 10}s`,
-                                animationDelay: `${Math.random() * 5}s`,
+                                ...showcaseEmojiPositions[i],
+                                width: '64px',
+                                maxWidth: '16vw',
+                                minWidth: '48px',
                               }}
-                            />
+                            >
+                              <img
+                                src={imageUrl}
+                                alt={`Fluent Emoji - ${emojiInfo.name}`}
+                                className="w-full h-auto emoji-float"
+                                style={{
+                                  animationDuration: `${10 + Math.random() * 10}s`,
+                                  animationDelay: `${Math.random() * 5}s`,
+                                }}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div className="relative w-full h-full">
+                        <div className="absolute parallax-item" data-depth="30" style={{ top: '20%', left: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                          <div style={{ transform: 'rotate(-10deg) translateZ(0)' }}>
+                            <AppCard app={showcaseApps[0]} index={0} onClick={() => handleNavigate('Apps')} />
                           </div>
-                        );
-                      })}
-                    </div>
-    
-                    <div className="relative w-full h-full">
-                      <div className="absolute parallax-item" data-depth="30" style={{ top: '20%', left: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
-                        <div style={{ transform: 'rotate(-10deg) translateZ(0)' }}>
-                          <AppCard app={showcaseApps[0]} index={0} onClick={() => handleNavigate('Apps')} />
                         </div>
-                      </div>
-                      <div className="absolute z-10 parallax-item" data-depth="45" style={{ top: '35%', left: '50%', marginLeft: 'calc(-5vw)', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
-                        <div style={{ transform: 'scale(1.1) translateZ(0)' }}>
-                          <AppCard app={showcaseApps[1]} index={1} onClick={() => handleNavigate('Apps')} />
+                        <div className="absolute z-10 parallax-item" data-depth="45" style={{ top: '35%', left: '50%', marginLeft: 'calc(-5vw)', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                          <div style={{ transform: 'scale(1.1) translateZ(0)' }}>
+                            <AppCard app={showcaseApps[1]} index={1} onClick={() => handleNavigate('Apps')} />
+                          </div>
                         </div>
-                      </div>
-                      <div className="absolute parallax-item" data-depth="35" style={{ top: '20%', right: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
-                        <div style={{ transform: 'rotate(10deg) translateZ(0)' }}>
-                          <AppCard app={showcaseApps[2]} index={2} onClick={() => handleNavigate('Apps')} />
+                        <div className="absolute parallax-item" data-depth="35" style={{ top: '20%', right: '5%', width: '18vw', minWidth: '120px', maxWidth: '200px' }}>
+                          <div style={{ transform: 'rotate(10deg) translateZ(0)' }}>
+                            <AppCard app={showcaseApps[2]} index={2} onClick={() => handleNavigate('Apps')} />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-            </div>
-        </div>
-        
-        <div ref={featuresRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-bg-primary">
-            <div className={`max-w-5xl mx-auto text-center mb-16 transition-all duration-700 ease-out ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <h2 className="text-4xl font-bold text-text-primary">Explore Our Collections</h2>
-                <p className="mt-4 text-lg text-text-tertiary">
+              </div>
+            </section>
+
+            <section id="features" aria-labelledby="features-heading">
+              <div ref={featuresRef} className="py-32 px-4 sm:px-6 lg:px-8 bg-bg-primary">
+                <div className={`max-w-5xl mx-auto text-center mb-16 transition-all duration-700 ease-out ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <h2 id="features-heading" className="text-4xl font-bold text-text-primary">Explore Our Collections</h2>
+                  <p className="mt-4 text-lg text-text-tertiary">
                     Dive into a curated world of Fluent Design, from applications to the smallest emoji.
-                </p>
-            </div>
-            {/* Feature Cards: grid-cols-1 for mobile, sm:grid-cols-2 for tablets, md:grid-cols-3 for desktop. */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div className={`transition-all duration-500 ease-out ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <FeatureCard 
-                        icon={<AppsIcon />} 
-                        title="Apps" 
-                        count={isFeaturesVisible ? totalApps : 0} 
-                        countSuffix="+" 
-                        description="A curated list of beautiful and functional WinUI 3 applications."
-                        onClick={() => handleNavigate('Apps')}
-                    />
+                  </p>
                 </div>
-                <div className={`transition-all duration-500 ease-out delay-150 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <FeatureCard 
-                        icon={<FluentIconsIcon />} 
-                        title="Icons" 
-                        count={isFeaturesVisible ? 4000 : 0} 
-                        countSuffix="+" 
-                        description="Explore thousands of Fluent System Icons in three unique styles."
-                        onClick={() => handleNavigate('Icons')}
+                {/* Feature Cards: grid-cols-1 for mobile, sm:grid-cols-2 for tablets, md:grid-cols-3 for desktop. */}
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  <div className={`transition-all duration-500 ease-out ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <FeatureCard
+                      icon={<AppsIcon />}
+                      title="Apps"
+                      count={isFeaturesVisible ? totalApps : 0}
+                      countSuffix="+"
+                      description="A curated list of beautiful and functional WinUI 3 applications."
+                      onClick={() => handleNavigate('Apps')}
                     />
-                </div>
-                <div className={`transition-all duration-500 ease-out delay-300 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <FeatureCard 
-                        icon={<EmojiIcon />} 
-                        title="Emojis" 
-                        count={isFeaturesVisible ? emojis.length : 0}
-                        countSuffix="" 
-                        description="Discover a vibrant collection of animated and static Fluent Emojis."
-                        onClick={() => handleNavigate('Emoji')}
+                  </div>
+                  <div className={`transition-all duration-500 ease-out delay-150 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <FeatureCard
+                      icon={<FluentIconsIcon />}
+                      title="Icons"
+                      count={isFeaturesVisible ? 4000 : 0}
+                      countSuffix="+"
+                      description="Explore thousands of Fluent System Icons in three unique styles."
+                      onClick={() => handleNavigate('Icons')}
                     />
+                  </div>
+                  <div className={`transition-all duration-500 ease-out delay-300 ${isFeaturesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <FeatureCard
+                      icon={<EmojiIcon />}
+                      title="Emojis"
+                      count={isFeaturesVisible ? emojis.length : 0}
+                      countSuffix=""
+                      description="Discover a vibrant collection of animated and static Fluent Emojis."
+                      onClick={() => handleNavigate('Emoji')}
+                    />
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
+            </section>
 
-        <div ref={personalInfoRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-bg-primary">
-            <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isPersonalInfoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <PersonalInfo />
-            </div>
-        </div>
+            <section id="about" aria-labelledby="about-heading">
+              <div ref={personalInfoRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-bg-primary">
+                <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${isPersonalInfoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <PersonalInfo />
+                </div>
+              </div>
+            </section>
 
-        <div ref={communityRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-bg-primary overflow-hidden">
-            <div className={`transition-all duration-700 ease-out ${isCommunityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-4xl font-bold text-text-primary">Powered by the Community</h2>
+            <section id="community" aria-labelledby="community-heading">
+              <div ref={communityRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-bg-primary overflow-hidden">
+                <div className={`transition-all duration-700 ease-out ${isCommunityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <div className="max-w-5xl mx-auto text-center">
+                    <h2 id="community-heading" className="text-4xl font-bold text-text-primary">Powered by the Community</h2>
                     <p className="mt-4 text-lg text-text-tertiary">
-                        This project thrives on community contributions. A huge thank you to everyone who has submitted apps and helped grow this collection.
+                      This project thrives on community contributions. A huge thank you to everyone who has submitted apps and helped grow this collection.
                     </p>
+                  </div>
                 </div>
-            </div>
-            <div className={`flex justify-center transition-all duration-700 ease-out delay-200 lg:scale-100 ${isCommunityVisible ? 'opacity-100 translate-y-10' : 'opacity-0 translate-y-10'}`}>
-                <NetworkVisualization onNavigate={handleContributorClick} />
-            </div>
-            <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-20' : 'opacity-0 translate-y-20'}`}>
-                <button
+                <div className={`flex justify-center transition-all duration-700 ease-out delay-200 lg:scale-100 ${isCommunityVisible ? 'opacity-100 translate-y-10' : 'opacity-0 translate-y-10'}`}>
+                  <NetworkVisualization onNavigate={handleContributorClick} />
+                </div>
+                <div className={`text-center transition-all duration-700 ease-out delay-300 ${isCommunityVisible ? 'opacity-100 translate-y-20' : 'opacity-0 translate-y-20'}`}>
+                  <button
                     onClick={() => handleNavigate('Contribute')}
                     className="inline-flex items-center px-6 py-3 font-semibold text-accent-primary-text bg-accent-primary rounded-lg hover:bg-accent-primary-hover shadow-lg shadow-gray-500/10 dark:shadow-gray-900/20"
-                >
+                    aria-label="Become a contributor to Fluent Deck"
+                  >
                     <GithubIcon className="w-5 h-5" />
                     <span className="ml-2">Become a Contributor</span>
-                </button>
-            </div>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </main>
         </div>
-
-    </div>
+      </div>
+    </>
   );
 };
 

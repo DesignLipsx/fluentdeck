@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { AdminIcon, EyeIcon, EyeOffIcon } from '../components/Icons';
+import { EyeIcon, EyeOffIcon } from '../components/Icons';
 import { useAuth } from '../hooks/useAuth';
 
 const AdminPage: React.FC = () => {

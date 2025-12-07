@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { NavItem, App as AppType, Category } from './types';
+import { NavItem } from './types';
 import { useMarkdownParser } from './hooks/useMarkdownParser';
 import { useFluentEmojis } from './hooks/useFluentEmojis';
 import Header from './components/Header';
@@ -8,8 +8,8 @@ import AppsPage from './pages/AppsPage';
 import IconsPage from './pages/IconsPage';
 import EmojiPage from './pages/EmojiPage';
 import ContributePage from './pages/ContributePage';
-import LoadingSpinner from './components/LoadingSpinner';
 import MobileNav from './components/MobileNav';
+import { FavoriteItem, FavoritesProvider } from './hooks/useFavorites';
 
 const getPageFromPath = (path: string): NavItem => {
   const page = path.split('/')[1]?.toLowerCase();
@@ -27,6 +27,10 @@ const App: React.FC = () => {
   const { emojis, loading: emojisLoading, error: emojisError } = useFluentEmojis();
   const [currentPage, setCurrentPageState] = useState<NavItem>(getPageFromPath(window.location.pathname));
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  
+  // State for favorite items to open
+  const [favoriteIconToOpen, setFavoriteIconToOpen] = useState<FavoriteItem | null>(null);
+  const [favoriteEmojiToOpen, setFavoriteEmojiToOpen] = useState<FavoriteItem | null>(null);
 
   useEffect(() => {
     const onPopState = () => {
@@ -56,48 +60,65 @@ const App: React.FC = () => {
     setCurrentPageState(page);
     setMobileNavOpen(false);
     if (callback) {
-      // Use a small timeout to allow the new page component to render before scrolling
       setTimeout(callback, 50);
     }
   }, []);
 
+  // Handle icon favorite click from header
+  const handleFavoriteIconClick = useCallback((item: FavoriteItem) => {
+    // Small delay to ensure state updates properly
+    setTimeout(() => {
+      setFavoriteIconToOpen(item);
+    }, 50);
+  }, []);
+
+  // Handle emoji favorite click from header
+  const handleFavoriteEmojiClick = useCallback((item: FavoriteItem) => {
+    // Small delay to ensure state updates properly
+    setTimeout(() => {
+      setFavoriteEmojiToOpen(item);
+    }, 50);
+  }, []);
+
   const renderContent = () => {
-    if (loading && categories.length === 0 && currentPage !== 'Home') {
-      return <div className="flex items-center justify-center h-full"><LoadingSpinner text="Loading..." /></div>;
-      }
-      if (error) {
+    if (error) {
       return <div className="flex items-center justify-center h-full text-red-400">{error}</div>;
-      }
-      switch (currentPage) {
+    }
+    
+    switch (currentPage) {
       case 'Home':
-         return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
+        return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
       case 'Apps':
-         return <AppsPage categories={categories} onLogoUpdate={handleLogoUpdate} />;
+        return <AppsPage categories={categories} onLogoUpdate={handleLogoUpdate} loading={loading} />;
       case 'Icons':
-         return <IconsPage />;
+        return <IconsPage onFavoriteClickFromHeader={favoriteIconToOpen} />;
       case 'Emoji':
-         return <EmojiPage emojis={emojis} loading={emojisLoading} error={emojisError} />;
+        return <EmojiPage emojis={emojis} loading={emojisLoading} error={emojisError} onFavoriteClickFromHeader={favoriteEmojiToOpen} />;
       case 'Contribute':
-         return <ContributePage />;
+        return <ContributePage />;
       default:
-         return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
-      }
+        return <HomePage onNavigate={setCurrentPage} emojis={emojis} categories={categories} />;
+    }
   };
 
   return (
-    <div className="bg-bg-primary text-text-secondary min-h-screen font-sans flex">
-      {isMobileNavOpen && <MobileNav currentPage={currentPage} setCurrentPage={setCurrentPage} onClose={() => setMobileNavOpen(false)} />}
-      <div className="flex-1 flex flex-col">
-        <Header 
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          onMenuClick={() => setMobileNavOpen(true)}
-        />
-        <main className="flex-1">
-          {renderContent()}
-        </main>
+    <FavoritesProvider>
+      <div className="bg-bg-primary text-text-secondary min-h-screen font-sans flex">
+        {isMobileNavOpen && <MobileNav currentPage={currentPage} setCurrentPage={setCurrentPage} onClose={() => setMobileNavOpen(false)} />}
+        <div className="flex-1 flex flex-col">
+          <Header 
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            onMenuClick={() => setMobileNavOpen(true)}
+            onFavoriteIconClick={handleFavoriteIconClick}
+            onFavoriteEmojiClick={handleFavoriteEmojiClick}
+          />
+          <main className="flex-1">
+            {renderContent()}
+          </main>
+        </div>
       </div>
-    </div>
+    </FavoritesProvider>
   );
 };
 

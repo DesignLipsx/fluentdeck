@@ -3,8 +3,7 @@ import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useMarkdownParser } from '../hooks/useMarkdownParser';
-import AppModal from '../components/AppModal';
-import { SaveIcon, SignOutIcon, HomeIcon } from '../components/Icons';
+import { SaveIcon, HomeIcon } from '../components/Icons';
 import UserProfileDropdown from '../components/UserProfileDropdown';
 
 const AdminDashboard: React.FC = () => {

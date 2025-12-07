@@ -313,7 +313,7 @@ function NetworkVisualization({ onNavigate }: NetworkVisualizationProps) {
                   <img src={avatar.image} alt={avatar.name} className="w-full h-full object-cover rounded-full" />
                 </div>
                 <div
-                  className={`absolute -top-10 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full font-medium text-gray-800 shadow-lg transition-opacity duration-200 pointer-events-none whitespace-nowrap z-20 ${dimensions.tooltipTextSize} ${
+                  className={`absolute -top-5 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full font-medium text-gray-800 shadow-lg transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10 ${dimensions.tooltipTextSize} ${
                     isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                   }`}
                 >

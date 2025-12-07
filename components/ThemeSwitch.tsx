@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -52,7 +52,7 @@ export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ modes, icons }) => {
                     onClick={() => setTheme(mode)}
                     className={`p-1.5 rounded-full flex justify-center ${
                         theme === mode
-                            ? 'bg-bg-secondary text-text-primary shadow-sm'
+                            ? 'bg-gray-600 text-white shadow-sm' // ✅ CHANGED: Lighter blue background with white text
                             : 'text-text-tertiary hover:bg-bg-secondary/50 hover:text-text-primary'
                     }`}
                     aria-label={`Switch to ${mode} theme`}

@@ -1,5 +1,5 @@
 ﻿import React, { useState, useRef, useEffect, ReactNode, FC } from 'react';
-import Tooltip from './Tooltip'; // ✅ RE-ADDED Tooltip import
+import Tooltip from './Tooltip';
 
 // --- Interface Definitions ---
 
@@ -7,7 +7,7 @@ interface TabOption {
   value: string;
   label: string;
   icon?: React.ReactNode;
-  tooltip?: string; // Tooltip property will now be used
+  tooltip?: string;
 }
 
 interface TabsProps {
@@ -15,12 +15,24 @@ interface TabsProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
-  tabButtonClassName?: string; 
+  tabButtonClassName?: string;
+  // NEW: Add props for customizing active/inactive states
+  activeTabClassName?: string;
+  inactiveTabClassName?: string;
 }
 
 // --- Tabs Component ---
 
-const Tabs: React.FC<TabsProps> = ({ options, value, onChange, className, tabButtonClassName }) => {
+const Tabs: React.FC<TabsProps> = ({ 
+  options, 
+  value, 
+  onChange, 
+  className, 
+  tabButtonClassName,
+  // NEW: Default values for active/inactive states
+  activeTabClassName = 'bg-bg-secondary dark:bg-bg-active text-text-primary shadow-sm',
+  inactiveTabClassName = 'text-text-tertiary hover:bg-bg-hover hover:text-text-primary'
+}) => {
   return (
     <div className={`bg-bg-tertiary border border-border-secondary rounded-full p-1 flex items-center gap-1 overflow-x-auto no-scrollbar ${className || ''}`}>
       {options.map(option => {
@@ -32,14 +44,13 @@ const Tabs: React.FC<TabsProps> = ({ options, value, onChange, className, tabBut
           </div>
         );
 
-        // FIX: Added 'grow' class to make tabs fit to width
-        const buttonClasses = `grow px-3 py-1.5 text-sm rounded-full flex items-center justify-center ${tabButtonClassName || ''} ${
+        // UPDATED: Use the new props for active/inactive styling
+        const buttonClasses = `grow px-3 py-1.5 h-8 text-sm rounded-full flex items-center justify-center ${tabButtonClassName || ''} ${
               value === option.value
-                ? 'bg-bg-secondary dark:bg-bg-active text-text-primary shadow-sm'
-                : 'text-text-tertiary hover:bg-bg-hover hover:text-text-primary'
+                ? activeTabClassName
+                : inactiveTabClassName
             }`;
 
-        // ✅ RE-ADDED: Tooltip rendering logic from production version
         if (option.tooltip) {
           return (
             <Tooltip key={option.value} content={<p className="whitespace-nowrap">{option.tooltip}</p>}>
