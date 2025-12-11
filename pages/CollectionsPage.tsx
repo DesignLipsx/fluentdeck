@@ -128,40 +128,40 @@ const CollectionsPage: React.FC = () => {
 		}
 
 		try {
-			const JSZip = (await import('jszip')).default;
-			const zip = new JSZip();
+			const { zipSync, strToU8 } = await import('fflate');
+			const filesToZip: Record<string, Uint8Array> = {};
 
 			const processItem = async (item: CollectionItem) => {
 				try {
 					if (item.itemType === 'emoji') {
 						const imageUrl = getEmojiOriginalUrl(item, item.style);
 						if (!imageUrl) return;
-
+			
 						const response = await fetch(imageUrl);
 						if (!response.ok) throw new Error('Fetch failed');
-
-						const blob = await response.blob();
+			
+						const buffer = await response.arrayBuffer();
 						const fileName = `emoji/${item.name.replace(/\s+/g, '_')}_${item.style}.webp`;
-						zip.file(fileName, blob);
+						filesToZip[fileName] = new Uint8Array(buffer);
 					}
 					else if (item.itemType === 'icon') {
 						const iconUrl = getIconUrl(item, item.style);
 						const response = await fetch(iconUrl);
 						if (!response.ok) throw new Error('Fetch failed');
-
+			
 						const text = await response.text();
 						const iconId = (item.styles?.[item.style] || item.name).replace('.svg', '');
 						const fileName = `icon/${iconId}_${item.style}.svg`;
-						zip.file(fileName, text);
+						filesToZip[fileName] = strToU8(text);
 					}
 				} catch (e) {
 					console.error(`Failed to download ${item.name}`, e);
 				}
 			};
-
+			
 			await runInChunks(items, 5, processItem);
 
-			const content = await zip.generateAsync({ type: 'blob' });
+			const content = new Blob([zipSync(filesToZip) as BlobPart], { type: 'application/zip' });
 			const url = window.URL.createObjectURL(content);
 			const a = document.createElement('a');
 			a.style.display = 'none';

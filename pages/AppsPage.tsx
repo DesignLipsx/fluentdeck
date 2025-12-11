@@ -295,7 +295,7 @@ const AppsPage: React.FC = () => {
 				}
 				loadMoreRef={loadMoreRef}
 			>
-				<div className="relative space-y-12 mt-8">
+				<div className="relative space-y-12 mt-4">
 					{visibleContent.length > 0 ? visibleContent.map((group, groupIndex) => (
 						<div key={group.heading}>
 							<a

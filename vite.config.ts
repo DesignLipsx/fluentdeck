@@ -61,7 +61,6 @@ export default defineConfig({
 				manualChunks: {
 					"react-vendor": ["react", "react-dom"],
 					"router-vendor": ["react-router-dom"],
-					"zip-vendor": ["jszip"],
 					"idb-vendor": ["idb"],
 				},
 			},

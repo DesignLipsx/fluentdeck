@@ -5,8 +5,8 @@ import { DropdownMenu, DropdownMenuItem } from './Dropdown';
 import { CreateCollectionModal } from './CreateCollectionModal';
 import { getEmojiOriginalUrl, getIconUrl } from '../utils';
 import { ProcessingButton } from './ProcessingButton';
-import { useToast } from '../contexts/ToastContext';
-import JSZip from 'jszip';
+import { useToast } from '../contexts/ToastContext'; 
+import { zip, strToU8 } from 'fflate';
 
 const SelectionActionBar: React.FC = () => {
 	const appContext = useContext(AppContext);
@@ -36,36 +36,44 @@ const SelectionActionBar: React.FC = () => {
 
 	const handleDownload = async (): Promise<boolean> => {
 		const items = selection.filter(item => item.itemType === 'emoji' || item.itemType === 'icon');
-		if (typeof JSZip === 'undefined' || items.length === 0) return false;
+		if (items.length === 0) return false;
 
 		try {
-			const zip = new JSZip();
+			const filesToZip: Record<string, Uint8Array> = {};
 
-			const downloadPromises = items.map(item => {
+			const downloadPromises = items.map(async item => {
 				if (item.itemType === 'emoji') {
 					const imageUrl = getEmojiOriginalUrl(item, item.style)!;
 					const fileExtension = 'webp';
 					const fileName = `emoji/${item.name.replace(/\s+/g, '_')}_${item.style}.${fileExtension}`;
 
-					return fetch(imageUrl)
-						.then(response => response.ok ? response.blob() : Promise.reject(`Failed to fetch ${imageUrl}`))
-						.then(blob => zip.file(fileName, blob))
-						.catch(error => console.error('Error downloading image for zipping:', error, imageUrl));
+					try {
+						const response = await fetch(imageUrl);
+						if (!response.ok) throw new Error(`Failed to fetch ${imageUrl}`);
+						const buffer = await response.arrayBuffer();
+						filesToZip[fileName] = new Uint8Array(buffer);
+					} catch (error) {
+						console.error('Error downloading image for zipping:', error, imageUrl);
+					}
 				} else if (item.itemType === 'icon') {
 					const iconUrl = getIconUrl(item, item.style);
-					const iconId = item.name.replace(/\.svg$/, ''); const fileName = `icon/${iconId}_${item.style}.svg`;
+					const iconId = (item.styles?.[item.style] || item.name).replace(/\.svg$/, ''); const fileName = `icon/${iconId}_${item.style}.svg`;
 
-					return fetch(iconUrl)
-						.then(response => response.ok ? response.text() : Promise.reject(`Failed to fetch ${iconUrl}`))
-						.then(svgText => zip.file(fileName, svgText))
-						.catch(error => console.error('Error downloading icon for zipping:', error));
+					const response = await fetch(iconUrl);
+					if (response.ok) {
+						filesToZip[fileName] = strToU8(await response.text());
+					}
 				}
-				return Promise.resolve();
 			});
 
 			await Promise.all(downloadPromises);
 
-			const content = await zip.generateAsync({ type: 'blob' });
+			const content = await new Promise<Blob>((resolve, reject) => {
+				zip(filesToZip, (err, data) => {
+					if (err) reject(err);
+					else resolve(new Blob([new Uint8Array(data)], { type: 'application/zip' }));
+				});
+			});
 
 			const url = window.URL.createObjectURL(content);
 			const a = document.createElement('a');
