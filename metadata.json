@@ -1,0 +1,25 @@
+{
+  "name": "Fluent Deck",
+  "short_name": "Fluent Deck",
+  "description": "The open-source reference for modern Windows development. Explore official Microsoft Fluent emojis, system icons, and a curated gallery of WinUI 3 applications.",
+  "version": "1.0.0",
+  "author": "Jishnu (DesignLipsx)",
+  "license": "MIT",
+  "homepage_url": "https://fluentdeck.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DesignLipsx/fluentdeck"
+  },
+  "keywords": [
+    "WinUI 3",
+    "Fluent Design",
+    "Windows App SDK",
+    "Microsoft",
+    "Emojis",
+    "Icons",
+    "Developer Tools",
+    "Open Source"
+  ],
+  "orientation": "any",
+  "requestFramePermissions": []
+}

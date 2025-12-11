@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/InterVariable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 7px;
+  border: 3px solid transparent; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Dark Mode WebKit */
+html[data-theme="dark"]::-webkit-scrollbar-track {
+  background: transparent; 
+}
+html[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-color: transparent;
+}
+html[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* For Firefox */
+html {
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #c1c1c1 transparent;
+}
+html[data-theme="dark"] {
+  scrollbar-color: #333333 transparent;
+}
+
+
+/* --- Content Visibility Optimizations --- */
+.render-fast-square {
+  content-visibility: auto;
+  contain-intrinsic-height: 150px;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Disable all transitions during theme switch */
+.disable-transitions,
+.disable-transitions *,
+.disable-transitions *::before,
+.disable-transitions *::after {
+  transition: none !important;
+}
+
+.card-hover-effect {
+  transition: all 300ms;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-0.25rem);
+}
+
+@keyframes border-glow-translate {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+}
+
+@keyframes border-glow-scale {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.4;
+  }
+}
+
+/* Add this to your global CSS file */
+.lcp-critical {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Prevent animation on initial load */
+@media (prefers-reduced-motion: no-preference) {
+  .lcp-critical {
+    will-change: transform, opacity;
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "short_name": "Fluent Deck",
+  "name": "Fluent Deck | WinUI 3, Emojis & Icons",
+  "description": "The open-source reference for modern Windows development. Explore official Microsoft Fluent emojis, system icons, and a curated gallery of WinUI 3 applications.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "categories": [
+    "productivity",
+    "utilities",
+    "design",
+    "development"
+  ],
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "WinUI Apps",
+      "short_name": "Apps",
+      "description": "Curated showcase of WinUI 3 apps",
+      "url": "/apps",
+      "icons": [
+        {
+          "src": "/assets/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Fluent Emojis",
+      "short_name": "Emojis",
+      "description": "Browse 3D and Flat emojis",
+      "url": "/emoji",
+      "icons": [
+        {
+          "src": "/assets/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "System Icons",
+      "short_name": "Icons",
+      "description": "Search Fluent system icons",
+      "url": "/icons",
+      "icons": [
+        {
+          "src": "/assets/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
