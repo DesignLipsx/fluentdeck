@@ -11,7 +11,6 @@ const designTags = [
 
 const otherTags = [
 	{ tag: 'FOSS', desc: 'Free and Open Source Software.', mono: true },
-	{ tag: 'Paid', desc: 'The app requires payment.', mono: true },
 	{ tag: '💰', desc: 'Paid Apps!', mono: false },
 	{ tag: '🎨', desc: 'Theme!', mono: false },
 	{ tag: '📆', desc: 'Planned: Apps that are in development.', mono: false },
@@ -26,8 +25,6 @@ const ContributePage: React.FC = () => {
 	return (
 		<div className="py-10 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-5xl mx-auto">
-				{/* Removed: <PageReveal> */}
-
 					{/* HEADER */}
 					<div className="mb-10">
 						<div className="flex items-center gap-3 mb-4">
@@ -319,8 +316,6 @@ const ContributePage: React.FC = () => {
 							</a>
 						</div>
 					</div>
-
-				{/* Removed: </PageReveal> */}
 			</div>
 		</div>
 	);

@@ -60,12 +60,12 @@ const AppContent: React.FC = () => {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/apps" element={<AppsPage />} />
-            <Route path="/emoji" element={<EmojiPage />} />
-            <Route path="/icons" element={<IconsPage />} />
-            <Route path="/contribute" element={<ContributePage />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route path="/changelog" element={<ChangelogPage />} />
+            <Route path="/apps/" element={<AppsPage />} />
+            <Route path="/emoji/*" element={<EmojiPage />} />
+            <Route path="/icons/*" element={<IconsPage />} />
+            <Route path="/contribute/" element={<ContributePage />} />
+            <Route path="/collections/" element={<CollectionsPage />} />
+            <Route path="/changelog/" element={<ChangelogPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>          
         </Suspense>

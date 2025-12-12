@@ -196,8 +196,7 @@ const ChangelogPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="py-8 px-4 sm:px-6 lg:px-8">
-            {/* Changed max-w-4xl to max-w-6xl for wider cards */}
+        <div className="py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
 
                 {/* Header */}

@@ -11,6 +11,7 @@ interface EmojiCardProps {
 	onCardContextMenu: (event: React.MouseEvent, emoji: EmojiData & { name: string }) => void;
 	isSelectionMode: boolean;
 	isSelected: boolean;
+    isActive?: boolean;
 	onToggleSelection: () => void;
 	isPriority?: boolean;
 }
@@ -22,6 +23,7 @@ const EmojiCard: React.FC<EmojiCardProps> = ({
 	onCardContextMenu,
 	isSelectionMode,
 	isSelected,
+    isActive = false,
 	onToggleSelection,
 	isPriority = false
 }) => {
@@ -72,6 +74,7 @@ const EmojiCard: React.FC<EmojiCardProps> = ({
 			name={emoji.name}
 			isSelected={isSelected}
 			isSelectionMode={isSelectionMode}
+            isActive={isActive}
 			isPriority={isPriority}
 			onCardClick={handleCardClick}
 			onToggleSelection={handleToggleSelection}

@@ -47,6 +47,59 @@ function slugify(text) {
     .replace(/^-+|-+$/g, '');
 }
 
+// Parse ICO file and extract all images to try
+function parseIco(buffer) {
+  if (buffer.length < 6) throw new Error('Invalid ICO file');
+  
+  // ICO header: reserved(2) + type(2) + count(2)
+  const count = buffer.readUInt16LE(4);
+  if (count === 0) throw new Error('No images in ICO');
+
+  const images = [];
+
+  // Read directory entries
+  for (let i = 0; i < count; i++) {
+    const offset = 6 + i * 16;
+    if (offset + 16 > buffer.length) break;
+
+    const width = buffer[offset] || 256;
+    const height = buffer[offset + 1] || 256;
+    const bpp = buffer.readUInt16LE(offset + 6); // bits per pixel
+    const imageSize = buffer.readUInt32LE(offset + 8);
+    const imageOffset = buffer.readUInt32LE(offset + 12);
+
+    if (imageOffset + imageSize <= buffer.length) {
+      const imageData = buffer.slice(imageOffset, imageOffset + imageSize);
+      
+      // Check if it's a PNG (starts with PNG signature)
+      const isPng = imageData[0] === 0x89 && 
+                    imageData[1] === 0x50 && 
+                    imageData[2] === 0x4E && 
+                    imageData[3] === 0x47;
+      
+      images.push({
+        width,
+        height,
+        size: width * height,
+        bpp,
+        data: imageData,
+        isPng
+      });
+    }
+  }
+
+  if (images.length === 0) throw new Error('Could not extract images from ICO');
+  
+  // Sort by: PNG first, then by size, then by bpp
+  images.sort((a, b) => {
+    if (a.isPng !== b.isPng) return b.isPng ? 1 : -1;
+    if (a.size !== b.size) return b.size - a.size;
+    return b.bpp - a.bpp;
+  });
+
+  return images;
+}
+
 async function downloadAndConvertLogo(url, filename) {
   const outputPath = path.join(LOGO_DIR, `${filename}.webp`);
 
@@ -54,8 +107,45 @@ async function downloadAndConvertLogo(url, filename) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    const buffer = Buffer.from(await res.arrayBuffer());
+    let buffer = Buffer.from(await res.arrayBuffer());
 
+    // Handle ICO files specially
+    if (url.endsWith('.ico')) {
+      try {
+        console.log(`⟳ Converting ICO file: ${filename}`);
+        const images = parseIco(buffer);
+        
+        // Try each image in order until one works
+        let converted = false;
+        for (const img of images) {
+          try {
+            await sharp(img.data)
+              .resize(64, 64, {
+                fit: 'contain',
+                background: { r: 0, g: 0, b: 0, alpha: 0 },
+              })
+              .webp({ quality: 80 })
+              .toFile(outputPath);
+            
+            converted = true;
+            console.log(`✓ Converted ICO (${img.width}x${img.height}, ${img.isPng ? 'PNG' : 'BMP'}): ${filename}`);
+            return `/assets/apps/${filename}.webp`;
+          } catch (sharpErr) {
+            // Try next image
+            continue;
+          }
+        }
+        
+        if (!converted) {
+          throw new Error('No supported image format found in ICO');
+        }
+      } catch (icoErr) {
+        console.warn(`! ICO conversion failed for ${filename}: ${icoErr.message}`);
+        return null;
+      }
+    }
+
+    // Non-ICO files
     try {
       await sharp(buffer)
         .resize(64, 64, {
@@ -67,10 +157,6 @@ async function downloadAndConvertLogo(url, filename) {
 
       return `/assets/apps/${filename}.webp`;
     } catch (err) {
-      if (url.endsWith('.ico')) {
-        console.warn(`! Skipping ICO file (${filename})`);
-        return null;
-      }
       throw err;
     }
   } catch (err) {

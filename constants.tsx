@@ -42,6 +42,12 @@ export const emojiStyles: { value: keyof EmojiStyle; label: string; tooltip: str
   { value: 'High Contrast', label: 'Mono', tooltip: 'Black and white or single-color outline style' },
 ];
 
+export interface IconsStyle {
+  'Filled'?: string;
+  'Regular'?: string;
+  'Color'?: string;
+}
+
 // Interfaces for icon data from JSON
 export const iconStyles: { value: string; label: string; tooltip: string }[] = [
   { value: 'Filled', label: 'Filled', tooltip: 'Solid, bold shapes ideal for UI emphasis' },
@@ -73,6 +79,10 @@ export const CONTRIBUTORS_LOCAL_URL = '/hooks/contributors.json';
 // Consolidated emoji and icon metadata paths
 export const EMOJI_METADATA_URL = '/hooks/emoji_metadata.json';
 export const ICON_METADATA_URL = '/hooks/icon_metadata.json';
+
+// Consolidated emoji and icon metadata paths
+export const EMOJI_URL = '/hooks/emoji_url.json';
+export const ICON_URL = '/hooks/icon_url.json';
 
 // Asset URLs
 export const DECK_ASSETS_BASE_URL = '/';

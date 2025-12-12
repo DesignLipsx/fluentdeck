@@ -5,6 +5,12 @@ export const HeartIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
+export const ShareIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M6.747 4h3.464a.75.75 0 0 1 .102 1.493l-.102.007H6.747a2.25 2.25 0 0 0-2.245 2.096l-.005.154v9.5a2.25 2.25 0 0 0 2.096 2.245l.154.005h9.5a2.25 2.25 0 0 0 2.245-2.096l.005-.154v-.498a.75.75 0 0 1 1.494-.102l.006.102v.498a3.75 3.75 0 0 1-3.55 3.745l-.2.005h-9.5a3.75 3.75 0 0 1-3.745-3.55l-.005-.2v-9.5a3.75 3.75 0 0 1 3.55-3.745zh3.464zM14.5 6.52V3.75a.75.75 0 0 1 1.187-.61l.082.069 5.994 5.75c.28.268.306.7.077.997l-.076.085-5.995 5.752a.75.75 0 0 1-1.262-.434l-.007-.107v-2.725l-.344.03c-2.4.25-4.7 1.33-6.914 3.26-.52.453-1.323.025-1.237-.658.665-5.32 3.446-8.252 8.195-8.62zV3.75zM16 5.509V7.25a.75.75 0 0 1-.75.75c-3.874 0-6.274 1.676-7.312 5.157l-.079.279.353-.237C10.449 11.737 12.798 11 15.25 11a.75.75 0 0 1 .743.648l.007.102v1.743L20.16 9.5z" fill="currentColor" />
+  </svg>
+);
+
 export const ExternalLinkIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}> <path d="M14 4h6m0 0v6m0-6-8 8m-1-7H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" stroke="currentColor" />
   </svg>

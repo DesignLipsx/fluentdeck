@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.1.0 (12-12-2025)
+
+### ✨ Features
+- Added sharing functionality for emojis and icons.  
+  You can now share a direct link to any emoji or icon from its detail view.
+
+### 🚀 Improvements
+- Improved Apps page layout and category structure for better navigation.
+- Enhanced page titles and unified padding across pages for consistent UI spacing.
+
 ## Version 2.0.0 (10-12-2025)
 
 Completely redesigned and rewrote the entire site code for improved performance.

@@ -36,6 +36,10 @@
       "name": "Education",
       "icon": "education.svg"
     },
+    "📱 Entertainment": {
+      "name": "Entertainment",
+      "icon": "entertainment.svg"
+    },
     "📁 File Manager": {
       "name": "File Manager",
       "icon": "file-manager.svg"

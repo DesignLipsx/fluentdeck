@@ -42,7 +42,7 @@ const CARD_DATA = [
 
 const STATS = [
   { label: "Open Source", value: "MIT License" },
-  { label: "Version", value: "2.0.0" },
+  { label: "Version", value: "2.1.0" },
   { label: "Assets", value: "7,000+" },
 ];
 

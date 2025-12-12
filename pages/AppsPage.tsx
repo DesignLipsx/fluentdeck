@@ -94,7 +94,7 @@ const AppsPage: React.FC = () => {
 
 	// Effects
 	useEffect(() => { setIsClient(true); }, []);
-	useEffect(() => { document.title = 'Fluent Deck | Curated Showcase of WinUI 3 Apps'; }, []);
+	useEffect(() => { document.title = 'Fluent Deck | WinUI Apps'; }, []);
 
 	useEffect(() => { startTransition(() => { setDeferredSearchTerm(searchTerm); }); }, [searchTerm]);
 	useEffect(() => { startTransition(() => { setDeferredPrice(selectedPrice); }); }, [selectedPrice]);
@@ -284,8 +284,8 @@ const AppsPage: React.FC = () => {
 
 			<FilterLayout
 				titleIcon={<AppsIcon className="w-8 h-8 text-gray-900 dark:text-text-primary" />}
-				title="WinUI 3 Apps"
-				description="Explore a curated showcase of beautiful WinUI 3 apps that demonstrate the power of Fluent Design."
+				title="WinUI Apps"
+				description="Explore a curated showcase of beautiful WinUI apps that demonstrate the power of Fluent Design."
 				filterBarContent={filterBarContent}
 				isLoading={showSkeleton}
 				skeleton={
