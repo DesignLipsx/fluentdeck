@@ -22,9 +22,9 @@ export type IconType = {
   svgFileName: any;
   name: string;
   styles: {
-    Filled?: string;
-    Regular?: string;
-    Color?: string;
+    filled?: { [size: string]: string };
+    regular?: { [size:string]: string };
+    color?: { [size: string]: string };
   };
 };
 

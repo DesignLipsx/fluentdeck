@@ -14,9 +14,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearchTermChange, p
 	const [history, setHistory] = useState<string[]>([]);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	// Get current route to namespace the history (e.g. "/apps", "/emoji")
+	// Get current route to namespace the history (e.g. "/apps/", "/emoji/", etc.)
 	const location = useLocation();
-	const historyKey = `search_history_${location.pathname}`;
+	const getHistoryKey = (pathname: string) => {
+		if (pathname.startsWith('/emoji')) return 'search_history_/emoji/';
+		if (pathname.startsWith('/icons')) return 'search_history_/icons/';
+		if (pathname.startsWith('/apps')) return 'search_history_/apps/';
+		return `search_history_${pathname}`;
+	}
+	const historyKey = getHistoryKey(location.pathname);
 
 	// Load history specific to this page
 	useEffect(() => {

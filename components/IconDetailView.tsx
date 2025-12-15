@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useMemo, useRef } from "react";
-import { 
-	ResetIcon, CheckmarkIcon, HtmlIcon, SvgIcon, ReactIcon, 
-	VueIcon, EyedropperIcon, ShareIcon 
+import React, { useState, useEffect, useContext, useMemo } from "react";
+import {
+	HtmlIcon, SvgIcon, ReactIcon,
+	VueIcon, ShareIcon
 } from "./Icons";
 import { ThemeContext } from "../App";
 import { IconStyleType, IconType } from "../types";
@@ -11,36 +11,13 @@ import { CollectionMenu } from './CollectionMenu';
 import { DetailViewPanel } from './DetailViewPanel';
 import { ActionRow } from './ActionRow';
 import { useToast } from "../contexts/ToastContext";
+import { ColorCustomizationPanel } from "./ColorCustomizationPanel";
 
 // --- LAYOUT CONFIGURATION ---
 const SECTION_WIDTHS = {
 	preview: "340px",
 	colorCustomization: "340px"
 };
-
-const presetColors = [
-	"#000000", "#333333", "#666666", "#999999", "#CCCCCC",
-	"#EF4444", "#F97316", "#EAB308", "#22C55E", "#06B6D4",
-	"#3B82F6", "#8B5CF6", "#EC4899", "#F43F5E"
-];
-
-const gradientPalettes = [
-	{ start: "#FF5F6D", end: "#FFC371" },
-	{ start: "#36D1DC", end: "#5B86E5" },
-	{ start: "#43E97B", end: "#38F9D7" },
-	{ start: "#F857A6", end: "#FF5858" },
-	{ start: "#A8EDEA", end: "#FED6E3" },
-	{ start: "#9C6CFE", end: "#7A41DC" },
-	{ start: "#FFA17F", end: "#00223E" },
-	{ start: "#4ECDC4", end: "#556270" },
-	{ start: "#ff7c10", end: "#be8329" },
-	{ start: "#909b2a", end: "#bcf289" },
-	{ start: "#5AD86A", end: "#1F7F84" },
-	{ start: "#FF70A2", end: "#6B3FB8" },
-	{ start: "#2BD3E8", end: "#0177D8" },
-	{ start: "#0CA4F0", end: "#C015C8" },
-	{ start: "#5A667F", end: "#313d55" }
-];
 
 const GRADIENT_ID = "customGradientDetail";
 const GRADIENT_REGEX = /^grad-([0-9a-fA-F]{6})-([0-9a-fA-F]{6})$/;
@@ -62,7 +39,7 @@ export const IconDetailView: React.FC<{
 	const { addToast } = useToast();
 
 	useEffect(() => {
-		fetch("/hooks/icon_url.json")
+		fetch("/data/icon_url.json")
 			.then(res => res.json())
 			.then(data => setIconIdMap(data))
 			.catch(() => console.error("Failed to load icon_url.json"));
@@ -90,11 +67,9 @@ export const IconDetailView: React.FC<{
 	const [svgContent, setSvgContent] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [copiedFormat, setCopiedFormat] = useState<Format | null>(null);
+	const [selectedSize, setSelectedSize] = useState<string>('24');
 	const [color, setColor] = useState("currentColor");
-	const [customColor, setCustomColor] = useState("#FFFFFF");
-	const [colorPaletteMode, setColorPaletteMode] = useState<'solid' | 'gradient'>('solid');
 
-	const colorPickerRef = useRef<HTMLInputElement>(null);
 	const themeContext = useContext(ThemeContext);
 	if (!themeContext) throw new Error("Context missing");
 
@@ -109,25 +84,35 @@ export const IconDetailView: React.FC<{
 		return () => mq.removeEventListener("change", update);
 	}, [theme]);
 
-	const iconFilenameBase = useMemo(() => {
-		return (
-			(selectedStyle === "Color"
-				? icon.filename
-				: icon.svgFileName?.replace(".svg", "")) ||
-			icon.name.replace(/\s+/g, "_")
-		);
+	const availableSizes = useMemo(() => {
+		const styleKey = selectedStyle.toLowerCase() as 'filled' | 'regular' | 'color';
+		const sizes = icon.styles[styleKey];
+		return sizes ? Object.keys(sizes).sort((a, b) => Number(a) - Number(b)) : [];
 	}, [icon, selectedStyle]);
 
 	useEffect(() => {
+		if (availableSizes.length > 0 && !availableSizes.includes(selectedSize)) {
+			setSelectedSize(availableSizes.includes('24') ? '24' : availableSizes[0] || '');
+		}
+	}, [selectedStyle, availableSizes, selectedSize]);
+
+	const iconFilenameBase = useMemo(() => {
+		const styleKey = selectedStyle.toLowerCase() as 'filled' | 'regular' | 'color';
+		const base = icon.styles[styleKey]?.[selectedSize] || icon.name.replace(/\s+/g, "_");
+		return base.replace('.svg', '');
+	}, [icon, selectedStyle, selectedSize]);
+
+	useEffect(() => {
+		if (!selectedSize) return;
 		setIsLoading(true);
-		const url = getIconUrl(icon, selectedStyle);
+		const url = getIconUrl(icon, selectedStyle, selectedSize);
 
 		fetch(url)
 			.then((res) => (res.ok ? res.text() : Promise.reject(res.statusText)))
 			.then((text) => setSvgContent(text.startsWith("<svg") ? sanitizeSvg(text) : null))
 			.catch(() => setSvgContent(null))
 			.finally(() => setIsLoading(false));
-	}, [icon, selectedStyle]);
+	}, [icon, selectedStyle, selectedSize]);
 
 	const getGradientDefinition = (startColor: string, endColor: string, id: string): string => {
 		return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -205,6 +190,15 @@ export const IconDetailView: React.FC<{
 		URL.revokeObjectURL(url);
 	};
 
+	const styleAvailability = Object.entries(icon.styles).map(([key, value]) => ({
+		key,
+		label: key.charAt(0).toUpperCase() + key.slice(1),
+		enabled: value && Object.keys(value).length > 0,
+	}));
+
+	const enabledCount = styleAvailability.filter(s => s.enabled).length;
+
+
 	// --------------------------------
 	//           RENDER
 	// --------------------------------
@@ -244,7 +238,14 @@ export const IconDetailView: React.FC<{
 			>
 
 				{/* 1. Preview Section */}
-				<div className="w-full lg:w-[var(--preview-w)] flex-shrink-0 space-y-4">
+				<div className="w-full lg:w-[var(--preview-w)] flex-shrink-0">
+
+					{/* Title */}
+					<h3 className="text-sm font-semibold text-gray-800 dark:text-text-primary uppercase tracking-wide mb-4">
+						Preview
+					</h3>
+
+					{/* Preview */}
 					<div className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 dark:bg-bg-primary border border-gray-200 dark:border-border-primary h-64 lg:h-80 relative flex-shrink-0 max-w-full">
 						<div className="absolute inset-0 opacity-5 dark:opacity-100"
 							style={{
@@ -253,143 +254,83 @@ export const IconDetailView: React.FC<{
 								opacity: 0.02
 							}}
 						/>
-						<div className="w-3/4 h-3/4 relative z-10 flex items-center justify-center text-gray-800 dark:text-text-primary object-contain">
-							{isLoading ? (
+						<div className="relative z-10 flex items-center justify-center text-gray-800 dark:text-text-primary">
+							{isLoading && !svgContent ? (
 								<div className="w-8 h-8 border-2 border-gray-200 dark:border-border-primary border-t-blue-500 dark:border-t-accent rounded-full animate-spin" />
 							) : (
 								svgContent && (
-									<div
-										className="w-full h-full flex items-center justify-center [&>svg]:w-full [&>svg]:h-full"
-										dangerouslySetInnerHTML={{
-											__html: sanitizeSvg(applyColor(svgContent, color))
-										}}
-									/>
+									<div className="flex items-center justify-center">
+										{/* Preview scale wrapper */}
+										<div className="scale-[4]">
+											<div
+												dangerouslySetInnerHTML={{
+													__html: sanitizeSvg(
+														applyColor(svgContent, color).replace(
+															/<svg([^>]*)>/,
+															`<svg$1 width="${selectedSize}" height="${selectedSize}">`
+														)
+													)
+												}}
+											/>
+										</div>
+									</div>
 								)
 							)}
 						</div>
 					</div>
 
-					{Object.keys(icon.styles).length > 1 && (
+					{/* Style Switcher */}
+					<div className={`mt-4 ${enabledCount <= 1 ? 'opacity-50 pointer-events-none' : ''}`}>
 						<Tabs
-							options={Object.keys(icon.styles).map(s => ({ value: s, label: s }))}
+							options={styleAvailability
+                                .filter(s => s.enabled)
+                                .map(s => ({
+								    value: s.label,
+								    label: s.label,
+							    }))}
 							value={selectedStyle}
-							onChange={(v) => onStyleChange(v as IconStyleType)}
+							onChange={(v) => {
+								const normalized = v.toLowerCase() as keyof IconType['styles'];
+								if (icon.styles[normalized] && Object.keys(icon.styles[normalized]).length > 0) {
+									onStyleChange(v as IconStyleType);
+								}
+							}}
 						/>
-					)}
+					</div>
 				</div>
 
 				{/* 2. Color Customization */}
 				{selectedStyle !== "Color" && (
-					<div className="w-full lg:w-[var(--color-w)] flex-shrink-0 space-y-4 h-[23.25rem]">
-						<h3 className="text-sm font-semibold text-gray-800 dark:text-text-primary uppercase tracking-wide">
-							Customize Color
-						</h3>
-
-						<div className="p-3 rounded-lg border border-gray-90 dark:border-border-primary bg-gray-50 dark:bg-bg-primary h-[calc(100%-2rem)]">
-
-							{/* SOLID / GRADIENT TABS */}
-							<div className="mb-5">
-								<Tabs
-									options={[
-										{ value: 'solid', label: 'Solid' },
-										{ value: 'gradient', label: 'Gradient' }
-									]}
-									value={colorPaletteMode}
-									onChange={(mode) => {
-										const m = mode as 'solid' | 'gradient';
-										if (m === 'solid' && color.match(GRADIENT_REGEX)) {
-											setColor("currentColor");
-										}
-										setColorPaletteMode(m);
-									}}
-								/>
-							</div>
-
-							{/* SOLID COLORS */}
-							{colorPaletteMode === 'solid' ? (
-								<div className="grid grid-cols-4 gap-x-8 gap-y-7 justify-items-stretch">
-									{presetColors.map((c) => (
-										<button
-											key={c}
-											onClick={() => setColor(c)}
-											className="w-full aspect-square max-w-[2.5rem] mx-auto rounded-full border border-gray-300 dark:border-border-primary flex items-center justify-center hover:scale-105"
-											style={{ backgroundColor: c }}
-										>
-											{color === c && (
-												<CheckmarkIcon
-													className={`w-4 h-4 ${isDark ? 'text-white' : 'text-black'}`}
-												/>
-											)}
-										</button>
-									))}
-
-									{/* CUSTOM COLOR PICKER */}
-									<button
-										onClick={() => colorPickerRef.current?.click()}
-										className="w-full aspect-square max-w-[2.5rem] mx-auto rounded-full border border-gray-300 dark:border-border-primary flex items-center justify-center hover:scale-105 relative"
-										style={{ backgroundColor: customColor }}
-									>
-										<EyedropperIcon className="w-4 h-4 text-gray-500 dark:text-text-secondary" />
-										<input
-											ref={colorPickerRef}
-											type="color"
-											value={customColor}
-											onChange={(e) => {
-												setCustomColor(e.target.value);
-												setColor(e.target.value);
-											}}
-											className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-										/>
-									</button>
-
-									{/* RESET */}
-									<button
-										onClick={() => setColor("currentColor")}
-										className="w-full aspect-square max-w-[2.5rem] mx-auto rounded-full border border-gray-300 dark:border-border-primary flex items-center justify-center hover:scale-105"
-									>
-										<ResetIcon className="w-4 h-4 text-gray-500 dark:text-text-secondary" />
-									</button>
-								</div>
-
-							) : (
-								/* GRADIENT COLORS */
-								<div className="grid grid-cols-4 gap-x-8 gap-y-7 justify-items-stretch">
-									{gradientPalettes.map((g) => {
-										const gradStr = `grad-${g.start.substring(1)}-${g.end.substring(1)}`;
-										return (
-											<button
-												key={gradStr}
-												onClick={() => setColor(gradStr)}
-												className="w-full aspect-square max-w-[2.5rem] mx-auto rounded-full border border-gray-300 dark:border-border-primary hover:scale-105"
-												style={{ backgroundImage: `linear-gradient(45deg, ${g.start}, ${g.end})` }}
-											>
-												{color === gradStr && (
-													<CheckmarkIcon className="w-4 h-4 text-white" />
-												)}
-											</button>
-										);
-									})}
-
-									{/* RESET */}
-									<button
-										onClick={() => setColor("currentColor")}
-										className="w-full aspect-square max-w-[2.5rem] mx-auto rounded-full border border-gray-300 dark:border-border-primary hover:scale-105"
-									>
-										<ResetIcon className="w-4 h-4 text-gray-500 dark:text-text-secondary" />
-									</button>
-								</div>
-							)}
-						</div>
+					<div className="w-full lg:w-[var(--color-w)] flex-shrink-0 h-[22rem]">
+						<ColorCustomizationPanel
+							color={color}
+							onColorChange={setColor}
+							isDark={isDark}
+						/>
 					</div>
 				)}
 
 				{/* 3. EXPORT OPTIONS */}
-				<div className="flex-1 min-w-0 flex flex-col space-y-4">
-					<h3 className="text-sm font-semibold text-gray-800 dark:text-text-primary uppercase tracking-wide">
+				<div className="flex-1 min-w-0 flex flex-col">
+
+					{/* Title */}
+					<h3 className="text-sm font-semibold text-gray-800 dark:text-text-primary uppercase tracking-wide mb-4">
 						Export Options
 					</h3>
 
-					<div className="flex-1 flex flex-col justify-between space-y-3">
+					{/* Size Switcher */}
+					{availableSizes.length > 1 && (
+						<div className="mb-4">
+							<Tabs
+								options={availableSizes.map(s => ({ value: s, label: `${s}px` }))}
+								value={selectedSize}
+								onChange={(v) => setSelectedSize(v as string)}
+							/>
+						</div>
+					)}
+
+					{/* Export buttons */}
+					<div className="flex-1 flex flex-col justify-between space-y-2">
 						<ActionRow
 							title="SVG Code"
 							description="Raw SVG markup"

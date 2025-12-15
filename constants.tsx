@@ -71,18 +71,18 @@ export const tagOptions = [
 ];
 
 // Local data paths
-export const APPS_LOCAL_URL = '/hooks/apps-data.json';
-export const CATEGORY_METADATA_URL = '/hooks/category-metadata.json';
-export const CHANGELOG_LOCAL_URL = '/hooks/changelog.json';
-export const CONTRIBUTORS_LOCAL_URL = '/hooks/contributors.json';
+export const APPS_LOCAL_URL = '/data/apps-data.json';
+export const CATEGORY_METADATA_URL = '/data/category-metadata.json';
+export const CHANGELOG_LOCAL_URL = '/data/changelog.json';
+export const CONTRIBUTORS_LOCAL_URL = '/data/contributors.json';
 
 // Consolidated emoji and icon metadata paths
-export const EMOJI_METADATA_URL = '/hooks/emoji_metadata.json';
-export const ICON_METADATA_URL = '/hooks/icon_metadata.json';
+export const EMOJI_METADATA_URL = '/data/emoji_metadata.json';
+export const ICON_METADATA_URL = '/data/icon_metadata.json';
 
 // Consolidated emoji and icon metadata paths
-export const EMOJI_URL = '/hooks/emoji_url.json';
-export const ICON_URL = '/hooks/icon_url.json';
+export const EMOJI_URL = '/data/emoji_url.json';
+export const ICON_URL = '/data/icon_url.json';
 
 // Asset URLs
 export const DECK_ASSETS_BASE_URL = '/';

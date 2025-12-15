@@ -80,32 +80,38 @@ export const getEmojiOriginalUrl = (emoji: EmojiData, style: keyof EmojiStyle): 
 // =============================
 //       ICON URL HANDLER
 // =============================
-export const getIconUrl = (icon: IconType, style: IconStyleType): string => {
-	const baseUrl = DECK_ASSETS_BASE_URL;
-
-	// Pull base name from JSON
-	let baseName = icon.styles?.[style];
-
-	// Fallback if that style doesn't exist
-	if (!baseName) {
-		const values = Object.values(icon.styles || {});
-		baseName = values.length ? values[0] : null;
-	}
-
-	if (!baseName) return "";
-
-	const filename = `${baseName}.svg`;
-
-	const folderMap: Record<string, string> = {
-		Filled: "icons/icon_filled/",
-		Regular: "icons/icon_regular/",
-		Color: "icons/icon_color/",
-	};
-
-	const folder = folderMap[style] || "icons/icon_regular/";
-
-	return baseUrl + folder + filename;
+const STYLE_FOLDER_MAP: Record<IconStyleType, string> = {
+  Filled: 'icon_filled',
+  Regular: 'icon_regular',
+  Color: 'icon_color',
 };
+
+export function getIconUrl(
+  icon: IconType,
+  style: IconStyleType,
+  size: string = '24'
+): string {
+  const styleKey = style.toLowerCase() as 'filled' | 'regular' | 'color';
+  const styleData = icon.styles[styleKey];
+
+  if (!styleData || typeof styleData !== 'object') {
+    return '';
+  }
+
+  // Prefer requested size → fallback to nearest smaller → fallback to first
+  let file =
+    styleData[size] ||
+    styleData[
+      Object.keys(styleData)
+        .sort((a, b) => Number(b) - Number(a))
+        .find(s => Number(s) <= Number(size))!
+    ] ||
+    styleData[Object.keys(styleData)[0]];
+
+  if (!file) return '';
+
+  return `/icons/${STYLE_FOLDER_MAP[style]}/${file}.svg`;
+}
 
 // =============================
 //      COLLECTION HELPERS

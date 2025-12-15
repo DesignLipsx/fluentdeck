@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useContext, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { EmojiData, emojiStyles, EmojiStyle } from "../constants";
 import { CheckmarkIcon, EmojiIcon, AddIcon } from "../components/Icons";
 import { AppContext, usePersistentState, CollectionsContext } from "../App";
@@ -19,11 +19,20 @@ import {
     useScrollToItem, 
     useSelectionShortcut 
 } from "../hooks/useGallery";
+import Seo from "../components/Seo";
 
 type StyleKey = keyof EmojiStyle;
 
 const EmojiPage: React.FC = () => {
-    const [searchTerm, setSearchTerm] = usePersistentState<string>("emoji-searchTerm", "");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get('q') || '';
+
+    const setSearchTerm = (value: string) => {
+        const newParams = new URLSearchParams(searchParams);
+        if (value) newParams.set('q', value);
+        else newParams.delete('q');
+        setSearchParams(newParams, { replace: true });
+    };
     const [selectedStyle, setSelectedStyle] = usePersistentState<StyleKey>("emoji-selectedStyle", emojiStyles[0].value);
     const [selectedCategory, setSelectedCategory] = usePersistentState<string>("emoji-selectedCategory", "All");
     
@@ -45,18 +54,6 @@ const EmojiPage: React.FC = () => {
     const { getCollectionNames, createCollection, addItemToCollection, removeItemFromCollection, isItemInCollection, getCollectionType } = collectionsContext;
 
     const location = useLocation();
-
-    // --- Meta Tags ---
-    useEffect(() => {
-        document.title = 'Fluent Deck | Fleunt Emoji';
-        let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-        if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link); }
-        link.href = `${window.location.origin}/emoji`;
-        let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-        if (!meta) { meta = document.createElement('meta'); meta.name = 'description'; document.head.appendChild(meta); }
-        meta.content = "Explore Microsoft's open-source Fluent Emojis.";
-        return () => { document.title = 'Fluent Deck'; };
-    }, []);
 
     // --- Data Prep ---
     const emojiArray = useMemo(() => Object.entries(emojis).map(([name, data]) => ({ name, ...(data as EmojiData), styles: (data as EmojiData).styles || {} })), [emojis]);
@@ -125,7 +122,7 @@ const EmojiPage: React.FC = () => {
     }, [selectedStyle]);
 
     useDeepLinkHandler(
-        "/hooks/emoji_url.json",
+        "/data/emoji_url.json",
         "/emoji/",
         hasData,
         findEmojiByName,
@@ -172,6 +169,25 @@ const EmojiPage: React.FC = () => {
 
     return (
         <>
+            <Seo
+                title="Fluent Emoji Library"
+                description="Explore the full collection of Microsoft's open-source Fluent Emojis. Search, filter, and find the perfect 3D, Color, or Flat emoji for your project."
+                keywords="Fluent Emoji, Microsoft Emoji, 3D Emoji, Emoji Library, Open Source Emoji"
+                canonical="/emoji"
+                image="/assets/cover-emoji.png"
+                imageAlt="A grid of colorful Fluent Emojis from Microsoft, available on Fluent Deck."
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "name": "Fluent Emoji Library - Fluent Deck",
+                    "description": "Explore the full collection of Microsoft's open-source Fluent Emojis.",
+                    "url": "https://fluentdeck.vercel.app/emoji",
+                    "about": {
+                        "@type": "CreativeWork",
+                        "name": "Microsoft Fluent Emojis"
+                    }
+                }}
+            />
             <FilterLayout
                 titleIcon={<EmojiIcon className="w-8 h-8 text-gray-900 dark:text-text-primary" />}
                 title="Fluent Emojis"

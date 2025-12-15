@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ContributeIcon, AddIcon, CoffeeIcon } from '../components/Icons';
 import { NEW_PULL_REQUEST_URL, BUY_ME_A_COFFEE_URL } from '../constants';
+import Seo from '../components/Seo';
 
 // Moved constants outside to avoid re-creating on each render
 const designTags = [
@@ -18,13 +19,18 @@ const otherTags = [
 ];
 
 const ContributePage: React.FC = () => {
-	useEffect(() => {
-		document.title = 'Fluent Deck | Contribute';
-	}, []);
-
 	return (
-		<div className="py-10 px-4 sm:px-6 lg:px-8">
-			<div className="max-w-5xl mx-auto">
+		<>
+			<Seo
+				title="Contribute to Fluent Deck"
+				description="Add your WinUI 3 app to our showcase, suggest new features, or support the project. Learn how to contribute via GitHub and help grow the Fluent Design community."
+				keywords="Contribute, Open Source, WinUI, Fluent Design, GitHub, Add App"
+				canonical="/contribute"
+				image="/assets/cover-contribute.png"
+				imageAlt="Instructions on how to contribute to the Fluent Deck project on GitHub."
+			/>
+			<div className="py-10 px-4 sm:px-6 lg:px-8">
+				<div className="max-w-5xl mx-auto">
 					{/* HEADER */}
 					<div className="mb-10">
 						<div className="flex items-center gap-3 mb-4">
@@ -316,8 +322,9 @@ const ContributePage: React.FC = () => {
 							</a>
 						</div>
 					</div>
+					</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

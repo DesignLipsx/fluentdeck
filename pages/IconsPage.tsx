@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useContext, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { iconStyles, ICON_METADATA_URL } from '../constants';
 import { CheckmarkIcon, FluentIconsIcon, AddIcon } from '../components/Icons';
 import { AppContext, usePersistentState, CollectionsContext } from '../App';
@@ -19,9 +19,18 @@ import {
     useScrollToItem, 
     useSelectionShortcut 
 } from '../hooks/useGallery';
+import Seo from '../components/Seo';
 
 const IconsPage: React.FC = () => {
-    const [searchTerm, setSearchTerm] = usePersistentState<string>('icons-searchTerm', '');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get('q') || '';
+
+    const setSearchTerm = (value: string) => {
+        const newParams = new URLSearchParams(searchParams);
+        if (value) newParams.set('q', value);
+        else newParams.delete('q');
+        setSearchParams(newParams, { replace: true });
+    };
     const [selectedStyle, setSelectedStyle] = usePersistentState<IconStyleType>('icons-selectedStyle', 'Filled');
     
     const [allIcons, setAllIcons] = useState<{ [key: string]: IconType[] }>({ Filled: [], Regular: [], Color: [] });
@@ -46,42 +55,28 @@ const IconsPage: React.FC = () => {
 
     const location = useLocation();
 
-    // --- Meta Tags ---
-    useEffect(() => {
-        document.title = 'Fluent Deck | Fluent System Icons';
-        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-        if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
-        canonical.href = `${window.location.origin}/icons`;
-        let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-        if (!desc) { desc = document.createElement('meta'); desc.name = 'description'; document.head.appendChild(desc); }
-        desc.content = "Browse Microsoft's Fluent System Icons in Filled, Regular, and Color styles.";
-        return () => { document.title = 'Fluent Deck'; };
-    }, []);
-
     // --- Fetch Data ---
     useEffect(() => {
         const fetchIcons = async () => {
             setIsLoading(true);
             try {
                 const data = await fetchWithCache('icon-metadata', ICON_METADATA_URL);
-                if (!data || !Array.isArray(data.icons) || !Array.isArray(data.columns)) return;
+                if (!data || !Array.isArray(data.icons)) return;
 
                 const iconsByStyle: Record<string, IconType[]> = { Filled: [], Regular: [], Color: [] };
-                const { columns, icons } = data;
-                const nameIndex = columns.indexOf('name');
-                const regularIndex = columns.indexOf('Regular');
-                const filledIndex = columns.indexOf('Filled');
-                const colorIndex = columns.indexOf('Color');
+                const { icons } = data;
 
-                icons.forEach((row: string[]) => {
-                    const icon: IconType = { name: row[nameIndex], styles: {}, filename: undefined, svgFileName: undefined };
-                    if (row[filledIndex]) icon.styles.Filled = row[filledIndex];
-                    if (row[regularIndex]) icon.styles.Regular = row[regularIndex];
-                    if (row[colorIndex]) icon.styles.Color = row[colorIndex];
+                icons.forEach((iconData: any) => {
+                    const icon: IconType = { 
+                        name: iconData.name, 
+                        styles: { filled: iconData.filled, regular: iconData.regular, color: iconData.color },
+                        filename: undefined, 
+                        svgFileName: undefined 
+                    };
                     
-                    if (icon.styles.Filled) iconsByStyle.Filled.push(icon);
-                    if (icon.styles.Regular) iconsByStyle.Regular.push(icon);
-                    if (icon.styles.Color) iconsByStyle.Color.push(icon);
+                    if (Object.keys(icon.styles.filled || {}).length > 0) iconsByStyle.Filled.push(icon);
+                    if (Object.keys(icon.styles.regular || {}).length > 0) iconsByStyle.Regular.push(icon);
+                    if (Object.keys(icon.styles.color || {}).length > 0) iconsByStyle.Color.push(icon);
                 });
                 setAllIcons(iconsByStyle);
             } catch { console.error("Failed to fetch icon metadata"); } 
@@ -131,8 +126,9 @@ const IconsPage: React.FC = () => {
         let validStyle = style as IconStyleType;
         
         // If style is invalid or not available, use selectedStyle or first available
-        if (!style || !icon.styles[validStyle]) {
-             const available = Object.keys(icon.styles) as IconStyleType[];
+        const styleKey = validStyle.toLowerCase() as keyof typeof icon.styles;
+        if (!style || !icon.styles[styleKey] || Object.keys(icon.styles[styleKey]!).length === 0) {
+             const available = Object.keys(icon.styles).filter(s => Object.keys(icon.styles[s as keyof typeof icon.styles]!).length > 0).map(s => s.charAt(0).toUpperCase() + s.slice(1)) as IconStyleType[];
              validStyle = available.includes(selectedStyle) ? selectedStyle : available[0];
         }
         
@@ -143,7 +139,7 @@ const IconsPage: React.FC = () => {
     const isDataReady = useMemo(() => Object.values(allIcons).some(arr => arr.length > 0), [allIcons]);
 
     useDeepLinkHandler(
-        "/hooks/icon_url.json",
+        "/data/icon_url.json",
         "/icons/",
         isDataReady,
         findIconByName,
@@ -198,6 +194,25 @@ const IconsPage: React.FC = () => {
 
     return (
         <>
+            <Seo
+                title="Fluent System Icons"
+                description="Browse and search the complete set of Microsoft's Fluent System Icons. Find Filled, Regular, and Color variants for your projects, with easy copy-to-clipboard functionality."
+                keywords="Fluent Icons, Microsoft Icons, System Icons, Icon Library, SVG Icons, Fluent UI"
+                canonical="/icons"
+                image="/assets/cover-icons.png"
+                imageAlt="A grid of Fluent System Icons from Microsoft, available on Fluent Deck."
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "name": "Fluent System Icons - Fluent Deck",
+                    "description": "Browse Microsoft's Fluent System Icons in Filled, Regular, and Color styles.",
+                    "url": "https://fluentdeck.vercel.app/icons",
+                    "about": {
+                        "@type": "CreativeWork",
+                        "name": "Microsoft Fluent System Icons"
+                    }
+                }}
+            />
             <FilterLayout
                 titleIcon={<FluentIconsIcon className="w-8 h-8 text-gray-900 dark:text-text-primary" />}
                 title="Fluent System Icons"
@@ -286,8 +301,23 @@ const IconsPage: React.FC = () => {
             <CreateCollectionModal isOpen={showCreateCollectionModal} onClose={() => setShowCreateCollectionModal(false)} onCreate={handleCreateCollection} />
             
             {selectedIcon && (
-                <IconDetailView icon={selectedIcon} selectedStyle={detailViewStyle} onClose={() => setSelectedIcon(null)} onStyleChange={(s) => { if (selectedIcon.styles[s]) setDetailViewStyle(s); }} />
+                <IconDetailView
+                    icon={selectedIcon}
+                    selectedStyle={detailViewStyle}
+                    onClose={() => setSelectedIcon(null)}
+                    onStyleChange={(s) => {
+                    const key = s.toLowerCase() as keyof typeof selectedIcon.styles;
+
+                    if (
+                        selectedIcon.styles[key] &&
+                        Object.keys(selectedIcon.styles[key]).length > 0
+                    ) {
+                        setDetailViewStyle(s);
+                    }
+                    }}
+                />
             )}
+
         </>
     );
 };

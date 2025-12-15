@@ -44,7 +44,7 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 	// Load ID mapping
 	// ------------------------------
 	useEffect(() => {
-		fetch("/hooks/emoji_url.json")
+		fetch("/data/emoji_url.json")
 			.then(res => res.json())
 			.then(data => setEmojiIdMap(data))
 			.catch(() => console.error("Failed to load emoji_url.json"));

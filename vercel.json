@@ -22,6 +22,21 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/emoji",
+      "destination": "/emoji.html"
+    },
+    {
+      "source": "/icons",
+      "destination": "/icons.html"
+    },
+    {
+      "source": "/apps",
+      "destination": "/apps.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

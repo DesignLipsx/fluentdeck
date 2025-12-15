@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useContext, useRef, useCallback, startTransition } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { FilterListIcon, CheckmarkIcon, AppsIcon, AddIcon } from '../components/Icons';
 import { Tabs, Dropdown } from '../components/SegmentedControl';
 import { CategorySidebar } from '../components/CategorySidebar';
@@ -12,6 +12,7 @@ import { CreateCollectionModal } from '../components/CreateCollectionModal';
 import SearchBar from '../components/SearchBar';
 import FilterLayout from '../components/FilterLayout';
 import { priceOptions, tagOptions } from '../constants';
+import Seo from '../components/Seo';
 
 // --- Utility Hooks & Functions ---
 
@@ -55,8 +56,37 @@ const MemoizedAppCard = React.memo(AppCard);
 // --- Main Component ---
 
 const AppsPage: React.FC = () => {
+	const collectionPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"name": "WinUI 3 Apps - Fluent Deck",
+		"description": "Explore a curated showcase of beautiful WinUI apps that demonstrate the power of Fluent Design.",
+		"url": "https://fluentdeck.vercel.app/apps",
+		"about": {
+			"@type": "SoftwareApplication",
+			"name": "WinUI 3 Applications",
+			"applicationCategory": "DesignApplication",
+			"operatingSystem": "Windows"
+		}
+	};
+	const softwareAppSchema = {
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Fluent Deck",
+		"operatingSystem": "Web",
+		"applicationCategory": "DeveloperApplication",
+		"description": "An application to showcase Microsoft Fluent emojis and icons, and a curated list of WinUI 3 apps."
+	};
 	// State
-	const [searchTerm, setSearchTerm] = usePersistentState<string>('apps-searchTerm', '');
+	const [searchParams, setSearchParams] = useSearchParams();
+	const searchTerm = searchParams.get('q') || '';
+
+	const setSearchTerm = (value: string) => {
+		const newParams = new URLSearchParams(searchParams);
+		if (value) newParams.set('q', value);
+		else newParams.delete('q');
+		setSearchParams(newParams, { replace: true });
+	};
 	const [selectedPrice, setSelectedPrice] = usePersistentState<string>('apps-selectedPrice', 'All Pricing');
 	const [selectedTag, setSelectedTag] = usePersistentState<string>('apps-selectedTag', 'All tags');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -93,8 +123,7 @@ const AppsPage: React.FC = () => {
 	useHashNavigation(filterBarRef, showSkeleton);
 
 	// Effects
-	useEffect(() => { setIsClient(true); }, []);
-	useEffect(() => { document.title = 'Fluent Deck | WinUI Apps'; }, []);
+	useEffect(() => { setIsClient(true); }, []);	
 
 	useEffect(() => { startTransition(() => { setDeferredSearchTerm(searchTerm); }); }, [searchTerm]);
 	useEffect(() => { startTransition(() => { setDeferredPrice(selectedPrice); }); }, [selectedPrice]);
@@ -265,6 +294,15 @@ const AppsPage: React.FC = () => {
 
 	return (
 		<>
+			<Seo
+				title="WinUI Apps Showcase"
+				description="Explore a curated showcase of beautiful WinUI apps that demonstrate the power of Fluent Design. Discover apps with Mica, Acrylic, and the latest Windows 11 styling."
+				keywords="WinUI, WinUI 3, Windows 11 Apps, Fluent Design, Microsoft Store, App Showcase"
+				canonical="/apps"
+				image="/assets/cover-apps.png"
+				imageAlt="A showcase of WinUI 3 applications from Fluent Deck."
+				schema={location.pathname === '/' ? [collectionPageSchema, softwareAppSchema] : collectionPageSchema}
+			/>
 			<div
 				className={`fixed inset-0 bg-black/30 dark:bg-black/60 backdrop-blur-sm z-50 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
 				onClick={closeSidebar}

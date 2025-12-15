@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
-const OUTPUT_PATH = path.resolve('./public/hooks/contributors.json');
+const OUTPUT_PATH = path.resolve('./public/data/contributors.json');
 const AVATAR_DIR = path.resolve('./public/assets/contributors');
 const API_URL = 'https://api.github.com/repos/DesignLipsx/WinUI-3-Apps-List/contributors';
 

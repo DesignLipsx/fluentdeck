@@ -9,7 +9,7 @@ const sharp = require('sharp');
 // ---------------------------------------------------------
 // Constants
 // ---------------------------------------------------------
-const OUTPUT_PATH = path.resolve('./public/hooks/apps-data.json');
+const OUTPUT_PATH = path.resolve('./public/data/apps-data.json');
 const LOGO_DIR = path.resolve('./public/assets/apps');
 const SOURCE_URL = 'https://raw.githubusercontent.com/DesignLipsx/WinUI-3-Apps-List/refs/heads/main/README.md';
 

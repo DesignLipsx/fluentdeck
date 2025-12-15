@@ -4,42 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fluent Deck - Showcase for Fluent Emojis & Icons</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="Explore Fluent Deck, a curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis. Your ultimate resource for Fluent Design." />
-  <meta name="keywords"
-    content="Fluent Design, Fluent UI, Microsoft, WinUI, Fluent Icons, Fluent Emojis, UI/UX, Design System, Windows Apps, Microsoft Fluent, Emoji Library, Icon Library" />
+  
+  <title>Fluent Deck</title>
   <meta name="author" content="Jishnu K V" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://fluentdeck.vercel.app/" />
   <meta name="google-site-verification" content="Z40mR9kfM1HFzabFm6tkwnoGAuctuU7EGeviiFE-L54" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://fluentdeck.vercel.app/" />
-  <meta property="og:title" content="Fluent Deck - A Curated Showcase of Fluent Design" />
-  <meta property="og:description"
-    content="Explore beautiful WinUI 3 apps, a comprehensive library of Fluent System Icons, and a vibrant collection of Fluent Emojis." />
-  <meta property="og:image" content="/assets/cover.png" />
-  <meta property="og:site_name" content="Fluent Deck" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://fluentdeck.vercel.app/" />
-  <meta property="twitter:title" content="Fluent Deck - A Curated Showcase of Fluent Design" />
-  <meta property="twitter:description"
-    content="Explore beautiful WinUI 3 apps, a comprehensive library of Fluent System Icons, and a vibrant collection of Fluent Emojis." />
-  <meta property="twitter:image" content="/assets/cover.png" />
-
   <!-- Favicon and PWA Manifest -->
-  <link rel="icon" href="/assets/logo.ico" type="image/ico" />
+  <link rel="icon" href="/assets/logo.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="/assets/logo.webp" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-  <!-- Add these to your HTML head -->
+  <!-- Preconnect for external resources -->
   <link rel="preconnect" href="https://github.com" crossorigin>
   <link rel="dns-prefetch" href="https://github.com">
   <link rel="preconnect" href="https://discord.com" crossorigin>
@@ -49,14 +27,12 @@
   <link rel="preload" href="/assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Main stylesheet -->
-  <link rel="stylesheet" href="/index.css" as="style" />
+  <link rel="stylesheet" href="/index.css" />
 
   <style>
     :root {
       --hero-gradient-top-color-hsl: 207 80% 90%;
-      /* sky-200 */
       --hero-gradient-bottom-color-hsl: 276 100% 90%;
-      /* purple-200 */
       --hero-gradient-opacity: 0.4;
       --hero-fade-start: 20%;
       --hero-fade-end: 100%;
@@ -64,9 +40,7 @@
 
     html[data-theme="dark"] {
       --hero-gradient-top-color-hsl: 205 65% 23%;
-      /* sky-900 */
       --hero-gradient-bottom-color-hsl: 269 75% 35%;
-      /* purple-900 */
       --hero-gradient-opacity: 0.2;
     }
 
@@ -95,12 +69,8 @@
 
     .overlay {
       opacity: var(--opacity, 0);
-      -webkit-mask: radial-gradient(25rem 25rem at var(--x) var(--y),
-          #000 1%,
-          transparent 50%);
-      mask: radial-gradient(25rem 25rem at var(--x) var(--y),
-          #000 1%,
-          transparent 50%);
+      -webkit-mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
+      mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
       transition: 400ms mask ease;
       will-change: mask;
     }
@@ -128,15 +98,15 @@
       background: hsla(var(--hue, 217), var(--saturation, 91%), var(--lightness, 60%), 0.1);
     }
 
-    /* Dark mode */
     @media (prefers-color-scheme: dark) {
       footer p {
         color: var(--text-secondary, #9ca3af);
       }
     }
   </style>
+
+  <!-- Theme initialization script -->
   <script>
-    // Immediately invoked function to set the theme on initial load
     (function () {
       try {
         const theme = localStorage.getItem('fluentdeck-theme') || 'system';
@@ -150,40 +120,6 @@
       }
     })();
   </script>
-
-  <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Fluent Deck",
-        "url": "https://fluentdeck.vercel.app/",
-        "description": "A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://fluentdeck.vercel.app/emoji?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Fluent Deck",
-        "operatingSystem": "Web",
-        "applicationCategory": "DeveloperApplication",
-        "description": "An application to showcase Microsoft Fluent emojis and icons, and a curated list of WinUI 3 apps.",
-        "author": {
-          "@type": "Person",
-          "name": "Jishnu K V"
-        },
-        "screenshot": "/assets/cover.png",
-        "browserRequirements": "Requires a modern web browser with JavaScript enabled."
-      }
-    ]
-    </script>
 </head>
 
 <body class="bg-gray-50 dark:bg-bg-primary text-base font-sans">

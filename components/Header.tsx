@@ -79,7 +79,7 @@ const Header: React.FC = () => {
 								`relative p-2 rounded-full ${isActive
 									? 'bg-gray-100 dark:bg-bg-active text-gray-900 dark:text-text-primary'
 									: 'hover:bg-gray-100 dark:hover:bg-bg-active text-gray-500 dark:text-text-secondary'
-								} focus:outline-none focus:ring-2 focus:ring-blue-500`
+								} focus:outline-none focus:ring-2 focus:ring-neutral-500`
 							}
 							aria-label="View collections"
 						>
@@ -139,19 +139,19 @@ const Header: React.FC = () => {
 							<NavLink to="/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<HomeIcon className="w-5 h-5" aria-hidden="true" /> Home
 							</NavLink>
-							<NavLink to="/apps" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
+							<NavLink to="/apps/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<AppsIcon className="w-5 h-5" aria-hidden="true" /> Apps
 							</NavLink>
-							<NavLink to="/emoji" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
+							<NavLink to="/emoji/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<EmojiIcon className="w-5 h-5" aria-hidden="true" /> Emoji
 							</NavLink>
-							<NavLink to="/icons" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
+							<NavLink to="/icons/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<FluentIconsIcon className="w-5 h-5" aria-hidden="true" /> Icons
 							</NavLink>
-							<NavLink to="/contribute" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
+							<NavLink to="/contribute/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<ContributeIcon className="w-5 h-5" aria-hidden="true" /> Contribute
 							</NavLink>
-							<NavLink to="/changelog" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
+							<NavLink to="/changelog/" className={({ isActive }) => mobileNavLinkClasses({ isActive })} onClick={closeMobileMenu}>
 								<HistoryIcon className="w-5 h-5" aria-hidden="true" /> Changelog
 							</NavLink>
 						</nav>

@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 2.2.0 (15-12-2025)
+
+### ✨ Features
+- Added new Fluent icon assets with multiple size variations.  
+  Previously, only 24px icons were available; the library now includes additional sizes for better scalability and export flexibility.
+- Added real query-based search URLs (`?q=`) for Apps, Emojis, and Icons pages.  
+  Searches are now shareable, reload-safe, and SEO-friendly.
+
+### 🚀 Improvements
+- Improved SEO across all pages with page-specific metadata, canonical URLs, and enhanced Open Graph / Twitter previews.
+- Enhanced search behavior to sync UI state with URL parameters without breaking existing filtering or keyboard shortcuts.
+
 ## Version 2.1.0 (12-12-2025)
 
 ### ✨ Features

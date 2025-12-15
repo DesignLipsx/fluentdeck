@@ -104,7 +104,7 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
 	const addItemToCollection = (collectionName: string, item: Omit<CollectionItem, 'itemType'>, itemType: CollectionItem['itemType']) => {
 		const fullItem = { ...item, itemType } as CollectionItem;
 		const itemId = getItemId(item, itemType);
-
+		
 		setCollections(prev => {
 			const collection = prev[collectionName] || [];
 

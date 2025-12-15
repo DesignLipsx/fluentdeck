@@ -2,6 +2,7 @@ import React, { useState, useEffect, JSX } from 'react';
 import { fetchWithCache } from '../utils';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { HistoryIcon } from '../components/Icons';
+import Seo from '../components/Seo';
 
 interface ChangelogEntry {
     version: string;
@@ -51,6 +52,24 @@ const parseChangelog = (text: string): ChangelogEntry[] => {
     return entries;
 };
 
+const renderInlineMarkdown = (text: string) => {
+    const parts = text.split(/(`[^`]+`)/g);
+
+    return parts.map((part, idx) => {
+        if (part.startsWith('`') && part.endsWith('`')) {
+            return (
+                <code
+                    key={idx}
+                    className="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-bg-active text-sm font-mono text-neutral-800 dark:text-text-primary"
+                >
+                    {part.slice(1, -1)}
+                </code>
+            );
+        }
+        return <React.Fragment key={idx}>{part}</React.Fragment>;
+    });
+};
+
 // Simple markdown renderer for changelog content
 const renderMarkdown = (content: string) => {
     const lines = content.split('\n');
@@ -67,7 +86,7 @@ const renderMarkdown = (content: string) => {
                         <li key={idx} className="flex items-start">
                             <span className="text-neutra-400 dark:text-neutral-500 mr-3 mt-0.5 flex-shrink-0">•</span>
                             <span className="text-neutral-600 dark:text-text-secondary leading-relaxed">
-                                {item}
+                                {renderInlineMarkdown(item)}
                             </span>
                         </li>
                     ))}
@@ -159,7 +178,7 @@ const renderMarkdown = (content: string) => {
             flushList();
             elements.push(
                 <p key={elements.length} className="text-neutral-600 dark:text-text-secondary mt-3 leading-relaxed">
-                    {line}
+                    {renderInlineMarkdown(line)}
                 </p>
             );
         }
@@ -176,8 +195,6 @@ const ChangelogPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        document.title = 'Fluent Deck | Changelog';
-
         const fetchChangelog = async () => {
             setIsLoading(true);
             try {
@@ -196,7 +213,27 @@ const ChangelogPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="py-10 px-4 sm:px-6 lg:px-8">
+        <>
+            <Seo
+                title="Changelog"
+                description="Track the latest updates, improvements, and new features for Fluent Deck. See what's new in our app, icon, and emoji collections."
+                keywords="Changelog, Updates, New Features, Version History, Release Notes"
+                canonical="/changelog"
+                image="/assets/cover-changelog.png"
+                imageAlt="A summary of recent updates and changes to Fluent Deck."
+                type="article"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://fluentdeck.vercel.app/changelog"
+                    },
+                    "headline": "Fluent Deck Changelog",
+                    "description": "Track the latest updates, improvements, and new features added to Fluent Deck."
+                }}
+            />
+            <div className="py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
 
                 {/* Header */}
@@ -224,9 +261,18 @@ const ChangelogPage: React.FC = () => {
                             >
                                 {/* Version and Date */}
                                 <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
-                                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-text-primary">
+                                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-text-primary flex items-center gap-3">
                                         {entry.version}
+
+                                        {index === 0 && (
+                                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold
+                                                bg-emerald-100 text-emerald-700
+                                                dark:bg-emerald-500/15 dark:text-emerald-400">
+                                                Latest
+                                            </span>
+                                        )}
                                     </h2>
+
                                     {entry.date && (
                                         <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
                                             {entry.date}
@@ -244,7 +290,8 @@ const ChangelogPage: React.FC = () => {
                 )}
 
             </div>
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -40,7 +40,7 @@
       "name": "WinUI Apps",
       "short_name": "Apps",
       "description": "Curated showcase of WinUI 3 apps",
-      "url": "/apps",
+      "url": "/apps/",
       "icons": [
         {
           "src": "/assets/logo.png",
@@ -52,7 +52,7 @@
       "name": "Fluent Emojis",
       "short_name": "Emojis",
       "description": "Browse 3D and Flat emojis",
-      "url": "/emoji",
+      "url": "/emoji/",
       "icons": [
         {
           "src": "/assets/logo.png",
@@ -64,7 +64,7 @@
       "name": "System Icons",
       "short_name": "Icons",
       "description": "Search Fluent system icons",
-      "url": "/icons",
+      "url": "/icons/",
       "icons": [
         {
           "src": "/assets/logo.png",

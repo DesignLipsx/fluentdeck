@@ -145,12 +145,13 @@ const CollectionsPage: React.FC = () => {
 						filesToZip[fileName] = new Uint8Array(buffer);
 					}
 					else if (item.itemType === 'icon') {
-						const iconUrl = getIconUrl(item, item.style);
+						// For collections, we don't have a specific size, so we let getIconUrl decide the best one.
+						const iconUrl = getIconUrl(item, item.style, null);
 						const response = await fetch(iconUrl);
 						if (!response.ok) throw new Error('Fetch failed');
 			
 						const text = await response.text();
-						const iconId = (item.styles?.[item.style] || item.name).replace('.svg', '');
+						const iconId = (item.styles?.[item.style.toLowerCase() as keyof typeof item.styles]?.['24'] || item.name).replace('.svg', '');
 						const fileName = `icon/${iconId}_${item.style}.svg`;
 						filesToZip[fileName] = strToU8(text);
 					}

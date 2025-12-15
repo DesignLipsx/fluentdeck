@@ -45,7 +45,7 @@ const IconCard = forwardRef<BaseCardHandle, IconCardProps>(({
 
     const handleCopy = useCallback(async () => {
         try {
-            const url = getIconUrl(icon, selectedStyle);
+            const url = getIconUrl(icon, selectedStyle, '24');
             const response = await fetch(url);
             if (!response.ok) throw new Error('Network response was not ok');
             const svgText = await response.text();
