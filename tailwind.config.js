@@ -2,32 +2,29 @@
 export default {
   content: [
     "./index.html",
-    "./index.tsx",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./*.{js,ts,jsx,tsx}"
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ['selector', '[data-theme="dark"]'],
+  darkMode: ['class'],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        'bg-primary': '#080808',
-        'bg-secondary': '#131313',
-        'border-primary': '#373737',
-        'border-secondary': '#121212',
-        'border-tertiary': '#222222',
-        'text-primary': '#fafffa',
-        'card-primary': '#09090b',
-        'text-secondary': '#949494',
-        'text-light': '#111111',
-        'accent': '#fafafa',
-        'bg-active': '#222222',
-        'tab-active': '#2f2f2f',
-        'card-light': '#ffffff',
-        'card-dark': '#131313',
+        'bg-primary': 'hsl(var(--bg-primary) / <alpha-value>)',
+        'bg-secondary': 'hsl(var(--bg-secondary) / <alpha-value>)',
+        'bg-active': 'hsl(var(--bg-active) / <alpha-value>)',
+        'border-primary': 'hsl(var(--border-primary) / <alpha-value>)',
+        'border-secondary': 'hsl(var(--border-secondary) / <alpha-value>)',
+        'border-tertiary': 'hsl(var(--border-tertiary) / <alpha-value>)',
+        'text-primary': 'hsl(var(--text-primary) / <alpha-value>)',
+        'text-secondary': 'hsl(var(--text-secondary) / <alpha-value>)',
+        'text-link': 'hsl(var(--text-link) / <alpha-value>)',
+        'card-primary': 'hsl(var(--card-primary) / <alpha-value>)',
+        'card-light': 'hsl(var(--card-light) / <alpha-value>)',
+        'card-dark': 'hsl(var(--card-dark) / <alpha-value>)',
+        'accent': 'hsl(var(--accent) / <alpha-value>)',
+        'tab-active': 'hsl(var(--tab-active) / <alpha-value>)',
       },
       keyframes: {
         fadeIn: {

@@ -86,6 +86,14 @@
             "original_logo_url": "https://raw.githubusercontent.com/IviriusCommunity/Rebound/refs/heads/main/src/system/Rebound.Hub/Assets/AppIcons/ReboundHub.ico"
           },
           {
+            "name": "Unicord",
+            "link": "https://github.com/UnicordDev/Unicord",
+            "tag": "WDM",
+            "price": "FOSS",
+            "logo_url": null,
+            "original_logo_url": null
+          },
+          {
             "name": "Wave Link 3.0",
             "link": "https://www.elgato.com/us/en/s/beta",
             "tag": "WDM",
@@ -2570,6 +2578,14 @@
           {
             "name": "Quarrel",
             "link": "https://github.com/UWPCommunity/Quarrel",
+            "tag": "WDM",
+            "price": "FOSS",
+            "logo_url": null,
+            "original_logo_url": null
+          },
+          {
+            "name": "Unicord",
+            "link": "https://github.com/UnicordDev/Unicord",
             "tag": "WDM",
             "price": "FOSS",
             "logo_url": null,

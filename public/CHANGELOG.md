@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.3.0 (06-01-2026)
+
+### 🚀 Improvements
+- Improved project structure and code quality.
+
 ## Version 2.2.0 (15-12-2025)
 
 ### ✨ Features
