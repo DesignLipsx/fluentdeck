@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <title>Fluent Deck</title>
   <meta name="author" content="Jishnu K V" />
   <meta name="google-site-verification" content="Z40mR9kfM1HFzabFm6tkwnoGAuctuU7EGeviiFE-L54" />
@@ -16,6 +16,33 @@
   <meta name="theme-color" content="#000000" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- Default SEO Meta Tags (will be updated by Seo component) -->
+  <meta name="description"
+    content="A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis." />
+  <meta name="keywords"
+    content="Fluent Design, Fluent UI, Microsoft, WinUI, Fluent Icons, Fluent System Icons, Fluent Emojis, UI/UX, Design System, Windows Apps, Microsoft Fluent, Emoji Library, Icon Library" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:site_name" content="Fluent Deck" />
+  <meta property="og:title" content="Fluent Deck - Fluent Design System Resources" />
+  <meta property="og:description"
+    content="A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fluentdeck.vercel.app/" />
+  <meta property="og:image" content="https://fluentdeck.vercel.app/assets/cover.png" />
+  <meta property="og:image:alt" content="Fluent Deck - Your gateway to Fluent Design resources" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Fluent Deck - Fluent Design System Resources" />
+  <meta property="twitter:description"
+    content="A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis." />
+  <meta property="twitter:image" content="https://fluentdeck.vercel.app/assets/cover.png" />
+  <meta property="twitter:image:alt" content="Fluent Deck - Your gateway to Fluent Design resources" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://fluentdeck.vercel.app/" />
 
   <!-- Preconnect for external resources -->
   <link rel="preconnect" href="https://github.com" crossorigin>
@@ -111,7 +138,7 @@
       try {
         const theme = localStorage.getItem('fluentdeck-theme') || 'system';
         const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        
+
         if (isDark) {
           document.documentElement.classList.add('dark');
           document.documentElement.setAttribute('data-theme', 'dark');
