@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ['class'],
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       fontFamily: {
@@ -32,7 +32,7 @@ export default {
           '100%': { opacity: '1' },
         },
         fadeInSoft: {
-          '0%':   { opacity: '0' , transform: 'translateY(10px)' },
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideUpAndFade: {

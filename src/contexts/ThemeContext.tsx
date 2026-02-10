@@ -33,6 +33,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const currentResolvedTheme = isDark ? 'dark' : 'light';
 
       root.setAttribute('data-theme', currentResolvedTheme);
+      if (currentResolvedTheme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
       setResolvedTheme(currentResolvedTheme);
     };
 

@@ -6,124 +6,44 @@
         "subheading": "",
         "apps": [
           {
-            "name": "Aggregate Live Broadcast",
-            "link": "https://apps.microsoft.com/detail/9n1twg2g84vd",
-            "tag": "WD",
-            "price": "Free",
-            "logo_url": "/assets/apps/aggregate-live-broadcast.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.54954.13964853534446575.c062f8ba-cc7f-4c93-b025-56516885489b.9e6c1bad-a74c-4f8b-82c5-fde9149633f6?h=307"
-          },
-          {
-            "name": "AirPlayReceiver: Screen Mirroring & Streaming",
-            "link": "https://apps.microsoft.com/detail/9n4xf19xfjd8",
+            "name": "Blip",
+            "link": "https://blip.net/",
             "tag": "WDM",
             "price": "Free",
-            "logo_url": "/assets/apps/airplayreceiver-screen-mirroring-streaming.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.14239.14435729584765862.ad8c44a2-3307-462a-bc25-ca685f1478a4.0fb00256-67a4-4e33-bee0-c7d8e5a89eeb?h=210"
+            "logo_url": "/assets/apps/blip.webp",
+            "original_logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQH6U3m1TA5FGw/company-logo_200_200/company-logo_200_200/0/1691000007310/blipnet_logo?e=2147483647&v=beta&t=Ybf_kTct1oJ65wIxQmdgAUK6uvdgBkicI_bK3oNXAuo"
           },
           {
-            "name": "AI Dev Gallery",
-            "link": "https://apps.microsoft.com/detail/9n9pn1mm3bd5?hl",
-            "tag": "WDM",
-            "price": "FOSS",
-            "logo_url": "/assets/apps/ai-dev-gallery.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.28684.13528392826310250.619ee742-7baf-444c-9179-254f55c3e3cf.1e3baf4a-7452-47e7-85f9-a4099c386459?h=170"
-          },
-          {
-            "name": "Authority Editor",
-            "link": "https://apps.microsoft.com/detail/9n3bxxqtlvln",
-            "tag": "WD",
+            "name": "clipshelf",
+            "link": "https://www.clipshelf.app/",
+            "tag": "WDA",
             "price": "Free",
-            "logo_url": "/assets/apps/authority-editor.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.40729.13935021610997439.6641eaf8-90a6-4e52-a019-ef5cdd90e070.bed0af0c-2982-4154-8cab-8226334cb55b?h=115"
+            "logo_url": "/assets/apps/clipshelf.webp",
+            "original_logo_url": "https://www.clipshelf.app/wp-content/uploads/2024/02/Logo-150x150.png"
           },
           {
-            "name": "ChatGPT Desktop App",
-            "link": "https://github.com/johngagefaulkner/ChatGPTDesktopApp",
+            "name": "CtrlHelp",
+            "link": "https://ctrlhelp.velersoftware.com/",
             "tag": "WDM",
-            "price": "FOSS",
-            "logo_url": "/assets/apps/chatgpt-desktop-app.webp",
-            "original_logo_url": "https://i.postimg.cc/KjSDLPLH/Chatgpt.png"
+            "price": "Free",
+            "logo_url": "/assets/apps/ctrlhelp.webp",
+            "original_logo_url": "https://medias.velersoftware.com/images/ctrlhelp-large.png"
           },
           {
-            "name": "Eppie Mail",
-            "link": "https://github.com/Eppie-io/Eppie-App",
+            "name": "PowerToolbox",
+            "link": "https://apps.microsoft.com/detail/9MV67V21H386",
+            "tag": "WDM",
+            "price": "Free",
+            "logo_url": "/assets/apps/powertoolbox.webp",
+            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.16586.13799120564539197.64e975f3-b3fc-4148-a02e-2d8fc3893c09.c8fd777d-b961-4de5-a005-4c800849eaf7?h=115"
+          },
+          {
+            "name": "RyTuneX",
+            "link": "https://github.com/rayenghanmi/RyTuneX",
             "tag": "WDM",
             "price": "FOSS",
-            "logo_url": "/assets/apps/eppie-mail.webp",
-            "original_logo_url": "https://github.com/Eppie-io/Eppie-App/blob/main/src/Eppie.App/Eppie.App.UWP/Assets/StoreLogo.scale-100.png?raw=true"
-          },
-          {
-            "name": "Intel® Graphics Software",
-            "link": "https://apps.microsoft.com/detail/9P8K5G2MWW6Z",
-            "tag": "WD",
-            "price": "Free",
-            "logo_url": "/assets/apps/intel-graphics-software.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.22186.14090896052071218.a5d380bb-54d3-42c3-aa39-c7845740564a.8dd11290-c5c9-472a-ad62-3125350cd48f?h=307"
-          },
-          {
-            "name": "MouseLink",
-            "link": "https://apps.microsoft.com/detail/xpffzbsvfp53j6",
-            "tag": "WD",
-            "price": "Free",
-            "logo_url": "/assets/apps/mouselink.webp",
-            "original_logo_url": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxvwGwZ.ul_kRzKtaGULwJ6GFTkuKa6ZJxqS_PKPERcAnFHeFjjI2IXoOh4rwGjoCdAZTdSccQRcWRXQC2R_KYgk-&format=source&h=210"
-          },
-          {
-            "name": "Never Sleep",
-            "link": "https://apps.microsoft.com/detail/9npwdqzrg923",
-            "tag": "WDM",
-            "price": "Free",
-            "logo_url": "/assets/apps/never-sleep.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.14623.13781034298287524.c79bf65e-1486-4b40-9361-025b06314983.b3490c8d-9bfb-4d21-9ce9-7275fed5386d?h=115"
-          },
-          {
-            "name": "Rebound",
-            "link": "https://github.com/IviriusCommunity/Rebound",
-            "tag": "WD",
-            "price": "Free",
-            "logo_url": "/assets/apps/rebound.webp",
-            "original_logo_url": "https://raw.githubusercontent.com/IviriusCommunity/Rebound/refs/heads/main/src/system/Rebound.Hub/Assets/AppIcons/ReboundHub.ico"
-          },
-          {
-            "name": "Unicord",
-            "link": "https://github.com/UnicordDev/Unicord",
-            "tag": "WDM",
-            "price": "FOSS",
-            "logo_url": null,
-            "original_logo_url": null
-          },
-          {
-            "name": "Wave Link 3.0",
-            "link": "https://www.elgato.com/us/en/s/beta",
-            "tag": "WDM",
-            "price": "Free",
-            "logo_url": "/assets/apps/wave-link-3-0.webp",
-            "original_logo_url": "https://i.postimg.cc/x8J3Nscy/Wave-Link3.png"
-          },
-          {
-            "name": "Windows Sound Recorder",
-            "link": "https://apps.microsoft.com/detail/9wzdncrfhwkn?hl=en-US&gl",
-            "tag": "WDM",
-            "price": "Free",
-            "logo_url": "/assets/apps/windows-sound-recorder.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.65228.9007199266246865.fdd30c53-ef1b-499d-a6c0-27ee100a32c2.b96891cc-b96e-4e53-a716-e370d1653e61?h=170"
-          },
-          {
-            "name": "Windows Camera",
-            "link": "https://apps.microsoft.com/detail/9wzdncrfjbbg",
-            "tag": "WDM",
-            "price": "Free",
-            "logo_url": "/assets/apps/windows-camera.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.9585.9007199266252789.05ba84d6-f74d-4beb-ba05-12d7e5f76cd0.84ff9a8f-54fe-4188-8f15-377afec76fa9?h=170"
-          },
-          {
-            "name": "YT Music Lite",
-            "link": "https://apps.microsoft.com/detail/9nhpxcxs27f9",
-            "tag": "WD",
-            "price": "Free",
-            "logo_url": "/assets/apps/yt-music-lite.webp",
-            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.57744.13621526871464892.cf216136-c762-45a0-8e19-11962ffc160e.895e7c46-9ed6-4e96-a181-04bcf05dfecf?h=115"
+            "logo_url": "/assets/apps/rytunex.webp",
+            "original_logo_url": "https://github.com/rayenghanmi/RyTuneX/blob/main/Assets/StoreLogo.scale-125.png?raw=true"
           }
         ]
       }
@@ -1169,6 +1089,14 @@
             "price": "FOSS",
             "logo_url": "/assets/apps/fluent-launcher.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.34987.14585027019572894.79b19be8-1165-4c26-8219-ce46687be87c.0c7726b3-1ceb-416c-82f3-5956e35d581a?h=210"
+          },
+          {
+            "name": "XianYuLauncher",
+            "link": "https://apps.microsoft.com/detail/9pcnpgl7j6ks",
+            "tag": "WDM",
+            "price": "FOSS",
+            "logo_url": null,
+            "original_logo_url": null
           }
         ]
       }
@@ -1248,6 +1176,14 @@
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.31982.14616980212163637.b9f7e344-284c-41ea-926e-7464f1e9d57e.80dd6530-674d-4b80-a328-cbfa87802dda?h=210"
           },
           {
+            "name": "Nagi",
+            "link": "https://apps.microsoft.com/detail/9p1v1ppml3qt",
+            "tag": "WDM",
+            "price": "Free",
+            "logo_url": "/assets/apps/nagi.webp",
+            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.65358.14504294530003358.405947ae-662e-4c7d-ba9a-eb6d9f23b51c.00d4e310-6b4e-4c4c-ab9b-78a0addbaf9c"
+          },
+          {
             "name": "Pinnacle Media Player",
             "link": "https://apps.microsoft.com/store/detail/pinnacle-media-player/9P534C2W7JK3",
             "tag": "WDM",
@@ -1318,8 +1254,8 @@
         "icon_url": "/assets/apps/cat-spotify-client.webp",
         "apps": [
           {
-            "name": "Wavee",
-            "link": "https://github.com/christosk92/Wavee",
+            "name": "WaveeMusic",
+            "link": "https://github.com/christosk92/WaveeMusic",
             "tag": "WDM",
             "price": "FOSS",
             "logo_url": null,
@@ -2317,6 +2253,14 @@
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.53483.14122571573157057.594dc2d0-36db-4199-8d01-91955491c785.c1bbc186-892b-46c9-99c0-3e066f2e84bf?h=210"
           },
           {
+            "name": "CtrlHelp",
+            "link": "https://ctrlhelp.velersoftware.com/",
+            "tag": "WDM",
+            "price": "Free",
+            "logo_url": "/assets/apps/ctrlhelp.webp",
+            "original_logo_url": "https://medias.velersoftware.com/images/ctrlhelp-large.png"
+          },
+          {
             "name": "FCN for Writers",
             "link": "https://apps.microsoft.com/detail/9p28h11ckgwc",
             "tag": "WDM",
@@ -2576,6 +2520,14 @@
             "original_logo_url": null
           },
           {
+            "name": "Fluent Discord",
+            "link": "https://github.com/TakosThings/Fluent-Discord",
+            "tag": "WD",
+            "price": "FOSS",
+            "logo_url": null,
+            "original_logo_url": null
+          },
+          {
             "name": "Quarrel",
             "link": "https://github.com/UWPCommunity/Quarrel",
             "tag": "WDM",
@@ -2701,6 +2653,14 @@
             "price": "Free",
             "logo_url": "/assets/apps/eagle-calculator.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.38055.13894234759620891.9e5fbe2a-83a9-438e-b2f8-5d9e9401a34a.960c32d1-00f8-4456-aa81-0af5882e38cb?h=210"
+          },
+          {
+            "name": "Lamina",
+            "link": "https://github.com/Chill-Astro/Lamina",
+            "tag": "WDM",
+            "price": "FOSS",
+            "logo_url": null,
+            "original_logo_url": null
           },
           {
             "name": "Windows Calculator",
@@ -3111,6 +3071,14 @@
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.45415.13731980272963993.4c3bc75f-e56a-4f30-be54-3741c54b53f7.c3dd5783-4c5b-4c03-a329-c73426441073?h=210"
           },
           {
+            "name": "Blip",
+            "link": "https://blip.net/",
+            "tag": "WDM",
+            "price": "Free",
+            "logo_url": "/assets/apps/blip.webp",
+            "original_logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQH6U3m1TA5FGw/company-logo_200_200/company-logo_200_200/0/1691000007310/blipnet_logo?e=2147483647&v=beta&t=Ybf_kTct1oJ65wIxQmdgAUK6uvdgBkicI_bK3oNXAuo"
+          },
+          {
             "name": "BLuetooth Battery Level",
             "link": "https://apps.microsoft.com/store/detail/bluetooth-battery-level/9P2RFZSB04G2",
             "tag": "WDM",
@@ -3141,6 +3109,14 @@
             "price": "Free",
             "logo_url": "/assets/apps/clipconvert-video-to-mp3-multitask.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.5382.13842186135076084.ccdd19c3-d215-494c-a3f1-32300a6a624a.4060bf12-966d-4e91-a009-bc9fd3727f4a?h=115"
+          },
+          {
+            "name": "clipshelf",
+            "link": "https://www.clipshelf.app/",
+            "tag": "WDA",
+            "price": "Free",
+            "logo_url": "/assets/apps/clipshelf.webp",
+            "original_logo_url": "https://www.clipshelf.app/wp-content/uploads/2024/02/Logo-150x150.png"
           },
           {
             "name": "Codes Analyzer",
@@ -3673,7 +3649,7 @@
           {
             "name": "PowerToolbox",
             "link": "https://apps.microsoft.com/detail/9MV67V21H386",
-            "tag": "WDA",
+            "tag": "WDM",
             "price": "Free",
             "logo_url": "/assets/apps/powertoolbox.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.16586.13799120564539197.64e975f3-b3fc-4148-a02e-2d8fc3893c09.c8fd777d-b961-4de5-a005-4c800849eaf7?h=115"
@@ -3797,6 +3773,14 @@
             "price": "Free",
             "logo_url": "/assets/apps/runmanager.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.24903.13645868358273465.aa96364e-7a02-48e8-853c-9d2226ad466c.0e5f6ca9-665b-463c-8290-33875d5d6efb?h=115"
+          },
+          {
+            "name": "RyTuneX",
+            "link": "https://github.com/rayenghanmi/RyTuneX",
+            "tag": "WDM",
+            "price": "FOSS",
+            "logo_url": "/assets/apps/rytunex.webp",
+            "original_logo_url": "https://raw.githubusercontent.com/rayenghanmi/RyTuneX/refs/heads/main/Assets/StoreLogo.scale-125.png"
           },
           {
             "name": "Scanner - Quick and Easy Document Scanning",
@@ -4159,6 +4143,14 @@
             "price": "Free",
             "logo_url": "/assets/apps/windows-camera.webp",
             "original_logo_url": "https://store-images.s-microsoft.com/image/apps.9585.9007199266252789.05ba84d6-f74d-4beb-ba05-12d7e5f76cd0.84ff9a8f-54fe-4188-8f15-377afec76fa9?h=170"
+          },
+          {
+            "name": "Windows HDR Calibration",
+            "link": "https://apps.microsoft.com/detail/9n7f2sm5d1lr",
+            "tag": "WDM",
+            "price": "Free",
+            "logo_url": "/assets/apps/windows-hdr-calibration.webp",
+            "original_logo_url": "https://store-images.s-microsoft.com/image/apps.35619.14066308247113248.71f37cc8-86b5-4f83-855b-441821570bfe.3602898d-b565-4f20-a6a7-fca7a34f61aa?h=210"
           }
         ]
       }

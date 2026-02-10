@@ -2,27 +2,21 @@ import { useState, useEffect, useRef } from 'react';
 
 // --- Persistent State Hook (debounced writes to localStorage) ---
 export const usePersistentState = <T,>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
-	const [state, setState] = useState<T>(defaultValue);
-	const [isHydrated, setIsHydrated] = useState(false);
-	const writeTimer = useRef<number | null>(null);
-
-	// Hydrate from localStorage after mount (prevents hydration mismatch)
-	useEffect(() => {
+	const [state, setState] = useState<T>(() => {
 		try {
 			const storedValue = localStorage.getItem(key);
 			if (storedValue !== null) {
-				setState(JSON.parse(storedValue));
+				return JSON.parse(storedValue);
 			}
 		} catch (error) {
 			console.error("Error reading from localStorage", error);
 		}
-		setIsHydrated(true);
-	}, [key]);
+		return defaultValue;
+	});
+	const writeTimer = useRef<number | null>(null);
 
 	// Debounce writes to avoid synchronous blocking on each state change.
 	useEffect(() => {
-		if (!isHydrated) return; // Don't write until hydrated
-
 		// Clear any previous timer
 		if (writeTimer.current !== null) {
 			window.clearTimeout(writeTimer.current);
@@ -44,7 +38,7 @@ export const usePersistentState = <T,>(key: string, defaultValue: T): [T, React.
 				writeTimer.current = null;
 			}
 		};
-	}, [key, state, isHydrated]);
+	}, [key, state]);
 
 	// Flush on unmount (best-effort)
 	useEffect(() => {
@@ -59,7 +53,7 @@ export const usePersistentState = <T,>(key: string, defaultValue: T): [T, React.
 				writeTimer.current = null;
 			}
 		};
-	}, [key, state]); // Include dependencies to capture latest state
+	}, [key, state]);
 
 	return [state, setState];
 };
