@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useRef, lazy, Suspense, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CONTRIBUTORS_LOCAL_URL } from '@/constants';
+import IconDisplay from '@/components/IconDisplay';
+import { getIconUrl } from '@/utils';
+import { IconType } from '@/types';
 
 // Icons - only import critical ones initially
 import { AppsIcon, FluentIconsIcon } from '@/components/Icons';
 
 // Lazy load heavy component and non-critical icons
-const NetworkVisualization = lazy(() => 
+const NetworkVisualization = lazy(() =>
   import('@/components/NetworkVisualization').then(module => ({
     default: module.default
   }))
@@ -19,7 +22,7 @@ const CARD_DATA = [
     title: "WinUI Apps",
     description: "Discover the potential of Windows UI. A curated gallery of real-world applications demonstrating the power of Fluent Design.",
     link: "/apps",
-    count: 450,
+    count: 520,
     cardStyle: { '--hue': 217, '--saturation': '91%', '--lightness': '60%' } as React.CSSProperties
   },
   {
@@ -42,7 +45,7 @@ const CARD_DATA = [
 
 const STATS = [
   { label: "Open Source", value: "MIT License" },
-  { label: "Version", value: "2.2.0" },
+  { label: "Version", value: "2.4.0" },
   { label: "Assets", value: "7,000+" },
 ];
 
@@ -144,6 +147,30 @@ const HomePage: React.FC = () => {
   const [otherIcons, setOtherIcons] = useState<typeof import('@/components/Icons') | null>(null);
   const communityRef = useRef<HTMLDivElement>(null);
   const [showNetwork, setShowNetwork] = useState(false);
+  const [newIcons, setNewIcons] = useState<IconType[]>([]);
+  const [loadingNewIcons, setLoadingNewIcons] = useState(true);
+
+  useEffect(() => {
+    fetch('/data/new_icons.json')
+      .then(res => res.ok ? res.json() : [])
+      .then(data => {
+        if (Array.isArray(data)) {
+          const mapped = data.map((iconData: any) => ({
+            name: iconData.name,
+            styles: {
+              filled: iconData.filled,
+              regular: iconData.regular,
+              color: iconData.color
+            },
+            filename: undefined,
+            svgFileName: undefined
+          }));
+          setNewIcons(mapped);
+        }
+        setLoadingNewIcons(false);
+      })
+      .catch(() => setLoadingNewIcons(false));
+  }, []);
 
   // Preload non-critical assets after initial render
   useEffect(() => {
@@ -197,7 +224,7 @@ const HomePage: React.FC = () => {
 
         {/* Background */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none" aria-hidden="true">
-          <div className="absolute inset-0 opacity-[0.6] dark:opacity-[0.1]" style={{backgroundImage:"radial-gradient(hsl(var(--accent)) 1px,transparent 1px)",backgroundSize:"40px 40px",maskImage:"radial-gradient(circle at center,black,transparent 80%)",WebkitMaskImage:"radial-gradient(circle at center,black,transparent 80%)"}}></div>
+          <div className="absolute inset-0 opacity-[0.6] dark:opacity-[0.1]" style={{ backgroundImage: "radial-gradient(hsl(var(--accent)) 1px,transparent 1px)", backgroundSize: "40px 40px", maskImage: "radial-gradient(circle at center,black,transparent 80%)", WebkitMaskImage: "radial-gradient(circle at center,black,transparent 80%)" }}></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 dark:bg-blue-900/10 rounded-full blur-[100px] opacity-30 mix-blend-multiply dark:mix-blend-multiply"></div>
         </div>
 
@@ -270,6 +297,81 @@ const HomePage: React.FC = () => {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --- NEW ICONS STRIP --- */}
+      <section className="py-20 bg-bg-secondary/40 border-t border-border-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-12 max-w-3xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-accent border border-blue-100 dark:border-blue-800/30">
+                New in v2.4.0
+              </span>
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl mb-4">
+              Newly Added Icons
+            </h2>
+            <p className="text-base text-text-secondary">
+              We've synced with the latest Microsoft release, bringing <strong>728 new variations</strong> and <strong>53 entirely new icon categories</strong> to the library. Explore all of the latest additions:
+            </p>
+          </Reveal>
+
+          {loadingNewIcons ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {Array.from({ length: 12 }).map((_, idx) => (
+                <div key={idx} className="h-28 rounded-xl border border-border-primary bg-bg-secondary/50 animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {newIcons.map((icon) => (
+                <Reveal key={icon.name} delay={50} className="h-full">
+                  <div
+                    onClick={() => {
+                      const query = icon.name;
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      navigate(`/icons?q=${encodeURIComponent(query)}`);
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const query = icon.name;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        navigate(`/icons?q=${encodeURIComponent(query)}`);
+                      }
+                    }}
+                    className="group flex flex-col items-center justify-center p-5 rounded-xl border border-border-primary bg-bg-secondary hover:border-border-tertiary hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] transition-all duration-300 cursor-pointer text-center h-28 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <div className="w-10 h-10 flex items-center justify-center text-text-primary group-hover:text-accent transition-colors duration-300">
+                      <IconDisplay
+                        icon={icon}
+                        style="Regular"
+                        width={32}
+                        height={32}
+                        className="w-8 h-8"
+                        urlResolver={getIconUrl}
+                      />
+                    </div>
+                    <span className="mt-3 text-xs font-normal text-text-secondary truncate w-full px-1">
+                      {icon.name}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          <Reveal className="mt-10 text-center">
+            <button
+              onClick={() => handleNavigate("Icons")}
+              className="h-11 px-6 text-sm font-semibold text-text-primary bg-bg-secondary border border-border-primary rounded-full hover:bg-bg-active hover:border-border-secondary transition-all"
+            >
+              Explore All 2,900+ Icons &rarr;
+            </button>
+          </Reveal>
         </div>
       </section>
 

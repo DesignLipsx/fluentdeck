@@ -89,10 +89,10 @@ export const DECK_ASSETS_BASE_URL = '/';
 export const EMOJI_ASSET_URL_BASE = 'https://fluentdeck.vercel.app/';
 
 // Social & Support URLs
-export const GITHUB_PROFILE_URL = 'https://github.com/DesignLipsx/';
+export const GITHUB_PROFILE_URL = 'https://github.com/jishnu-kv/';
 export const BEHANCE_URL = 'https://www.behance.net/jishnukv1';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/jishnu-kv-b7a4232aa/?trk=opento_sprofile_details';
 export const GUMROAD_URL = 'https://jishnukv.gumroad.com/';
-export const SOURCE_CODE_URL = 'https://github.com/DesignLipsx/fluentdeck';
+export const SOURCE_CODE_URL = 'https://github.com/jishnu-kv/fluentdeck';
 export const BUY_ME_A_COFFEE_URL = 'https://buymeacoffee.com/jishnujithu';
-export const NEW_PULL_REQUEST_URL = 'https://github.com/DesignLipsx/WinUI-3-Apps-List/pulls';
+export const NEW_PULL_REQUEST_URL = 'https://github.com/jishnu-kv/WinUI-3-Apps-List/pulls';

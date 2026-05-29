@@ -56,6 +56,10 @@
         "id": "agents-add-9617"
     },
     {
+        "name": "Agents Sync",
+        "id": "agents-sync-8413"
+    },
+    {
         "name": "Airplane",
         "id": "airplane-3901"
     },
@@ -74,6 +78,10 @@
     {
         "name": "Album Add",
         "id": "album-add-2613"
+    },
+    {
+        "name": "Album Subtract",
+        "id": "album-subtract-4728"
     },
     {
         "name": "Alert",
@@ -512,6 +520,10 @@
         "id": "arrow-flow-diagonal-up-right-6550"
     },
     {
+        "name": "Arrow Flow Square Multiple",
+        "id": "arrow-flow-square-multiple-1261"
+    },
+    {
         "name": "Arrow Flow Up Right",
         "id": "arrow-flow-up-right-8225"
     },
@@ -612,8 +624,8 @@
         "id": "arrow-previous-8080"
     },
     {
-        "name": "Arrow Undo Temp RTL",
-        "id": "arrow-undo-temp-rtl-1068"
+        "name": "Arrow Redo",
+        "id": "arrow-redo-1477"
     },
     {
         "name": "Arrow Repeat 1",
@@ -848,8 +860,8 @@
         "id": "arrow-turn-up-left-1225"
     },
     {
-        "name": "Arrow Undo Temp LTR",
-        "id": "arrow-undo-temp-ltr-4010"
+        "name": "Arrow Undo",
+        "id": "arrow-undo-2335"
     },
     {
         "name": "Arrow Up",
@@ -920,8 +932,8 @@
         "id": "autocorrect-3017"
     },
     {
-        "name": "AutoSum",
-        "id": "autosum-0771"
+        "name": "Autosum",
+        "id": "autosum-4426"
     },
     {
         "name": "Backpack",
@@ -1888,6 +1900,10 @@
         "id": "call-checkmark-0412"
     },
     {
+        "name": "Call Chevron Down",
+        "id": "call-chevron-down-8192"
+    },
+    {
         "name": "Call Connecting",
         "id": "call-connecting-1821"
     },
@@ -1996,12 +2012,16 @@
         "id": "camera-switch-9005"
     },
     {
-        "name": "Card UI",
-        "id": "card-ui-3808"
+        "name": "Card Ui",
+        "id": "card-ui-6883"
     },
     {
-        "name": "Card UI Portrait Flip",
-        "id": "card-ui-portrait-flip-1621"
+        "name": "Card Ui Info",
+        "id": "card-ui-info-3880"
+    },
+    {
+        "name": "Card Ui Portrait Flip",
+        "id": "card-ui-portrait-flip-9900"
     },
     {
         "name": "Caret Down",
@@ -2096,6 +2116,10 @@
         "id": "certificate-6709"
     },
     {
+        "name": "Certificate Off",
+        "id": "certificate-off-4974"
+    },
+    {
         "name": "Channel",
         "id": "channel-8023"
     },
@@ -2156,6 +2180,10 @@
         "id": "chat-bubbles-question-4666"
     },
     {
+        "name": "Chat Checkmark",
+        "id": "chat-checkmark-7024"
+    },
+    {
         "name": "Chat Cursor",
         "id": "chat-cursor-3354"
     },
@@ -2170,6 +2198,10 @@
     {
         "name": "Chat Help",
         "id": "chat-help-8027"
+    },
+    {
+        "name": "Chat Hint Half",
+        "id": "chat-hint-half-2950"
     },
     {
         "name": "Chat History",
@@ -2202,6 +2234,10 @@
     {
         "name": "Chat Multiple Minus",
         "id": "chat-multiple-minus-4220"
+    },
+    {
+        "name": "Chat Multiple Person",
+        "id": "chat-multiple-person-1273"
     },
     {
         "name": "Chat Off",
@@ -2278,6 +2314,10 @@
     {
         "name": "Checkmark Circle Hint",
         "id": "checkmark-circle-hint-3077"
+    },
+    {
+        "name": "Checkmark Circle Sparkle",
+        "id": "checkmark-circle-sparkle-9382"
     },
     {
         "name": "Checkmark Circle Square",
@@ -2476,12 +2516,16 @@
         "id": "clipboard-bullet-list-3443"
     },
     {
-        "name": "Clipboard Bullet List Ltr",
-        "id": "clipboard-bullet-list-ltr-4134"
+        "name": "Clipboard Bullet List LTR",
+        "id": "clipboard-bullet-list-ltr-2720"
     },
     {
-        "name": "Clipboard Bullet List Rtl",
-        "id": "clipboard-bullet-list-rtl-8120"
+        "name": "Clipboard Bullet List RTL",
+        "id": "clipboard-bullet-list-rtl-5303"
+    },
+    {
+        "name": "Clipboard Chat Empty",
+        "id": "clipboard-chat-empty-2704"
     },
     {
         "name": "Clipboard Checkmark",
@@ -2550,6 +2594,10 @@
     {
         "name": "Clipboard Number 123",
         "id": "clipboard-number-123-1822"
+    },
+    {
+        "name": "Clipboard Off",
+        "id": "clipboard-off-4343"
     },
     {
         "name": "Clipboard Paste",
@@ -2760,44 +2808,48 @@
         "id": "code-circle-4157"
     },
     {
-        "name": "Code Cs",
-        "id": "code-cs-4728"
+        "name": "Code CS",
+        "id": "code-cs-1827"
     },
     {
-        "name": "Code Cs Rectangle",
-        "id": "code-cs-rectangle-0030"
+        "name": "Code CS Rectangle",
+        "id": "code-cs-rectangle-8924"
     },
     {
-        "name": "Code Fs",
-        "id": "code-fs-8349"
+        "name": "Code FS",
+        "id": "code-fs-4463"
     },
     {
-        "name": "Code Fs Rectangle",
-        "id": "code-fs-rectangle-8060"
+        "name": "Code FS Rectangle",
+        "id": "code-fs-rectangle-4113"
     },
     {
-        "name": "Code Js",
-        "id": "code-js-6773"
+        "name": "Code JS",
+        "id": "code-js-3591"
     },
     {
-        "name": "Code Js Rectangle",
-        "id": "code-js-rectangle-2087"
+        "name": "Code JS Rectangle",
+        "id": "code-js-rectangle-6188"
     },
     {
-        "name": "Code Py",
-        "id": "code-py-4795"
+        "name": "Code Off",
+        "id": "code-off-2225"
     },
     {
-        "name": "Code Py Rectangle",
-        "id": "code-py-rectangle-4881"
+        "name": "Code PY",
+        "id": "code-py-6886"
     },
     {
-        "name": "Code Rb",
-        "id": "code-rb-5015"
+        "name": "Code PY Rectangle",
+        "id": "code-py-rectangle-8015"
     },
     {
-        "name": "Code Rb Rectangle",
-        "id": "code-rb-rectangle-3748"
+        "name": "Code RB",
+        "id": "code-rb-4987"
+    },
+    {
+        "name": "Code RB Rectangle",
+        "id": "code-rb-rectangle-9749"
     },
     {
         "name": "Code Text",
@@ -2812,20 +2864,20 @@
         "id": "code-text-off-2327"
     },
     {
-        "name": "Code Ts",
-        "id": "code-ts-1169"
+        "name": "Code TS",
+        "id": "code-ts-8041"
     },
     {
-        "name": "Code Ts Rectangle",
-        "id": "code-ts-rectangle-8093"
+        "name": "Code TS Rectangle",
+        "id": "code-ts-rectangle-5693"
     },
     {
-        "name": "Code Vb",
-        "id": "code-vb-1779"
+        "name": "Code VB",
+        "id": "code-vb-3340"
     },
     {
-        "name": "Code Vb Rectangle",
-        "id": "code-vb-rectangle-0394"
+        "name": "Code VB Rectangle",
+        "id": "code-vb-rectangle-4062"
     },
     {
         "name": "Coin Multiple",
@@ -2920,12 +2972,12 @@
         "id": "comment-add-6865"
     },
     {
-        "name": "Comment Arrow Left Temp RTL",
-        "id": "comment-arrow-left-temp-rtl-6777"
+        "name": "Comment Arrow Left",
+        "id": "comment-arrow-left-8826"
     },
     {
-        "name": "Comment Arrow Right Temp RTL",
-        "id": "comment-arrow-right-temp-rtl-8645"
+        "name": "Comment Arrow Right",
+        "id": "comment-arrow-right-3141"
     },
     {
         "name": "Comment Badge",
@@ -3436,8 +3488,16 @@
         "id": "desk-5302"
     },
     {
+        "name": "Desk Checkmark",
+        "id": "desk-checkmark-5129"
+    },
+    {
         "name": "Desk Multiple",
         "id": "desk-multiple-2537"
+    },
+    {
+        "name": "Desk Multiple Checkmark",
+        "id": "desk-multiple-checkmark-7818"
     },
     {
         "name": "Desk Sparkle",
@@ -3540,8 +3600,20 @@
         "id": "device-meeting-room-8777"
     },
     {
+        "name": "Device Meeting Room All In One",
+        "id": "device-meeting-room-all-in-one-5758"
+    },
+    {
         "name": "Device Meeting Room Bar",
         "id": "device-meeting-room-bar-3732"
+    },
+    {
+        "name": "Device Meeting Room Microphone Above",
+        "id": "device-meeting-room-microphone-above-7678"
+    },
+    {
+        "name": "Device Meeting Room Microphone Below",
+        "id": "device-meeting-room-microphone-below-1344"
     },
     {
         "name": "Device Meeting Room Remote",
@@ -3570,6 +3642,10 @@
     {
         "name": "Diamond Dismiss",
         "id": "diamond-dismiss-8307"
+    },
+    {
+        "name": "Diamond Link",
+        "id": "diamond-link-9754"
     },
     {
         "name": "Directions",
@@ -3634,6 +3710,10 @@
     {
         "name": "Document Arrow Down",
         "id": "document-arrow-down-5148"
+    },
+    {
+        "name": "Document Arrow Down Off",
+        "id": "document-arrow-down-off-3983"
     },
     {
         "name": "Document Arrow Left",
@@ -3708,12 +3788,16 @@
         "id": "document-copy-5745"
     },
     {
-        "name": "Document Cs",
-        "id": "document-cs-7298"
+        "name": "Document CS",
+        "id": "document-cs-9698"
     },
     {
-        "name": "Document CSS",
-        "id": "document-css-4022"
+        "name": "Document Css",
+        "id": "document-css-5752"
+    },
+    {
+        "name": "Document CSV",
+        "id": "document-csv-8830"
     },
     {
         "name": "Document Cube",
@@ -3772,8 +3856,8 @@
         "id": "document-footer-dismiss-4144"
     },
     {
-        "name": "Document Fs",
-        "id": "document-fs-0586"
+        "name": "Document FS",
+        "id": "document-fs-9840"
     },
     {
         "name": "Document Globe",
@@ -3816,8 +3900,8 @@
         "id": "document-javascript-2409"
     },
     {
-        "name": "Document Js",
-        "id": "document-js-8838"
+        "name": "Document JS",
+        "id": "document-js-2199"
     },
     {
         "name": "Document Key",
@@ -3854,6 +3938,10 @@
     {
         "name": "Document Margins",
         "id": "document-margins-9843"
+    },
+    {
+        "name": "Document Markdown",
+        "id": "document-markdown-3829"
     },
     {
         "name": "Document Mention",
@@ -3968,8 +4056,8 @@
         "id": "document-prohibited-6287"
     },
     {
-        "name": "Document Py",
-        "id": "document-py-1615"
+        "name": "Document PY",
+        "id": "document-py-7455"
     },
     {
         "name": "Document Question Mark",
@@ -3988,16 +4076,16 @@
         "id": "document-queue-multiple-2518"
     },
     {
-        "name": "Document Rb",
-        "id": "document-rb-5492"
+        "name": "Document RB",
+        "id": "document-rb-4518"
     },
     {
         "name": "Document Ribbon",
         "id": "document-ribbon-3461"
     },
     {
-        "name": "Document Sass",
-        "id": "document-sass-1177"
+        "name": "Document SASS",
+        "id": "document-sass-7885"
     },
     {
         "name": "Document Save",
@@ -4088,20 +4176,24 @@
         "id": "document-toolbox-0487"
     },
     {
-        "name": "Document Ts",
-        "id": "document-ts-2107"
+        "name": "Document TS",
+        "id": "document-ts-1379"
     },
     {
-        "name": "Document Vb",
-        "id": "document-vb-5400"
+        "name": "Document VB",
+        "id": "document-vb-4232"
     },
     {
         "name": "Document Width",
         "id": "document-width-3998"
     },
     {
-        "name": "Document Yml",
-        "id": "document-yml-8235"
+        "name": "Document Word",
+        "id": "document-word-4042"
+    },
+    {
+        "name": "Document YML",
+        "id": "document-yml-3048"
     },
     {
         "name": "Door",
@@ -4448,6 +4540,10 @@
         "id": "error-circle-3785"
     },
     {
+        "name": "Error Circle Hint",
+        "id": "error-circle-hint-6901"
+    },
+    {
         "name": "Error Circle Settings",
         "id": "error-circle-settings-2732"
     },
@@ -4732,6 +4828,10 @@
         "id": "folder-mail-5972"
     },
     {
+        "name": "Folder Multiple",
+        "id": "folder-multiple-4571"
+    },
+    {
         "name": "Folder Open",
         "id": "folder-open-2415"
     },
@@ -4848,24 +4948,24 @@
         "id": "form-sparkle-2252"
     },
     {
-        "name": "FPS 120",
-        "id": "fps-120-3854"
+        "name": "Fps 120",
+        "id": "fps-120-9094"
     },
     {
-        "name": "FPS 240",
-        "id": "fps-240-2510"
+        "name": "Fps 240",
+        "id": "fps-240-2250"
     },
     {
-        "name": "FPS 30",
-        "id": "fps-30-8929"
+        "name": "Fps 30",
+        "id": "fps-30-7977"
     },
     {
-        "name": "FPS 60",
-        "id": "fps-60-2500"
+        "name": "Fps 60",
+        "id": "fps-60-4020"
     },
     {
-        "name": "FPS 960",
-        "id": "fps-960-9234"
+        "name": "Fps 960",
+        "id": "fps-960-9049"
     },
     {
         "name": "Frame",
@@ -4928,8 +5028,8 @@
         "id": "gesture-6410"
     },
     {
-        "name": "GIF",
-        "id": "gif-3184"
+        "name": "Gif",
+        "id": "gif-3309"
     },
     {
         "name": "Gift",
@@ -5176,24 +5276,32 @@
         "id": "hat-graduation-sparkle-8632"
     },
     {
-        "name": "HD",
-        "id": "hd-4891"
+        "name": "Hd",
+        "id": "hd-5956"
     },
     {
-        "name": "HD Off",
-        "id": "hd-off-8589"
+        "name": "Hd Off",
+        "id": "hd-off-7442"
     },
     {
-        "name": "HDR",
-        "id": "hdr-6385"
+        "name": "Hdr",
+        "id": "hdr-7716"
     },
     {
-        "name": "HDR Off",
-        "id": "hdr-off-0393"
+        "name": "Hdr Off",
+        "id": "hdr-off-2242"
     },
     {
         "name": "Headphones",
         "id": "headphones-2934"
+    },
+    {
+        "name": "Headphones Convertible",
+        "id": "headphones-convertible-3019"
+    },
+    {
+        "name": "Headphones Monoaural",
+        "id": "headphones-monoaural-6572"
     },
     {
         "name": "Headphones Sound Wave",
@@ -5210,6 +5318,10 @@
     {
         "name": "Headset VR",
         "id": "headset-vr-8161"
+    },
+    {
+        "name": "Headset VR Off",
+        "id": "headset-vr-off-3813"
     },
     {
         "name": "Heart",
@@ -5310,6 +5422,10 @@
     {
         "name": "Home Heart",
         "id": "home-heart-9437"
+    },
+    {
+        "name": "Home Money",
+        "id": "home-money-9899"
     },
     {
         "name": "Home More",
@@ -5476,44 +5592,44 @@
         "id": "inking-tool-accent-0189"
     },
     {
-        "name": "InPrivate Account",
-        "id": "inprivate-account-0299"
+        "name": "Inprivate Account",
+        "id": "inprivate-account-1412"
     },
     {
         "name": "Insert",
         "id": "insert-5316"
     },
     {
-        "name": "iOS Arrow",
-        "id": "ios-arrow-0864"
+        "name": "Ios Arrow",
+        "id": "ios-arrow-8020"
     },
     {
-        "name": "iOS Arrow LTR",
-        "id": "ios-arrow-ltr-5781"
+        "name": "Ios Arrow LTR",
+        "id": "ios-arrow-ltr-7223"
     },
     {
-        "name": "iOS Arrow RTL",
-        "id": "ios-arrow-rtl-8903"
+        "name": "Ios Arrow RTL",
+        "id": "ios-arrow-rtl-5172"
     },
     {
         "name": "Ios Chevron Right",
         "id": "ios-chevron-right-9775"
     },
     {
-        "name": "IoT",
-        "id": "iot-0568"
+        "name": "Iot",
+        "id": "iot-3537"
     },
     {
-        "name": "IoT Alert",
-        "id": "iot-alert-5846"
+        "name": "Iot Alert",
+        "id": "iot-alert-3827"
     },
     {
         "name": "Item Compare",
         "id": "item-compare-5102"
     },
     {
-        "name": "JavaScript",
-        "id": "javascript-5999"
+        "name": "Javascript",
+        "id": "javascript-7079"
     },
     {
         "name": "Joystick",
@@ -5568,6 +5684,10 @@
         "id": "keyboard-mouse-0857"
     },
     {
+        "name": "Keyboard Off",
+        "id": "keyboard-off-6816"
+    },
+    {
         "name": "Keyboard Shift",
         "id": "keyboard-shift-7629"
     },
@@ -5598,6 +5718,10 @@
     {
         "name": "Laptop Multiple",
         "id": "laptop-multiple-2138"
+    },
+    {
+        "name": "Laptop Off",
+        "id": "laptop-off-9860"
     },
     {
         "name": "Laptop Person",
@@ -5772,6 +5896,10 @@
         "id": "layout-dynamic-7696"
     },
     {
+        "name": "Layout Infographic",
+        "id": "layout-infographic-5575"
+    },
+    {
         "name": "Layout Row Four",
         "id": "layout-row-four-1399"
     },
@@ -5900,6 +6028,10 @@
         "id": "lightbulb-person-9487"
     },
     {
+        "name": "Lightbulb Pulse",
+        "id": "lightbulb-pulse-6249"
+    },
+    {
         "name": "Likert",
         "id": "likert-3170"
     },
@@ -6020,8 +6152,8 @@
         "id": "list-bar-tree-offset-5741"
     },
     {
-        "name": "List Rtl",
-        "id": "list-rtl-7873"
+        "name": "List RTL",
+        "id": "list-rtl-5774"
     },
     {
         "name": "Live",
@@ -6356,6 +6488,10 @@
         "id": "maximize-2971"
     },
     {
+        "name": "Medal",
+        "id": "medal-6134"
+    },
+    {
         "name": "Meet Now",
         "id": "meet-now-1271"
     },
@@ -6436,6 +6572,10 @@
         "id": "mic-sync-0398"
     },
     {
+        "name": "Microphone Chat",
+        "id": "microphone-chat-5630"
+    },
+    {
         "name": "Microscope",
         "id": "microscope-0195"
     },
@@ -6444,8 +6584,12 @@
         "id": "microwave-6998"
     },
     {
-        "name": "Midi",
-        "id": "midi-5199"
+        "name": "MIDI",
+        "id": "midi-6646"
+    },
+    {
+        "name": "MIDI Off",
+        "id": "midi-off-9905"
     },
     {
         "name": "Mobile Optimized",
@@ -6508,32 +6652,32 @@
         "id": "mountain-trail-5034"
     },
     {
-        "name": "Movies and TV",
-        "id": "movies-and-tv-6905"
+        "name": "Movies And Tv",
+        "id": "movies-and-tv-3011"
     },
     {
-        "name": "Multiplier 1_2x",
-        "id": "multiplier-1_2x-6970"
+        "name": "Multiplier 1.2X",
+        "id": "multiplier-1-2x-8930"
     },
     {
-        "name": "Multiplier 1_5x",
-        "id": "multiplier-1_5x-7592"
+        "name": "Multiplier 1.5X",
+        "id": "multiplier-1-5x-6418"
     },
     {
-        "name": "Multiplier 1_8x",
-        "id": "multiplier-1_8x-2903"
+        "name": "Multiplier 1.8X",
+        "id": "multiplier-1-8x-9278"
     },
     {
-        "name": "Multiplier 1x",
-        "id": "multiplier-1x-9786"
+        "name": "Multiplier 1X",
+        "id": "multiplier-1x-5296"
     },
     {
-        "name": "Multiplier 2x",
-        "id": "multiplier-2x-9515"
+        "name": "Multiplier 2X",
+        "id": "multiplier-2x-4580"
     },
     {
-        "name": "Multiplier _5x",
-        "id": "multiplier-_5x-9596"
+        "name": "Multiplier 5X",
+        "id": "multiplier-5x-5155"
     },
     {
         "name": "Multiselect LTR",
@@ -6774,6 +6918,10 @@
     {
         "name": "Organization",
         "id": "organization-9641"
+    },
+    {
+        "name": "Organization Add",
+        "id": "organization-add-2798"
     },
     {
         "name": "Organization Horizontal",
@@ -7222,6 +7370,10 @@
     {
         "name": "Person Circle",
         "id": "person-circle-4352"
+    },
+    {
+        "name": "Person Circle Off",
+        "id": "person-circle-off-8214"
     },
     {
         "name": "Person Clock",
@@ -7684,8 +7836,8 @@
         "id": "poll-off-1355"
     },
     {
-        "name": "Port HDMI",
-        "id": "port-hdmi-4255"
+        "name": "Port Hdmi",
+        "id": "port-hdmi-9527"
     },
     {
         "name": "Port Micro USB",
@@ -7748,16 +7900,16 @@
         "id": "presence-busy-8093"
     },
     {
-        "name": "Presence DND",
-        "id": "presence-dnd-7345"
+        "name": "Presence Dnd",
+        "id": "presence-dnd-7330"
     },
     {
         "name": "Presence Offline",
         "id": "presence-offline-2358"
     },
     {
-        "name": "Presence OOF",
-        "id": "presence-oof-3909"
+        "name": "Presence Oof",
+        "id": "presence-oof-9014"
     },
     {
         "name": "Presence Tentative",
@@ -7868,8 +8020,8 @@
         "id": "puzzle-piece-shield-6577"
     },
     {
-        "name": "QR Code",
-        "id": "qr-code-3484"
+        "name": "Qr Code",
+        "id": "qr-code-1004"
     },
     {
         "name": "Question",
@@ -7878,6 +8030,10 @@
     {
         "name": "Question Circle",
         "id": "question-circle-5846"
+    },
+    {
+        "name": "Quiz",
+        "id": "quiz-6015"
     },
     {
         "name": "Quiz New",
@@ -8128,6 +8284,10 @@
         "id": "router-7131"
     },
     {
+        "name": "Router Off",
+        "id": "router-off-6969"
+    },
+    {
         "name": "Row Child",
         "id": "row-child-8406"
     },
@@ -8136,8 +8296,8 @@
         "id": "row-triple-6880"
     },
     {
-        "name": "RSS",
-        "id": "rss-3891"
+        "name": "Rss",
+        "id": "rss-8821"
     },
     {
         "name": "Ruler",
@@ -8220,8 +8380,8 @@
         "id": "scan-person-4166"
     },
     {
-        "name": "Scan QR Code",
-        "id": "scan-qr-code-3468"
+        "name": "Scan Qr Code",
+        "id": "scan-qr-code-7763"
     },
     {
         "name": "Scan Table",
@@ -8368,6 +8528,10 @@
         "id": "serial-port-4015"
     },
     {
+        "name": "Serial Port Off",
+        "id": "serial-port-off-6146"
+    },
+    {
         "name": "Server",
         "id": "server-2017"
     },
@@ -8444,8 +8608,8 @@
         "id": "share-close-tray-3442"
     },
     {
-        "name": "Share iOS",
-        "id": "share-ios-0543"
+        "name": "Share Ios",
+        "id": "share-ios-8953"
     },
     {
         "name": "Share Multiple",
@@ -8632,12 +8796,12 @@
         "id": "showerhead-5536"
     },
     {
-        "name": "Sidebar Search Ltr",
-        "id": "sidebar-search-ltr-8326"
+        "name": "Sidebar Search LTR",
+        "id": "sidebar-search-ltr-8618"
     },
     {
-        "name": "Sidebar Search Rtl",
-        "id": "sidebar-search-rtl-5021"
+        "name": "Sidebar Search RTL",
+        "id": "sidebar-search-rtl-5296"
     },
     {
         "name": "Sign Out",
@@ -8648,8 +8812,12 @@
         "id": "signature-4864"
     },
     {
-        "name": "SIM",
-        "id": "sim-9421"
+        "name": "Sim",
+        "id": "sim-7028"
+    },
+    {
+        "name": "Sine Wave Dots",
+        "id": "sine-wave-dots-2736"
     },
     {
         "name": "Skip Back 10",
@@ -8824,8 +8992,20 @@
         "id": "sound-wave-circle-8447"
     },
     {
+        "name": "Sound Wave Circle Add",
+        "id": "sound-wave-circle-add-2551"
+    },
+    {
         "name": "Sound Wave Circle Sparkle",
         "id": "sound-wave-circle-sparkle-4603"
+    },
+    {
+        "name": "Sound Wave Circle Sparkle Off",
+        "id": "sound-wave-circle-sparkle-off-9846"
+    },
+    {
+        "name": "Sound Wave Circle Subtract",
+        "id": "sound-wave-circle-subtract-3861"
     },
     {
         "name": "Space 3D",
@@ -8848,8 +9028,16 @@
         "id": "sparkle-circle-8399"
     },
     {
+        "name": "Sparkle Circle Off",
+        "id": "sparkle-circle-off-9195"
+    },
+    {
         "name": "Sparkle Info",
         "id": "sparkle-info-2903"
+    },
+    {
+        "name": "Sparkle Off",
+        "id": "sparkle-off-6106"
     },
     {
         "name": "Spatula Spoon",
@@ -9312,8 +9500,8 @@
         "id": "tab-in-private-3561"
     },
     {
-        "name": "Tab InPrivate Account",
-        "id": "tab-inprivate-account-9594"
+        "name": "Tab Inprivate Account",
+        "id": "tab-inprivate-account-9695"
     },
     {
         "name": "Tab Prohibited",
@@ -9374,6 +9562,14 @@
     {
         "name": "Table Cell Center Search",
         "id": "table-cell-center-search-4241"
+    },
+    {
+        "name": "Table Cell Cross",
+        "id": "table-cell-cross-2541"
+    },
+    {
+        "name": "Table Cell Cross Brush",
+        "id": "table-cell-cross-brush-4625"
     },
     {
         "name": "Table Cell Edit",
@@ -9440,12 +9636,12 @@
         "id": "table-edit-5516"
     },
     {
-        "name": "Table Freeze Column Temp RTL",
-        "id": "table-freeze-column-temp-rtl-0034"
+        "name": "Table Freeze Column",
+        "id": "table-freeze-column-4854"
     },
     {
-        "name": "Table Freeze Column And Row Temp RTL",
-        "id": "table-freeze-column-and-row-temp-rtl-6323"
+        "name": "Table Freeze Column And Row",
+        "id": "table-freeze-column-and-row-7065"
     },
     {
         "name": "Table Freeze Column And Row Dismiss",
@@ -9848,8 +10044,8 @@
         "id": "text-align-justify-rotate-90-3475"
     },
     {
-        "name": "Text Align Left Temp LTR",
-        "id": "text-align-left-temp-ltr-0816"
+        "name": "Text Align Left",
+        "id": "text-align-left-6346"
     },
     {
         "name": "Text Align Left Rotate 270",
@@ -9932,8 +10128,8 @@
         "id": "text-bullet-list-rtl-6255"
     },
     {
-        "name": "Text Bullet List Rtl 90",
-        "id": "text-bullet-list-rtl-90-7162"
+        "name": "Text Bullet List RTL 90",
+        "id": "text-bullet-list-rtl-90-1631"
     },
     {
         "name": "Text Bullet List Square",
@@ -10148,8 +10344,8 @@
         "id": "text-field-5870"
     },
     {
-        "name": "Text First Line Temp RTL",
-        "id": "text-first-line-temp-rtl-7916"
+        "name": "Text First Line",
+        "id": "text-first-line-7007"
     },
     {
         "name": "Text Font",
@@ -10164,16 +10360,20 @@
         "id": "text-font-size-7446"
     },
     {
+        "name": "Text Font Size Off",
+        "id": "text-font-size-off-5396"
+    },
+    {
         "name": "Text Footnote",
         "id": "text-footnote-4404"
     },
     {
-        "name": "Text Grammar Arrow Left Temp RTL",
-        "id": "text-grammar-arrow-left-temp-rtl-8279"
+        "name": "Text Grammar Arrow Left",
+        "id": "text-grammar-arrow-left-1126"
     },
     {
-        "name": "Text Grammar Arrow Right Temp RTL",
-        "id": "text-grammar-arrow-right-temp-rtl-2346"
+        "name": "Text Grammar Arrow Right",
+        "id": "text-grammar-arrow-right-1290"
     },
     {
         "name": "Text Grammar Checkmark",
@@ -10200,8 +10400,8 @@
         "id": "text-grammar-wand-1206"
     },
     {
-        "name": "Text Hanging Temp RTL",
-        "id": "text-hanging-temp-rtl-7515"
+        "name": "Text Hanging",
+        "id": "text-hanging-4142"
     },
     {
         "name": "Text Header 1",
@@ -10392,8 +10592,8 @@
         "id": "text-number-list-rtl-rotate-270-2446"
     },
     {
-        "name": "Text Paragraph Temp RTL",
-        "id": "text-paragraph-temp-rtl-5272"
+        "name": "Text Paragraph",
+        "id": "text-paragraph-9655"
     },
     {
         "name": "Text Paragraph Direction",
@@ -10532,84 +10732,84 @@
         "id": "text-wrap-off-8078"
     },
     {
-        "name": "TextBox",
-        "id": "textbox-2768"
+        "name": "Textbox",
+        "id": "textbox-8169"
     },
     {
-        "name": "TextBox Align Bottom",
-        "id": "textbox-align-bottom-2679"
+        "name": "Textbox Align Bottom",
+        "id": "textbox-align-bottom-6395"
     },
     {
-        "name": "TextBox Align Bottom Center",
-        "id": "textbox-align-bottom-center-1666"
+        "name": "Textbox Align Bottom Center",
+        "id": "textbox-align-bottom-center-7166"
     },
     {
-        "name": "TextBox Align Bottom Left",
-        "id": "textbox-align-bottom-left-1212"
+        "name": "Textbox Align Bottom Left",
+        "id": "textbox-align-bottom-left-3670"
     },
     {
-        "name": "TextBox Align Bottom Right",
-        "id": "textbox-align-bottom-right-0869"
+        "name": "Textbox Align Bottom Right",
+        "id": "textbox-align-bottom-right-2739"
     },
     {
-        "name": "TextBox Align Bottom Rotate 90",
-        "id": "textbox-align-bottom-rotate-90-3449"
+        "name": "Textbox Align Bottom Rotate 90",
+        "id": "textbox-align-bottom-rotate-90-3263"
     },
     {
-        "name": "TextBox Align Center",
-        "id": "textbox-align-center-2805"
+        "name": "Textbox Align Center",
+        "id": "textbox-align-center-2084"
     },
     {
-        "name": "TextBox Align Middle",
-        "id": "textbox-align-middle-5230"
+        "name": "Textbox Align Middle",
+        "id": "textbox-align-middle-7511"
     },
     {
-        "name": "TextBox Align Middle Left",
-        "id": "textbox-align-middle-left-1108"
+        "name": "Textbox Align Middle Left",
+        "id": "textbox-align-middle-left-7861"
     },
     {
-        "name": "TextBox Align Middle Right",
-        "id": "textbox-align-middle-right-1816"
+        "name": "Textbox Align Middle Right",
+        "id": "textbox-align-middle-right-5177"
     },
     {
-        "name": "TextBox Align Middle Rotate 90",
-        "id": "textbox-align-middle-rotate-90-7346"
+        "name": "Textbox Align Middle Rotate 90",
+        "id": "textbox-align-middle-rotate-90-5433"
     },
     {
-        "name": "TextBox Align Top",
-        "id": "textbox-align-top-6334"
+        "name": "Textbox Align Top",
+        "id": "textbox-align-top-7395"
     },
     {
-        "name": "TextBox Align Top Center",
-        "id": "textbox-align-top-center-1503"
+        "name": "Textbox Align Top Center",
+        "id": "textbox-align-top-center-6444"
     },
     {
-        "name": "TextBox Align Top Left",
-        "id": "textbox-align-top-left-1109"
+        "name": "Textbox Align Top Left",
+        "id": "textbox-align-top-left-6516"
     },
     {
-        "name": "TextBox Align Top Right",
-        "id": "textbox-align-top-right-6494"
+        "name": "Textbox Align Top Right",
+        "id": "textbox-align-top-right-3688"
     },
     {
-        "name": "TextBox Align Top Rotate 90",
-        "id": "textbox-align-top-rotate-90-2315"
+        "name": "Textbox Align Top Rotate 90",
+        "id": "textbox-align-top-rotate-90-1587"
     },
     {
-        "name": "TextBox Checkmark",
-        "id": "textbox-checkmark-1748"
+        "name": "Textbox Checkmark",
+        "id": "textbox-checkmark-8200"
     },
     {
-        "name": "TextBox More",
-        "id": "textbox-more-1724"
+        "name": "Textbox More",
+        "id": "textbox-more-7766"
     },
     {
-        "name": "TextBox Rotate 90",
-        "id": "textbox-rotate-90-4943"
+        "name": "Textbox Rotate 90",
+        "id": "textbox-rotate-90-9681"
     },
     {
-        "name": "TextBox Settings",
-        "id": "textbox-settings-6395"
+        "name": "Textbox Settings",
+        "id": "textbox-settings-6118"
     },
     {
         "name": "Thinking",
@@ -10768,16 +10968,16 @@
         "id": "trophy-off-9673"
     },
     {
-        "name": "TV",
-        "id": "tv-6790"
+        "name": "Tv",
+        "id": "tv-2287"
     },
     {
         "name": "Tv Arrow Right",
         "id": "tv-arrow-right-1740"
     },
     {
-        "name": "TV USB",
-        "id": "tv-usb-4915"
+        "name": "Tv USB",
+        "id": "tv-usb-3331"
     },
     {
         "name": "Umbrella",
@@ -10788,12 +10988,20 @@
         "id": "uninstall-app-4957"
     },
     {
+        "name": "USB",
+        "id": "usb-8101"
+    },
+    {
+        "name": "USB Off",
+        "id": "usb-off-2935"
+    },
+    {
         "name": "USB Plug",
         "id": "usb-plug-7308"
     },
     {
-        "name": "Usb Stick",
-        "id": "usb-stick-4948"
+        "name": "USB Stick",
+        "id": "usb-stick-5536"
     },
     {
         "name": "Vault",
@@ -11020,6 +11228,14 @@
         "id": "video-settings-1987"
     },
     {
+        "name": "Video Short",
+        "id": "video-short-9660"
+    },
+    {
+        "name": "Video Short Multiple",
+        "id": "video-short-multiple-2691"
+    },
+    {
         "name": "Video Switch",
         "id": "video-switch-4640"
     },
@@ -11038,6 +11254,14 @@
     {
         "name": "View Desktop Mobile",
         "id": "view-desktop-mobile-7509"
+    },
+    {
+        "name": "VIP",
+        "id": "vip-2388"
+    },
+    {
+        "name": "Virtual Network",
+        "id": "virtual-network-7629"
     },
     {
         "name": "Virtual Network Toolbox",
@@ -11144,6 +11368,10 @@
         "id": "weather-haze-7609"
     },
     {
+        "name": "Weather Humidity",
+        "id": "weather-humidity-8195"
+    },
+    {
         "name": "Weather Moon",
         "id": "weather-moon-6270"
     },
@@ -11228,40 +11456,40 @@
         "id": "whiteboard-off-6259"
     },
     {
-        "name": "WiFi",
-        "id": "wifi-9840"
+        "name": "Wifi",
+        "id": "wifi-9306"
     },
     {
-        "name": "WiFi 1",
-        "id": "wifi-1-8118"
+        "name": "Wifi 1",
+        "id": "wifi-1-3886"
     },
     {
-        "name": "WiFi 2",
-        "id": "wifi-2-1951"
+        "name": "Wifi 2",
+        "id": "wifi-2-4389"
     },
     {
-        "name": "WiFi 3",
-        "id": "wifi-3-0533"
+        "name": "Wifi 3",
+        "id": "wifi-3-4890"
     },
     {
-        "name": "WiFi 4",
-        "id": "wifi-4-2945"
+        "name": "Wifi 4",
+        "id": "wifi-4-8881"
     },
     {
-        "name": "WiFi Lock",
-        "id": "wifi-lock-7073"
+        "name": "Wifi Lock",
+        "id": "wifi-lock-3947"
     },
     {
-        "name": "WiFi Off",
-        "id": "wifi-off-9756"
+        "name": "Wifi Off",
+        "id": "wifi-off-6338"
     },
     {
         "name": "Wifi Settings",
         "id": "wifi-settings-0959"
     },
     {
-        "name": "WiFi Warning",
-        "id": "wifi-warning-9776"
+        "name": "Wifi Warning",
+        "id": "wifi-warning-6747"
     },
     {
         "name": "Window",
@@ -11364,12 +11592,20 @@
         "id": "window-multiple-5258"
     },
     {
+        "name": "Window Multiple Off",
+        "id": "window-multiple-off-8260"
+    },
+    {
         "name": "Window Multiple Swap",
         "id": "window-multiple-swap-6505"
     },
     {
         "name": "Window New",
         "id": "window-new-0818"
+    },
+    {
+        "name": "Window New Rotate 180",
+        "id": "window-new-rotate-180-6367"
     },
     {
         "name": "Window Play",
@@ -11390,6 +11626,10 @@
     {
         "name": "Window Wrench",
         "id": "window-wrench-6917"
+    },
+    {
+        "name": "Work IQ",
+        "id": "work-iq-8849"
     },
     {
         "name": "Wrench",

@@ -96,7 +96,7 @@ const ContributePage: React.FC = () => {
 										<p className="text-text-secondary text-sm sm:text-base leading-relaxed mb-4">
 											Head over to the{' '}
 											<a
-												href="https://github.com/DesignLipsx/WinUI-3-Apps-List"
+												href="https://github.com/jishnu-kv/WinUI-3-Apps-List"
 												target="_blank"
 												rel="noopener noreferrer"
 												className="text-text-link hover:opacity-80 font-medium underline"
@@ -287,7 +287,7 @@ const ContributePage: React.FC = () => {
 								</a>.
 								If you find missing icons or updated upstream icons,{' '}
 								<a
-									href="https://github.com/DesignLipsx/fluentdeck/issues"
+									href="https://github.com/jishnu-kv/fluentdeck/issues"
 									className="text-text-link hover:opacity-80 font-medium underline"
 									target="_blank"
 								>

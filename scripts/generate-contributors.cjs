@@ -4,7 +4,7 @@ const path = require('path');
 const sharp = require('sharp');
 const OUTPUT_PATH = path.resolve('./public/data/contributors.json');
 const AVATAR_DIR = path.resolve('./public/assets/contributors');
-const API_URL = 'https://api.github.com/repos/DesignLipsx/WinUI-3-Apps-List/contributors';
+const API_URL = 'https://api.github.com/repos/jishnu-kv/WinUI-3-Apps-List/contributors';
 
 // Util: ensure dir
 function ensureDir(dir) {

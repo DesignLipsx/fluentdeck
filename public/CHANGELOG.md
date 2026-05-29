@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 2.4.0 (29-05-2026)
+
+### ✨ Features & UI Updates
+- **Dynamic Export Segmented Control**: Replaced the format selection dropdown in the Emoji detail panel with a segmented control.
+- **Homepage New Icons Section**: Added an interactive display section directly on the homepage to showcase all newly added Microsoft Fluent system icons.
+
+### 🚀 Package & Developer Tools
+- **Vite 8 Upgrade**: Upgraded the bundler and development server to the latest **Vite 8** (`^8.0.14`) alongside `@vitejs/plugin-react` (`^6.0.2`) and `esbuild` (`^0.28.0`) for faster and cleaner builds.
+- **Automation Scripts**: Added scripts to check (`check-missing-icons.cjs`), copy (`copy-missing-icons.cjs`), and generate metadata/IDs (`generate-icon-metadata.cjs` and `generate-icon-url.cjs`) to simplify synchronizations with upstream icon repositories.
+
+### 📦 Icon Library Update
+Synchronized with the latest Microsoft Fluent System Icons release:
+- Added **728 new icon files** to local assets (**363 Filled** and **365 Regular** icons).
+- Added **53 entirely new icons** (e.g., `agents_sync`, `calendar_todo`, `document_markdown`, `midi_off`, `usb`, `weather_humidity`).
+- Fully cataloged and synchronized the local `icon_metadata.json` and `icon_url.json` files, now managing **2,918 unique concept icons**.
+
+### 🐛 Bug Fixes
+- Fixed an issue where the "Copy URL" section did not dynamically update its description or copied output when WebP was selected.
+
 ## Version 2.3.0 (06-01-2026)
 
 ### 🚀 Improvements

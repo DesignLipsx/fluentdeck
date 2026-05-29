@@ -3,7 +3,7 @@
 **A modern, responsive web interface to browse a curated list of WinUI 3 applications, Fluent System Icons, and Fluent Emojis.**
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/DesignLipsx/fluentdeck)](https://github.com/DesignLipsx/fluentdeck/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jishnu-kv/fluentdeck)](https://github.com/jishnu-kv/fluentdeck/commits/main)
 
 Fluent Deck serves as a comprehensive showcase of Microsoft's modern Fluent Design language. The platform provides a fast, dynamic way to explore a curated list of WinUI 3 applications and a complete library of Fluent design assets.
 
@@ -54,7 +54,7 @@ Follow these steps to set up the project locally for development.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/DesignLipsx/fluentdeck.git](https://github.com/DesignLipsx/fluentdeck.git)
+    git clone [https://github.com/jishnu-kv/fluentdeck.git](https://github.com/jishnu-kv/fluentdeck.git)
     cd fluentdeck
     ```
 

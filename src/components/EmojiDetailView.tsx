@@ -18,7 +18,7 @@ interface EmojiDetailViewProps {
 	showCollectionControls?: boolean;
 }
 
-type ExportFormat = 'PNG' | 'WebP';
+type ExportFormat = 'PNG' | 'SVG' | 'WebP';
 type CopiedField = 'url' | 'symbol' | 'unicode' | 'image' | 'download' | null;
 
 export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
@@ -41,6 +41,37 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 	if (!collectionsContext) throw new Error("CollectionsContext not found");
 
 	// ------------------------------
+	// Dynamic format options based on style
+	// ------------------------------
+	const isSvgStyle = ['Color', 'Flat', 'High Contrast'].includes(selectedStyle);
+
+	useEffect(() => {
+		if (isSvgStyle) {
+			if (exportFormat === 'PNG') {
+				setExportFormat('SVG');
+			}
+		} else {
+			if (exportFormat === 'SVG') {
+				setExportFormat('PNG');
+			}
+		}
+	}, [selectedStyle, isSvgStyle, exportFormat]);
+
+	const formatOptions = useMemo(() => {
+		if (isSvgStyle) {
+			return [
+				{ value: 'SVG', label: 'SVG' },
+				{ value: 'WebP', label: 'WebP' }
+			];
+		} else {
+			return [
+				{ value: 'PNG', label: 'PNG' },
+				{ value: 'WebP', label: 'WebP' }
+			];
+		}
+	}, [isSvgStyle]);
+
+	// ------------------------------
 	// Load ID mapping
 	// ------------------------------
 	useEffect(() => {
@@ -59,7 +90,6 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 	// Core URLs
 	// ------------------------------
 	const imageUrl = getEmojiWebpUrl(emoji, selectedStyle) || '';
-	const isSvgStyle = ['Color', 'Flat', 'High Contrast'].includes(selectedStyle);
 	const exportFileType = isSvgStyle ? 'SVG' : 'PNG';
 	const isMono = selectedStyle === 'High Contrast';
 
@@ -67,6 +97,14 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 		const relative = getEmojiOriginalUrl(emoji, selectedStyle);
 		return relative ? `${EMOJI_ASSET_URL_BASE}${relative.substring(1)}` : '';
 	}, [emoji, selectedStyle]);
+
+	const exportImageUrl = useMemo(() => {
+		if (exportFormat === 'WebP') {
+			const relative = getEmojiWebpUrl(emoji, selectedStyle);
+			return relative ? `${EMOJI_ASSET_URL_BASE}${relative.substring(1)}` : '';
+		}
+		return originalImageUrl;
+	}, [originalImageUrl, emoji, selectedStyle, exportFormat]);
 
 	// ------------------------------
 	// Copy functions
@@ -206,23 +244,13 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 						</h3>
 
 						<div className="w-auto">
-							<DropdownMenu
-								trigger={(isOpen) => (
-									<div className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium bg-bg-secondary border border-border-primary rounded-md cursor-pointer min-w-[150px] justify-between">
-										{exportFormat}
-										<ChevronDownIcon className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-									</div>
-								)}
-								menuClassName="min-w-[150px]"
-							>
-								<DropdownMenuItem onClick={() => setExportFormat("PNG")} isActive={exportFormat === "PNG"}>
-									PNG (Original)
-								</DropdownMenuItem>
-
-								<DropdownMenuItem onClick={() => setExportFormat("WebP")} isActive={exportFormat === "WebP"}>
-									WebP (Optimized)
-								</DropdownMenuItem>
-							</DropdownMenu>
+							<Tabs
+								options={formatOptions}
+								value={exportFormat}
+								onChange={(val) => setExportFormat(val as ExportFormat)}
+								className="!h-[32px] !p-0.5 min-w-[150px]"
+								tabButtonClassName="!text-xs !py-0 !px-2.5"
+							/>
 						</div>
 					</div>
 
@@ -238,8 +266,8 @@ export const EmojiDetailView: React.FC<EmojiDetailViewProps> = ({
 
 						<ActionRow
 							title="Copy URL"
-							description={originalImageUrl}
-							onCopy={() => handleCopy(originalImageUrl, 'url')}
+							description={exportImageUrl}
+							onCopy={() => handleCopy(exportImageUrl, 'url')}
 							isCopied={copiedField === 'url'}
 							icon={<LinkIcon className="w-5 h-5 text-text-primary" />}
 						/>

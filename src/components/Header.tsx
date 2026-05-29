@@ -90,7 +90,7 @@ const Header: React.FC = () => {
 
 						{/* DESKTOP GITHUB BUTTON */}
 						<a
-							href="https://github.com/DesignLipsx/fluentdeck"
+							href="https://github.com/jishnu-kv/fluentdeck"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hidden md:flex items-center gap-1.5 py-1.5 px-4 pl-2 rounded-full bg-bg-secondary hover:bg-bg-active border border-border-primary transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
 
 							{/* MOBILE GITHUB BUTTON */}
 							<a
-								href="https://github.com/DesignLipsx/fluentdeck"
+								href="https://github.com/jishnu-kv/fluentdeck"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:bg-bg-active/50 focus:outline-none focus:ring-2 focus:ring-blue-500"

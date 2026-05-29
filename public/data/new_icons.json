@@ -1,0 +1,732 @@
+[
+  {
+    "name": "Agents Sync",
+    "regular": {
+      "20": "ic_fluent_agents_sync_20_regular",
+      "24": "ic_fluent_agents_sync_24_regular",
+      "28": "ic_fluent_agents_sync_28_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_agents_sync_20_filled",
+      "24": "ic_fluent_agents_sync_24_filled",
+      "28": "ic_fluent_agents_sync_28_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Album Subtract",
+    "regular": {
+      "20": "ic_fluent_album_subtract_20_regular",
+      "24": "ic_fluent_album_subtract_24_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_album_subtract_20_filled",
+      "24": "ic_fluent_album_subtract_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Arrow Flow Square Multiple",
+    "regular": {
+      "16": "ic_fluent_arrow_flow_square_multiple_16_regular",
+      "20": "ic_fluent_arrow_flow_square_multiple_20_regular",
+      "24": "ic_fluent_arrow_flow_square_multiple_24_regular",
+      "28": "ic_fluent_arrow_flow_square_multiple_28_regular",
+      "32": "ic_fluent_arrow_flow_square_multiple_32_regular",
+      "48": "ic_fluent_arrow_flow_square_multiple_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_arrow_flow_square_multiple_16_filled",
+      "20": "ic_fluent_arrow_flow_square_multiple_20_filled",
+      "24": "ic_fluent_arrow_flow_square_multiple_24_filled",
+      "28": "ic_fluent_arrow_flow_square_multiple_28_filled",
+      "32": "ic_fluent_arrow_flow_square_multiple_32_filled",
+      "48": "ic_fluent_arrow_flow_square_multiple_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Call Chevron Down",
+    "regular": {
+      "16": "ic_fluent_call_chevron_down_16_regular",
+      "20": "ic_fluent_call_chevron_down_20_regular",
+      "24": "ic_fluent_call_chevron_down_24_regular",
+      "28": "ic_fluent_call_chevron_down_28_regular",
+      "32": "ic_fluent_call_chevron_down_32_regular",
+      "48": "ic_fluent_call_chevron_down_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_call_chevron_down_16_filled",
+      "20": "ic_fluent_call_chevron_down_20_filled",
+      "24": "ic_fluent_call_chevron_down_24_filled",
+      "28": "ic_fluent_call_chevron_down_28_filled",
+      "32": "ic_fluent_call_chevron_down_32_filled",
+      "48": "ic_fluent_call_chevron_down_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Card Ui Info",
+    "regular": {
+      "16": "ic_fluent_card_ui_info_16_regular",
+      "20": "ic_fluent_card_ui_info_20_regular",
+      "24": "ic_fluent_card_ui_info_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_card_ui_info_16_filled",
+      "20": "ic_fluent_card_ui_info_20_filled",
+      "24": "ic_fluent_card_ui_info_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Certificate Off",
+    "regular": {
+      "16": "ic_fluent_certificate_off_16_regular",
+      "20": "ic_fluent_certificate_off_20_regular",
+      "24": "ic_fluent_certificate_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_certificate_off_16_filled",
+      "20": "ic_fluent_certificate_off_20_filled",
+      "24": "ic_fluent_certificate_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Chat Checkmark",
+    "regular": {
+      "12": "ic_fluent_chat_checkmark_12_regular",
+      "16": "ic_fluent_chat_checkmark_16_regular",
+      "20": "ic_fluent_chat_checkmark_20_regular",
+      "24": "ic_fluent_chat_checkmark_24_regular",
+      "28": "ic_fluent_chat_checkmark_28_regular",
+      "32": "ic_fluent_chat_checkmark_32_regular",
+      "48": "ic_fluent_chat_checkmark_48_regular"
+    },
+    "filled": {
+      "12": "ic_fluent_chat_checkmark_12_filled",
+      "16": "ic_fluent_chat_checkmark_16_filled",
+      "20": "ic_fluent_chat_checkmark_20_filled",
+      "24": "ic_fluent_chat_checkmark_24_filled",
+      "28": "ic_fluent_chat_checkmark_28_filled",
+      "32": "ic_fluent_chat_checkmark_32_filled",
+      "48": "ic_fluent_chat_checkmark_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Chat Multiple Person",
+    "regular": {
+      "16": "ic_fluent_chat_multiple_person_16_regular",
+      "20": "ic_fluent_chat_multiple_person_20_regular",
+      "24": "ic_fluent_chat_multiple_person_24_regular",
+      "28": "ic_fluent_chat_multiple_person_28_regular",
+      "32": "ic_fluent_chat_multiple_person_32_regular",
+      "48": "ic_fluent_chat_multiple_person_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_chat_multiple_person_16_filled",
+      "20": "ic_fluent_chat_multiple_person_20_filled",
+      "24": "ic_fluent_chat_multiple_person_24_filled",
+      "28": "ic_fluent_chat_multiple_person_28_filled",
+      "32": "ic_fluent_chat_multiple_person_32_filled",
+      "48": "ic_fluent_chat_multiple_person_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Checkmark Circle Sparkle",
+    "regular": {
+      "20": "ic_fluent_checkmark_circle_sparkle_20_regular",
+      "24": "ic_fluent_checkmark_circle_sparkle_24_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_checkmark_circle_sparkle_20_filled",
+      "24": "ic_fluent_checkmark_circle_sparkle_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Clipboard Off",
+    "regular": {
+      "16": "ic_fluent_clipboard_off_16_regular",
+      "20": "ic_fluent_clipboard_off_20_regular",
+      "24": "ic_fluent_clipboard_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_clipboard_off_16_filled",
+      "20": "ic_fluent_clipboard_off_20_filled",
+      "24": "ic_fluent_clipboard_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Code Off",
+    "regular": {
+      "16": "ic_fluent_code_off_16_regular",
+      "20": "ic_fluent_code_off_20_regular",
+      "24": "ic_fluent_code_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_code_off_16_filled",
+      "20": "ic_fluent_code_off_20_filled",
+      "24": "ic_fluent_code_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Desk Checkmark",
+    "regular": {
+      "16": "ic_fluent_desk_checkmark_16_regular",
+      "20": "ic_fluent_desk_checkmark_20_regular",
+      "24": "ic_fluent_desk_checkmark_24_regular",
+      "28": "ic_fluent_desk_checkmark_28_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_desk_checkmark_16_filled",
+      "20": "ic_fluent_desk_checkmark_20_filled",
+      "24": "ic_fluent_desk_checkmark_24_filled",
+      "28": "ic_fluent_desk_checkmark_28_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Desk Multiple Checkmark",
+    "regular": {
+      "20": "ic_fluent_desk_multiple_checkmark_20_regular",
+      "24": "ic_fluent_desk_multiple_checkmark_24_regular",
+      "28": "ic_fluent_desk_multiple_checkmark_28_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_desk_multiple_checkmark_20_filled",
+      "24": "ic_fluent_desk_multiple_checkmark_24_filled",
+      "28": "ic_fluent_desk_multiple_checkmark_28_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Device Meeting Room Microphone Above",
+    "regular": {
+      "16": "ic_fluent_device_meeting_room_microphone_above_16_regular",
+      "20": "ic_fluent_device_meeting_room_microphone_above_20_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_device_meeting_room_microphone_above_16_filled",
+      "20": "ic_fluent_device_meeting_room_microphone_above_20_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Device Meeting Room Microphone Below",
+    "regular": {
+      "16": "ic_fluent_device_meeting_room_microphone_below_16_regular",
+      "20": "ic_fluent_device_meeting_room_microphone_below_20_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_device_meeting_room_microphone_below_16_filled",
+      "20": "ic_fluent_device_meeting_room_microphone_below_20_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Document Arrow Down Off",
+    "regular": {
+      "20": "ic_fluent_document_arrow_down_off_20_regular",
+      "24": "ic_fluent_document_arrow_down_off_24_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_document_arrow_down_off_20_filled",
+      "24": "ic_fluent_document_arrow_down_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Document Markdown",
+    "regular": {
+      "16": "ic_fluent_document_markdown_16_regular",
+      "20": "ic_fluent_document_markdown_20_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_document_markdown_16_filled",
+      "20": "ic_fluent_document_markdown_20_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Document Word",
+    "regular": {
+      "16": "ic_fluent_document_word_16_regular",
+      "20": "ic_fluent_document_word_20_regular",
+      "24": "ic_fluent_document_word_24_regular",
+      "28": "ic_fluent_document_word_28_regular",
+      "32": "ic_fluent_document_word_32_regular",
+      "48": "ic_fluent_document_word_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_document_word_16_filled",
+      "20": "ic_fluent_document_word_20_filled",
+      "24": "ic_fluent_document_word_24_filled",
+      "28": "ic_fluent_document_word_28_filled",
+      "32": "ic_fluent_document_word_32_filled",
+      "48": "ic_fluent_document_word_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Error Circle Hint",
+    "regular": {
+      "16": "ic_fluent_error_circle_hint_16_regular",
+      "20": "ic_fluent_error_circle_hint_20_regular",
+      "24": "ic_fluent_error_circle_hint_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_error_circle_hint_16_filled",
+      "20": "ic_fluent_error_circle_hint_20_filled",
+      "24": "ic_fluent_error_circle_hint_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Headphones Convertible",
+    "regular": {
+      "16": "ic_fluent_headphones_convertible_16_regular",
+      "20": "ic_fluent_headphones_convertible_20_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_headphones_convertible_16_filled",
+      "20": "ic_fluent_headphones_convertible_20_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Headphones Monoaural",
+    "regular": {
+      "16": "ic_fluent_headphones_monoaural_16_regular",
+      "20": "ic_fluent_headphones_monoaural_20_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_headphones_monoaural_16_filled",
+      "20": "ic_fluent_headphones_monoaural_20_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Headset VR Off",
+    "regular": {
+      "20": "ic_fluent_headset_vr_off_20_regular",
+      "24": "ic_fluent_headset_vr_off_24_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_headset_vr_off_20_filled",
+      "24": "ic_fluent_headset_vr_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Home Money",
+    "regular": {
+      "16": "ic_fluent_home_money_16_regular",
+      "20": "ic_fluent_home_money_20_regular",
+      "24": "ic_fluent_home_money_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_home_money_16_filled",
+      "20": "ic_fluent_home_money_20_filled",
+      "24": "ic_fluent_home_money_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Keyboard Off",
+    "regular": {
+      "16": "ic_fluent_keyboard_off_16_regular",
+      "20": "ic_fluent_keyboard_off_20_regular",
+      "24": "ic_fluent_keyboard_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_keyboard_off_16_filled",
+      "20": "ic_fluent_keyboard_off_20_filled",
+      "24": "ic_fluent_keyboard_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Laptop Off",
+    "regular": {
+      "16": "ic_fluent_laptop_off_16_regular",
+      "20": "ic_fluent_laptop_off_20_regular",
+      "24": "ic_fluent_laptop_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_laptop_off_16_filled",
+      "20": "ic_fluent_laptop_off_20_filled",
+      "24": "ic_fluent_laptop_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Layout Infographic",
+    "regular": {
+      "16": "ic_fluent_layout_infographic_16_regular",
+      "20": "ic_fluent_layout_infographic_20_regular",
+      "24": "ic_fluent_layout_infographic_24_regular",
+      "28": "ic_fluent_layout_infographic_28_regular",
+      "32": "ic_fluent_layout_infographic_32_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_layout_infographic_16_filled",
+      "20": "ic_fluent_layout_infographic_20_filled",
+      "24": "ic_fluent_layout_infographic_24_filled",
+      "28": "ic_fluent_layout_infographic_28_filled",
+      "32": "ic_fluent_layout_infographic_32_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Lightbulb Pulse",
+    "regular": {
+      "16": "ic_fluent_lightbulb_pulse_16_regular",
+      "20": "ic_fluent_lightbulb_pulse_20_regular",
+      "24": "ic_fluent_lightbulb_pulse_24_regular",
+      "28": "ic_fluent_lightbulb_pulse_28_regular",
+      "32": "ic_fluent_lightbulb_pulse_32_regular",
+      "48": "ic_fluent_lightbulb_pulse_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_lightbulb_pulse_16_filled",
+      "20": "ic_fluent_lightbulb_pulse_20_filled",
+      "24": "ic_fluent_lightbulb_pulse_24_filled",
+      "28": "ic_fluent_lightbulb_pulse_28_filled",
+      "32": "ic_fluent_lightbulb_pulse_32_filled",
+      "48": "ic_fluent_lightbulb_pulse_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Medal",
+    "regular": {
+      "16": "ic_fluent_medal_16_regular",
+      "20": "ic_fluent_medal_20_regular",
+      "24": "ic_fluent_medal_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_medal_16_filled",
+      "20": "ic_fluent_medal_20_filled",
+      "24": "ic_fluent_medal_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Microphone Chat",
+    "regular": {
+      "16": "ic_fluent_microphone_chat_16_regular",
+      "20": "ic_fluent_microphone_chat_20_regular",
+      "24": "ic_fluent_microphone_chat_24_regular",
+      "28": "ic_fluent_microphone_chat_28_regular",
+      "32": "ic_fluent_microphone_chat_32_regular",
+      "48": "ic_fluent_microphone_chat_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_microphone_chat_16_filled",
+      "20": "ic_fluent_microphone_chat_20_filled",
+      "24": "ic_fluent_microphone_chat_24_filled",
+      "28": "ic_fluent_microphone_chat_28_filled",
+      "32": "ic_fluent_microphone_chat_32_filled",
+      "48": "ic_fluent_microphone_chat_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "MIDI Off",
+    "regular": {
+      "16": "ic_fluent_midi_off_16_regular",
+      "20": "ic_fluent_midi_off_20_regular",
+      "24": "ic_fluent_midi_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_midi_off_16_filled",
+      "20": "ic_fluent_midi_off_20_filled",
+      "24": "ic_fluent_midi_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Organization Add",
+    "regular": {
+      "16": "ic_fluent_organization_add_16_regular",
+      "20": "ic_fluent_organization_add_20_regular",
+      "24": "ic_fluent_organization_add_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_organization_add_16_filled",
+      "20": "ic_fluent_organization_add_20_filled",
+      "24": "ic_fluent_organization_add_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Person Circle Off",
+    "regular": {
+      "12": "ic_fluent_person_circle_off_12_regular",
+      "16": "ic_fluent_person_circle_off_16_regular",
+      "20": "ic_fluent_person_circle_off_20_regular",
+      "24": "ic_fluent_person_circle_off_24_regular",
+      "28": "ic_fluent_person_circle_off_28_regular",
+      "32": "ic_fluent_person_circle_off_32_regular"
+    },
+    "filled": {
+      "12": "ic_fluent_person_circle_off_12_filled",
+      "16": "ic_fluent_person_circle_off_16_filled",
+      "20": "ic_fluent_person_circle_off_20_filled",
+      "24": "ic_fluent_person_circle_off_24_filled",
+      "28": "ic_fluent_person_circle_off_28_filled",
+      "32": "ic_fluent_person_circle_off_32_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Router Off",
+    "regular": {
+      "20": "ic_fluent_router_off_20_regular",
+      "24": "ic_fluent_router_off_24_regular"
+    },
+    "filled": {
+      "20": "ic_fluent_router_off_20_filled",
+      "24": "ic_fluent_router_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Serial Port Off",
+    "regular": {
+      "16": "ic_fluent_serial_port_off_16_regular",
+      "20": "ic_fluent_serial_port_off_20_regular",
+      "24": "ic_fluent_serial_port_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_serial_port_off_16_filled",
+      "20": "ic_fluent_serial_port_off_20_filled",
+      "24": "ic_fluent_serial_port_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Sound Wave Circle Sparkle Off",
+    "regular": {
+      "16": "ic_fluent_sound_wave_circle_sparkle_off_16_regular",
+      "20": "ic_fluent_sound_wave_circle_sparkle_off_20_regular",
+      "24": "ic_fluent_sound_wave_circle_sparkle_off_24_regular",
+      "28": "ic_fluent_sound_wave_circle_sparkle_off_28_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_sound_wave_circle_sparkle_off_16_filled",
+      "20": "ic_fluent_sound_wave_circle_sparkle_off_20_filled",
+      "24": "ic_fluent_sound_wave_circle_sparkle_off_24_filled",
+      "28": "ic_fluent_sound_wave_circle_sparkle_off_28_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Sparkle Circle Off",
+    "regular": {
+      "16": "ic_fluent_sparkle_circle_off_16_regular",
+      "20": "ic_fluent_sparkle_circle_off_20_regular",
+      "24": "ic_fluent_sparkle_circle_off_24_regular",
+      "28": "ic_fluent_sparkle_circle_off_28_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_sparkle_circle_off_16_filled",
+      "20": "ic_fluent_sparkle_circle_off_20_filled",
+      "24": "ic_fluent_sparkle_circle_off_24_filled",
+      "28": "ic_fluent_sparkle_circle_off_28_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Sparkle Off",
+    "regular": {
+      "16": "ic_fluent_sparkle_off_16_regular",
+      "20": "ic_fluent_sparkle_off_20_regular",
+      "24": "ic_fluent_sparkle_off_24_regular",
+      "28": "ic_fluent_sparkle_off_28_regular",
+      "32": "ic_fluent_sparkle_off_32_regular",
+      "48": "ic_fluent_sparkle_off_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_sparkle_off_16_filled",
+      "20": "ic_fluent_sparkle_off_20_filled",
+      "24": "ic_fluent_sparkle_off_24_filled",
+      "28": "ic_fluent_sparkle_off_28_filled",
+      "32": "ic_fluent_sparkle_off_32_filled",
+      "48": "ic_fluent_sparkle_off_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Table Cell Cross",
+    "regular": {
+      "16": "ic_fluent_table_cell_cross_16_regular",
+      "20": "ic_fluent_table_cell_cross_20_regular",
+      "24": "ic_fluent_table_cell_cross_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_table_cell_cross_16_filled",
+      "20": "ic_fluent_table_cell_cross_20_filled",
+      "24": "ic_fluent_table_cell_cross_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Table Cell Cross Brush",
+    "regular": {
+      "16": "ic_fluent_table_cell_cross_brush_16_regular",
+      "20": "ic_fluent_table_cell_cross_brush_20_regular",
+      "24": "ic_fluent_table_cell_cross_brush_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_table_cell_cross_brush_16_filled",
+      "20": "ic_fluent_table_cell_cross_brush_20_filled",
+      "24": "ic_fluent_table_cell_cross_brush_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Text Font Size Off",
+    "regular": {
+      "16": "ic_fluent_text_font_size_off_16_regular",
+      "20": "ic_fluent_text_font_size_off_20_regular",
+      "24": "ic_fluent_text_font_size_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_text_font_size_off_16_filled",
+      "20": "ic_fluent_text_font_size_off_20_filled",
+      "24": "ic_fluent_text_font_size_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "USB",
+    "regular": {
+      "16": "ic_fluent_usb_16_regular",
+      "20": "ic_fluent_usb_20_regular",
+      "24": "ic_fluent_usb_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_usb_16_filled",
+      "20": "ic_fluent_usb_20_filled",
+      "24": "ic_fluent_usb_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "USB Off",
+    "regular": {
+      "16": "ic_fluent_usb_off_16_regular",
+      "20": "ic_fluent_usb_off_20_regular",
+      "24": "ic_fluent_usb_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_usb_off_16_filled",
+      "20": "ic_fluent_usb_off_20_filled",
+      "24": "ic_fluent_usb_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "VIP",
+    "regular": {
+      "16": "ic_fluent_vip_16_regular",
+      "20": "ic_fluent_vip_20_regular",
+      "24": "ic_fluent_vip_24_regular",
+      "28": "ic_fluent_vip_28_regular",
+      "32": "ic_fluent_vip_32_regular",
+      "48": "ic_fluent_vip_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_vip_16_filled",
+      "20": "ic_fluent_vip_20_filled",
+      "24": "ic_fluent_vip_24_filled",
+      "28": "ic_fluent_vip_28_filled",
+      "32": "ic_fluent_vip_32_filled",
+      "48": "ic_fluent_vip_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Weather Humidity",
+    "regular": {
+      "12": "ic_fluent_weather_humidity_12_regular",
+      "16": "ic_fluent_weather_humidity_16_regular",
+      "20": "ic_fluent_weather_humidity_20_regular",
+      "24": "ic_fluent_weather_humidity_24_regular",
+      "28": "ic_fluent_weather_humidity_28_regular",
+      "32": "ic_fluent_weather_humidity_32_regular",
+      "48": "ic_fluent_weather_humidity_48_regular"
+    },
+    "filled": {
+      "12": "ic_fluent_weather_humidity_12_filled",
+      "16": "ic_fluent_weather_humidity_16_filled",
+      "20": "ic_fluent_weather_humidity_20_filled",
+      "24": "ic_fluent_weather_humidity_24_filled",
+      "28": "ic_fluent_weather_humidity_28_filled",
+      "32": "ic_fluent_weather_humidity_32_filled",
+      "48": "ic_fluent_weather_humidity_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Window Multiple Off",
+    "regular": {
+      "16": "ic_fluent_window_multiple_off_16_regular",
+      "20": "ic_fluent_window_multiple_off_20_regular",
+      "24": "ic_fluent_window_multiple_off_24_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_window_multiple_off_16_filled",
+      "20": "ic_fluent_window_multiple_off_20_filled",
+      "24": "ic_fluent_window_multiple_off_24_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Window New Rotate 180",
+    "regular": {
+      "16": "ic_fluent_window_new_rotate_180_16_regular",
+      "20": "ic_fluent_window_new_rotate_180_20_regular",
+      "24": "ic_fluent_window_new_rotate_180_24_regular",
+      "28": "ic_fluent_window_new_rotate_180_28_regular",
+      "32": "ic_fluent_window_new_rotate_180_32_regular",
+      "48": "ic_fluent_window_new_rotate_180_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_window_new_rotate_180_16_filled",
+      "20": "ic_fluent_window_new_rotate_180_20_filled",
+      "24": "ic_fluent_window_new_rotate_180_24_filled",
+      "28": "ic_fluent_window_new_rotate_180_28_filled",
+      "32": "ic_fluent_window_new_rotate_180_32_filled",
+      "48": "ic_fluent_window_new_rotate_180_48_filled"
+    },
+    "color": {}
+  },
+  {
+    "name": "Work IQ",
+    "regular": {
+      "16": "ic_fluent_work_iq_16_regular",
+      "20": "ic_fluent_work_iq_20_regular",
+      "24": "ic_fluent_work_iq_24_regular",
+      "28": "ic_fluent_work_iq_28_regular",
+      "32": "ic_fluent_work_iq_32_regular",
+      "48": "ic_fluent_work_iq_48_regular"
+    },
+    "filled": {
+      "16": "ic_fluent_work_iq_16_filled",
+      "20": "ic_fluent_work_iq_20_filled",
+      "24": "ic_fluent_work_iq_24_filled",
+      "28": "ic_fluent_work_iq_28_filled",
+      "32": "ic_fluent_work_iq_32_filled",
+      "48": "ic_fluent_work_iq_48_filled"
+    },
+    "color": {}
+  }
+]

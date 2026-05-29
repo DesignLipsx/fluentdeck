@@ -53,20 +53,33 @@ const parseChangelog = (text: string): ChangelogEntry[] => {
 };
 
 const renderInlineMarkdown = (text: string) => {
-    const parts = text.split(/(`[^`]+`)/g);
+    // 1. Split by inline code blocks
+    const codeParts = text.split(/(`[^`]+`)/g);
 
-    return parts.map((part, idx) => {
-        if (part.startsWith('`') && part.endsWith('`')) {
+    return codeParts.flatMap((codePart, codeIdx) => {
+        if (codePart.startsWith('`') && codePart.endsWith('`')) {
             return (
                 <code
-                    key={idx}
+                    key={`code-${codeIdx}`}
                     className="px-1.5 py-0.5 rounded bg-bg-active text-sm font-mono text-text-primary"
                 >
-                    {part.slice(1, -1)}
+                    {codePart.slice(1, -1)}
                 </code>
             );
         }
-        return <React.Fragment key={idx}>{part}</React.Fragment>;
+
+        // 2. Split non-code text by bold blocks
+        const boldParts = codePart.split(/(\*\*[^*]+\*\*)/g);
+        return boldParts.map((boldPart, boldIdx) => {
+            if (boldPart.startsWith('**') && boldPart.endsWith('**')) {
+                return (
+                    <strong key={`bold-${codeIdx}-${boldIdx}`} className="font-semibold text-text-primary">
+                        {boldPart.slice(2, -2)}
+                    </strong>
+                );
+            }
+            return boldPart;
+        });
     });
 };
 
@@ -111,7 +124,7 @@ const renderMarkdown = (content: string) => {
                                         key={idx}
                                         className="px-6 py-3.5 text-left text-sm font-semibold text-text-primary"
                                     >
-                                        {header.trim().replace(/\*\*/g, '')}
+                                        {renderInlineMarkdown(header.trim())}
                                     </th>
                                 ))}
                             </tr>
@@ -127,7 +140,7 @@ const renderMarkdown = (content: string) => {
                                                 : 'text-text-secondary'
                                                 }`}
                                         >
-                                            {cell.trim().replace(/\*\*/g, '')}
+                                            {renderInlineMarkdown(cell.trim())}
                                         </td>
                                     ))}
                                 </tr>

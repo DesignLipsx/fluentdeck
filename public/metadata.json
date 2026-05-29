@@ -3,12 +3,12 @@
   "short_name": "Fluent Deck",
   "description": "The open-source reference for modern Windows development. Explore official Microsoft Fluent emojis, system icons, and a curated gallery of WinUI 3 applications.",
   "version": "1.0.0",
-  "author": "Jishnu (DesignLipsx)",
+  "author": "Jishnu (jishnu-kv)",
   "license": "MIT",
   "homepage_url": "https://fluentdeck.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DesignLipsx/fluentdeck"
+    "url": "https://github.com/jishnu-kv/fluentdeck"
   },
   "keywords": [
     "WinUI 3",

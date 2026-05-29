@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "node scripts/generate-contributors.cjs && node scripts/generate-apps.cjs",
     "dev": "vite",
-    "build": "vite build && node scripts/generate-sitemap.cjs",
+    "build": "node -e \"const fs = require('fs'); if (fs.existsSync('dist')) fs.rmSync('dist', { recursive: true, force: true });\" && vite build && node scripts/generate-sitemap.cjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -21,15 +21,14 @@
     "@types/node": "^22.14.0",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "autoprefixer": "^10.4.22",
-    "baseline-browser-mapping": "^2.9.19",
-    "esbuild": "^0.25.12",
+    "esbuild": "^0.28.0",
     "postcss": "^8.5.6",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.8.2",
-    "vite": "^7.2.6"
+    "vite": "^8.0.14"
   },
   "packageManager": "npm@11.6.3",
   "overrides": {
@@ -38,7 +37,7 @@
   "description": "A curated showcase of beautiful WinUI 3 apps, a comprehensive library of Microsoft's Fluent System Icons, and a vibrant collection of Fluent Emojis.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DesignLipsx/fluentdeck.git"
+    "url": "git+https://github.com/jishnu-kv/fluentdeck.git"
   },
   "keywords": [
     "fluent-design",
@@ -47,12 +46,13 @@
     "winui",
     "fluent-icons",
     "fluent-emojis",
+    "fluent-deck",
     "design-system"
   ],
   "author": "Jishnu K V",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DesignLipsx/fluentdeck/issues"
+    "url": "https://github.com/jishnu-kv/fluentdeck/issues"
   },
-  "homepage": "https://github.com/DesignLipsx/fluentdeck#readme"
+  "homepage": "https://github.com/jishnu-kv/fluentdeck#readme"
 }
