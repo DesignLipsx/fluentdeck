@@ -47,7 +47,7 @@ const FilterLayout: React.FC<FilterLayoutProps> = ({
 
   const stickyWrapperClass = isSticky
     ? `translate-y-0 opacity-100 pointer-events-auto transition-all duration-300 ease-out ${stickyBorder ? 'border-b border-gray-200 dark:border-border-primary' : ''}`
-    : '-translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-out border-transparent';
+    : '-translate-y-4 opacity-0 pointer-events-none transition-all duration-300 ease-out border-transparent';
 
   return (
     <div>
